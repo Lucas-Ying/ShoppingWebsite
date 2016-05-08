@@ -12,6 +12,27 @@ var app = express();
 var port = process.env.PORT ||8080;
 var eng = require('consolidate');
 
+var pg = require('pg').native;
+var connectionString = "postgres://mppnikubyzarbu:Pn4vmfbqSSS22ZFW3N-35Xflf1@ec2-50-17-249-147.compute-1.amazonaws.com:5432/dbgkce5fglr4rs";
+var client = new pg.Client(connectionString);
+client.connect();
+
+pg.connect(connectionString, function(err, client, done)
+{
+  if(err){
+    console.error('Could not connect to the database');
+    console.error(err);
+    return;
+  }
+  console.log('Connected to database');
+  client.query("SELECT * FROM users;", function(error, result){
+    done();
+    if(error){
+    }
+    //console.log(result);
+  });
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, '/views'));
 app.engine('html', eng.swig);
