@@ -1,0 +1,5 @@
+create table users (id serial primary key, email varchar, pass varchar, name varchar, cart int references cart(id));
+
+create table cart (id serial primary key, userID int references users(id), balance serial, items varchar);
+
+create table products (id serial primary key, name varchar, cost serial, description varchar);
