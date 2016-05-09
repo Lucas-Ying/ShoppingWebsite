@@ -12,8 +12,6 @@ var app = express();
 var port = process.env.PORT ||8080;
 var eng = require('consolidate');
 
-app.use("/", express.static(__dirname + '/views'));//serve up the website
-
 
 var pg = require('pg').native;
 var connectionString = "postgres://mppnikubyzarbu:Pn4vmfbqSSS22ZFW3N-35Xflf1@ec2-50-17-249-147.compute-1.amazonaws.com:5432/dbgkce5fglr4rs";
@@ -37,7 +35,7 @@ pg.connect(connectionString, function(err, client, done)
 });
 
 // view engine setup
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, '/public'));
 app.engine('html', eng.swig);
 app.set('view engine', 'html');
 
