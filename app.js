@@ -20,8 +20,103 @@ var app = express();
 var port = process.env.PORT ||8080;
 var eng = require('consolidate');
 
+
+var pg = require('pg').native;
+var connectionString = "postgres://mppnikubyzarbu:Pn4vmfbqSSS22ZFW3N-35Xflf1@ec2-50-17-249-147.compute-1.amazonaws.com:5432/dbgkce5fglr4rs";
+var client = new pg.Client(connectionString);
+client.connect();
+
+pg.connect(connectionString, function(err, client, done)
+{
+  if(err){
+    console.error('Could not connect to the database');
+    console.error(err);
+    return;
+  }
+  console.log('Connected to database');
+  client.query("SELECT * FROM users;", function(error, result){
+    done();
+    if(error){
+    }
+    //console.log(result);
+  });
+});
+//--------------------------------------------TESTS----------------------------------------------------
+app.get('/test_database_get', function(request, response) {
+
+  var query = client.query("SELECT * FROM users");
+  var results = []
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+    results.push(row);
+  });
+
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+    response.json(results);
+    console.log('Result: ' + results);
+  });
+});
+
+app.get('/test_database_put', function(request, response) {
+  //
+  var query = client.query("INSERT into users (email, pass, name) values($1, $2, $3)", ["test@email.com", "RandomPassword", "John Doe"]);
+
+  query = client.query("SELECT * FROM users");
+  var results = []
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+    results.push(row);
+  });
+
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+    response.json(results);
+    console.log('Result: ' + results);
+  });
+});
+
+app.get('/test_database_post', function(request, response) {
+  //
+  var query = client.query("UPDATE users SET pass=($1) where email=($2)", ["changedPassword", "test@email.com"]);
+
+  query = client.query("SELECT * FROM users");
+  var results = []
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+    results.push(row);
+  });
+
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+    response.json(results);
+    console.log('Result: ' + results);
+  });
+});
+
+app.get('/test_database_delete', function(request, response) {
+  //
+  var query = client.query("DELETE from users where email =($1)", ["test@email.com"]);
+
+  query = client.query("SELECT * FROM users");
+  var results = []
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+    results.push(row);
+  });
+
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+    response.json(results);
+    console.log('Result: ' + results);
+  });
+});
+
+//--------------------End Tests------------------------------------------------
+
+
 // view engine setup
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, '/public'));
 app.engine('html', eng.swig);
 app.set('view engine', 'html');
 
@@ -31,7 +126,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/views')));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(helmet());//use to set http headers
 
 /*app.use('/', routes);
