@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -11,6 +11,9 @@ var users = require('./routes/users');
 var app = express();
 var port = process.env.PORT ||8080;
 var eng = require('consolidate');
+
+app.use("/", express.static(__dirname + '/views'));//serve up the website
+
 
 var pg = require('pg').native;
 var connectionString = "postgres://mppnikubyzarbu:Pn4vmfbqSSS22ZFW3N-35Xflf1@ec2-50-17-249-147.compute-1.amazonaws.com:5432/dbgkce5fglr4rs";
@@ -44,16 +47,32 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/views')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', routes);
 app.use('/users', users);
 
 //render main page
 app.get('/',function(err,res,req,next){
-  res.render('index.html');
+//  res.render('index.html');
 });
 
+
+app.get('/test_database', function(request, response) {
+// SQL Que44-9 NZ-9 NZry > Select Data
+var query = client.query("SELECT * FROM users");
+var results = []
+// Stream results back one row at a time
+query.on('row', function(row) {
+results.push(row);
+});
+
+// After all data is returned, close connection and return results
+query.on('end', function() {
+response.json(results);
+console.log('Result: ' + results);
+});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
