@@ -4,9 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+//use to prevent csrf attack
+var csrf = require('csurf'); 
+//set up route middlewares
+var csrfProtection = csrf({cookie:true});
+var parseForm = bodyParser.urlencoded({extended: false});
+//use to set http headers
+var helmet = require('helmet');
 
+/*
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/users');*/
 
 var app = express();
 var port = process.env.PORT ||8080;
@@ -24,15 +32,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/views')));
+app.use(helmet());//use to set http headers
 
-app.use('/', routes);
-app.use('/users', users);
+/*app.use('/', routes);
+app.use('/users', users);*/
 
 //render main page
-app.get('/',function(err,res,req,next){
-  res.render('index.html');
+app.get('/',csrfProtection,function(err,res,req,next){
+  //pass the csrftoken to the view
+  //when using this can see example at https://www.npmjs.com/package/csurf
+  res.render('index.html',{csrftoken: req.csrftoken()});
 });
 
+
+// error handler for CSRF
+app.use(function (err, req, res, next) {
+  if (err.code !== 'EBADCSRFTOKEN'){
+    return next(err);
+  }
+  // handle CSRF token errors here 
+  res.status(403);
+  res.send('form tampered with');
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
