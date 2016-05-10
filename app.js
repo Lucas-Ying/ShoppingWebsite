@@ -116,7 +116,7 @@ app.get('/test_database_delete', function(request, response) {
 
 
 // view engine setup
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, '/public'));
 app.engine('html', eng.swig);
 app.set('view engine', 'html');
 
