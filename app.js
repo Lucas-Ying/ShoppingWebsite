@@ -20,7 +20,6 @@ var app = express();
 var port = process.env.PORT ||8080;
 var eng = require('consolidate');
 
-
 var pg = require('pg').native;
 var connectionString = "postgres://mppnikubyzarbu:Pn4vmfbqSSS22ZFW3N-35Xflf1@ec2-50-17-249-147.compute-1.amazonaws.com:5432/dbgkce5fglr4rs";
 var client = new pg.Client(connectionString);
@@ -41,6 +40,8 @@ pg.connect(connectionString, function(err, client, done)
     //console.log(result);
   });
 });
+
+
 //--------------------------------------------TESTS----------------------------------------------------
 app.get('/test_database_get', function(request, response) {
 
@@ -160,7 +161,7 @@ app.get('/get_product', csrfProtection, function (req,res){
   //After all data is returned, close connection and return results
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -188,7 +189,7 @@ app.put('/add_product', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -217,7 +218,7 @@ app.post('/update_product', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -246,7 +247,7 @@ app.delete('/delete_product', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -273,7 +274,7 @@ app.get('/get_users', csrfProtection, function (req,res){
   //After all data is returned, close connection and return results
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -285,8 +286,8 @@ app.put('/add_user', csrfProtection, function(req, res){
   var userName = req.body.name;
   var userCart = req.body.cart;
 
-  var q = "insert into users (email,pass,name,cart) values ($1,$2,$3,$4) RETURNING id,email,pass,name,cart";
-  var query = client.query(q, [userEmail,userPass,userName,userCart]);
+  var q = "insert into users (email,pass,name) values ($1,$2,$3,$4) RETURNING id,email,pass,name,cart";
+  var query = client.query(q, [userEmail,userPass,userName]);
   var results =[];
   
   //error handler for /add_user
@@ -302,7 +303,7 @@ app.put('/add_user', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -331,7 +332,7 @@ app.post('/update_user', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -361,7 +362,7 @@ app.delete('/delete_user', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -389,7 +390,7 @@ app.get('/get_cart', csrfProtection, function (req,res){
   //After all data is returned, close connection and return results
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -417,7 +418,7 @@ app.put('/addTocart', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -445,7 +446,7 @@ app.post('/update_cart', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
@@ -474,7 +475,7 @@ app.delete('/delete_cart', csrfProtection, function(req, res){
   //after all the data is returned close connection and return result
   query.on('end',function(){
     res.json(results);
-    console.log("result: "+result);
+    console.log("result: "+results);
   });
 });
 
