@@ -144,7 +144,6 @@ app.get('/',csrfProtection,function(err,res,req,next){
 app.get('/get_product', csrfProtection, function (req,res){
   var productName = req.body.name;
 
-  //SQL Query select Data
   var query = client.query("select * from products");
   var results =[];
 
@@ -172,7 +171,6 @@ app.put('/add_product', csrfProtection, function(req, res){
   var productCost = req.body.cost;
   var productDes = req.body.description;
   
-  //query for inserting product
   var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
   var query = client.query(q, [productName,productCost,productDes]);
   var results =[];
@@ -259,7 +257,6 @@ app.delete('/delete_product', csrfProtection, function(req, res){
 app.get('/get_users', csrfProtection, function (req,res){
   var userName = req.body.name;
 
-  //SQL Query select Data
   var query = client.query("select * from users");
   var results =[];
 
@@ -288,12 +285,11 @@ app.put('/add_user', csrfProtection, function(req, res){
   var userName = req.body.name;
   var userCart = req.body.cart;
 
-  //query for adding user
   var q = "insert into users (email,pass,name,cart) values ($1,$2,$3,$4) RETURNING id,email,pass,name,cart";
   var query = client.query(q, [userEmail,userPass,userName,userCart]);
   var results =[];
   
-   //error handler for /add_user
+  //error handler for /add_user
   query.on('error',function(){
     res.status(500).send('Error, fail to add user Id:'+userId +' Name: '+userName);
   });
@@ -355,6 +351,119 @@ app.delete('/delete_user', csrfProtection, function(req, res){
   //error handler for /delete_user
   query.on('error',function(){
     res.status(500).send('Error, fail to delete user Id:'+userId +' Name: '+userName);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+//===================================================================//
+
+
+//========================RESTful API for cart =====================//
+//get cart
+app.get('/get_cart', csrfProtection, function (req,res){
+  var cartUserId = req.body.userID;
+
+  var query = client.query("select * from cart");
+  var results =[];
+
+  //error handler for /get_cart
+  query.on('error',function(){
+    res.status(500).send('Error, fail to get cart from user userID: '+cartUserId);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //After all data is returned, close connection and return results
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+//adding items to cart
+app.put('/addTocart', csrfProtection, function(req, res){
+  var cartId = req.body.id;
+  var cartUserId = req.body.userID;
+  var cartBalance = req.body.balance;
+  var cartItem = req.body.items;
+
+  var q = "insert into cart (userID,balance,items) values ($1,$2,$3) RETURNING id,userID,balance,items";
+  var query = client.query(q, [cartUserId,cartBalance,cartItem]);
+  var results =[];
+  
+  //error handler for /addTocart
+  query.on('error',function(){
+    res.status(500).send('Error, fail to add to cart Id:'+cartId +' items: '+cartItem);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row); 
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+//update cart items 
+app.post('/update_cart', csrfProtection, function(req, res){
+  var cartId = req.body.id;
+  var cartUserId = req.body.userID;
+  var cartBalance = req.body.balance;
+  var cartItem = req.body.items;
+
+  var q = "update cart set balance = $1, items = $2 where id = $3 and userID = $4 RETURNING id,userID,balance,items";
+  var query = client.query(q, [cartBalance,cartItem,cartId,cartUserId]);
+  var results =[];
+
+  //error handler for /update_cart
+  query.on('error',function(){
+    res.status(500).send('Error, fail to update cart Id:'+cartId +' cartUserID: '+cartUserID+' items: '+cartItem);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+
+//delete cart from user
+app.delete('/delete_cart', csrfProtection, function(req, res){
+  var cartId = req.body.id;
+  var cartUserId = req.body.userID;
+  var cartBalance = req.body.balance;
+  var cartItem = req.body.items;
+
+  var q = "delete from cart where id = $1 RETURNING id,userID,balance,items";
+  var query = client.query(q, [cartId]);
+  var results =[];
+
+  //error handler for /delete_cart
+  query.on('error',function(){
+    res.status(500).send('Error, fail to delete cart Id:'+cartId +' items: '+cartItem);
   });
 
   //stream results back one row at a time
