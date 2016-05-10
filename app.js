@@ -116,7 +116,7 @@ app.get('/test_database_delete', function(request, response) {
 
 
 // view engine setup
-app.set('views', path.join(__dirname, '/public'));
+app.set('views', path.join(__dirname, '/views'));
 app.engine('html', eng.swig);
 app.set('view engine', 'html');
 
@@ -144,13 +144,15 @@ app.get('/',csrfProtection,function(err,res,req,next){
 app.get('/get_product', csrfProtection, function (req,res){
   var productName = req.body.name;
 
+  //SQL Query select Data
+  var query = client.query("select * from products");
+  var results =[];
+
   //error handler for /get_product
   query.on('error',function(){
     res.status(500).send('Error, fail to get product: '+productName);
   });
-  //SQL Query select Data
-  var query = client.query("select * from products");
-  var results =[];
+
   //stream results back one row at a time
   query.on('row',function(row){
     results.push(row);
@@ -170,15 +172,15 @@ app.put('/add_product', csrfProtection, function(req, res){
   var productCost = req.body.cost;
   var productDes = req.body.description;
   
+  //query for inserting product
+  var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
+  var query = client.query(q, [productName,productCost,productDes]);
+  var results =[];
+
   //error handler for /add_product
   query.on('error',function(){
     res.status(500).send('Error, fail to add product id:'+productId +' product: '+productName);
   });
-  //query for inserting items
-  var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
-  var query = client.query(q, [productName,productCost,productDes]);
-  var results =[];
-  //creating a new item to insert
 
   //stream results back one row at a time
   query.on('row',function(row){
@@ -200,14 +202,14 @@ app.post('/update_product', csrfProtection, function(req, res){
   var productCost = req.body.cost;
   var productDes = req.body.description;
 
+  var q = "update products set name = $1, cost = $2, description = $3 where id = $4 RETURNING id,name,cost,description";
+  var query = client.query(q, [productName,productCost,productDes,productId]);
+  var results =[];
+
   //error handler for /update_product
   query.on('error',function(){
     res.status(500).send('Error, fail to update product id:'+productId +' product: '+productName);
   });
-
-  var q = "update products set name = $1, cost = $2, description = $3 where id = $4 RETURNING id,name,cost,description";
-  var query = client.query(q, [productName,productCost,productDes,productId]);
-  var results =[];
 
   //stream results back one row at a time
   query.on('row',function(row){
@@ -229,14 +231,14 @@ app.delete('/delete_product', csrfProtection, function(req, res){
   var productCost = req.body.cost;
   var productDes = req.body.description;
 
+  var q = "delete from products where id = $1 RETURNING id,name,cost,description";
+  var query = client.query(q, [productId]);
+  var results =[];
+
   //error handler for /delete_product
   query.on('error',function(){
     res.status(500).send('Error, fail to delete product id:'+productId +' product: '+productName);
   });
-
-  var q = "delete from products where id = $1 RETURNING id,name,cost,description";
-  var query = client.query(q, [productId]);
-  var results =[];
 
   //stream results back one row at a time
   query.on('row',function(row){
@@ -252,6 +254,122 @@ app.delete('/delete_product', csrfProtection, function(req, res){
 
 //===================================================================//
 
+//========================RESTful API for users =====================//
+//get users
+app.get('/get_users', csrfProtection, function (req,res){
+  var userName = req.body.name;
+
+  //SQL Query select Data
+  var query = client.query("select * from users");
+  var results =[];
+
+  //error handler for /get_users
+  query.on('error',function(){
+    res.status(500).send('Error, fail to get users: '+userName);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //After all data is returned, close connection and return results
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+//adding users
+app.put('/add_user', csrfProtection, function(req, res){
+  var userId = req.body.id;
+  var userEmail = req.body.email;
+  var userPass = req.body.pass;
+  var userName = req.body.name;
+  var userCart = req.body.cart;
+
+  //query for adding user
+  var q = "insert into users (email,pass,name,cart) values ($1,$2,$3,$4) RETURNING id,email,pass,name,cart";
+  var query = client.query(q, [userEmail,userPass,userName,userCart]);
+  var results =[];
+  
+   //error handler for /add_user
+  query.on('error',function(){
+    res.status(500).send('Error, fail to add user Id:'+userId +' Name: '+userName);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row); 
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+//update users 
+app.post('/update_user', csrfProtection, function(req, res){
+  var userId = req.body.id;
+  var userEmail = req.body.email;
+  var userPass = req.body.pass;
+  var userName = req.body.name;
+  var userCart = req.body.cart;
+
+  var q = "update users set email = $1, pass = $2, name = $3 cart = $4 where id = $5 RETURNING id,email,pass,name,cart";
+  var query = client.query(q, [userEmail,userPass,userName,userCart,userId]);
+  var results =[];
+
+  //error handler for /update_user
+  query.on('error',function(){
+    res.status(500).send('Error, fail to update user Id:'+userId +' Name: '+userName);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+
+//delete users
+app.delete('/delete_user', csrfProtection, function(req, res){
+  var userId = req.body.id;
+  var userEmail = req.body.email;
+  var userPass = req.body.pass;
+  var userName = req.body.name;
+  var userCart = req.body.cart;
+
+  var q = "delete from users where id = $1 RETURNING id,email,pass,name,cart";
+  var query = client.query(q, [userId]);
+  var results =[];
+
+  //error handler for /delete_user
+  query.on('error',function(){
+    res.status(500).send('Error, fail to delete user Id:'+userId +' Name: '+userName);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+//===================================================================//
 
 // error handler for CSRF
 app.use(function (err, req, res, next) {
