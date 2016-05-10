@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var csrf = require('csurf'); 
 //set up route middlewares
 var csrfProtection = csrf({cookie:true});
-var parseForm = bodyParser.urlencoded({extended: false});
+//var parseForm = bodyParser.urlencoded({extended: false});
 //use to set http headers
 var helmet = require('helmet');
 
@@ -139,6 +139,119 @@ app.get('/',csrfProtection,function(err,res,req,next){
   res.render('index.html',{csrftoken: req.csrftoken()});
 });
 
+//========================RESTful API for Product ====================//
+//get products
+app.get('/get_product', csrfProtection, function (req,res){
+  var productName = req.body.name;
+
+  //error handler for /get_product
+  query.on('error',function(){
+    res.status(500).send('Error, fail to get product: '+productName);
+  });
+  //SQL Query select Data
+  var query = client.query("select * from products");
+  var results =[];
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //After all data is returned, close connection and return results
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+//adding product
+app.put('/add_product', csrfProtection, function(req, res){
+  var productId = req.body.id;
+  var productName = req.body.name;
+  var productCost = req.body.cost;
+  var productDes = req.body.description;
+  
+  //error handler for /add_product
+  query.on('error',function(){
+    res.status(500).send('Error, fail to add product id:'+productId +' product: '+productName);
+  });
+  //query for inserting items
+  var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
+  var query = client.query(q, [productName,productCost,productDes]);
+  var results =[];
+  //creating a new item to insert
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row); 
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+
+//update product 
+app.post('/update_product', csrfProtection, function(req, res){
+  var productId = req.body.id;
+  var productName = req.body.name;
+  var productCost = req.body.cost;
+  var productDes = req.body.description;
+
+  //error handler for /update_product
+  query.on('error',function(){
+    res.status(500).send('Error, fail to update product id:'+productId +' product: '+productName);
+  });
+
+  var q = "update products set name = $1, cost = $2, description = $3 where id = $4 RETURNING id,name,cost,description";
+  var query = client.query(q, [productName,productCost,productDes,productId]);
+  var results =[];
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+
+//delete product
+app.delete('/delete_product', csrfProtection, function(req, res){
+  var productId = req.body.id;
+  var productName = req.body.name;
+  var productCost = req.body.cost;
+  var productDes = req.body.description;
+
+  //error handler for /delete_product
+  query.on('error',function(){
+    res.status(500).send('Error, fail to delete product id:'+productId +' product: '+productName);
+  });
+
+  var q = "delete from products where id = $1 RETURNING id,name,cost,description";
+  var query = client.query(q, [productId]);
+  var results =[];
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+result);
+  });
+});
+
+//===================================================================//
+
 
 // error handler for CSRF
 app.use(function (err, req, res, next) {
@@ -147,7 +260,11 @@ app.use(function (err, req, res, next) {
   }
   // handle CSRF token errors here 
   res.status(403);
-  res.send('form tampered with');
+  res.render('error', {
+      message: err.message,
+      error: err
+  });
+  //res.send('form tampered with');
 })
 
 // catch 404 and forward to error handler
