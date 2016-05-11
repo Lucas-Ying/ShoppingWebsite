@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 //use to prevent csrf attack
 var csrf = require('csurf'); 
 //set up route middlewares
-var csrfProtection = csrf({cookie:true});
+//var csrfProtection = csrf({cookie:true});
 //var parseForm = bodyParser.urlencoded({extended: false});
 //use to set http headers
 var helmet = require('helmet');
@@ -134,7 +134,7 @@ app.use(helmet());//use to set http headers
 app.use('/users', users);*/
 
 //render main page
-app.get('/',csrfProtection,function(err,res,req,next){
+app.get('/',function(err,res,req,next){
   //pass the csrftoken to the view
   //when using this can see example at https://www.npmjs.com/package/csurf
   res.render('index.html',{csrftoken: req.csrftoken()});
@@ -142,7 +142,7 @@ app.get('/',csrfProtection,function(err,res,req,next){
 
 //========================RESTful API for Product ====================//
 //get products
-app.get('/get_product', csrfProtection, function (req,res){
+app.get('/get_product', function (req,res){
   var productName = req.body.name;
 
   var query = client.query("select * from products");
@@ -166,7 +166,7 @@ app.get('/get_product', csrfProtection, function (req,res){
 });
 
 //adding product
-app.put('/add_product', csrfProtection, function(req, res){
+app.put('/add_product', function(req, res){
   var productId = req.body.id;
   var productName = req.body.name;
   var productCost = req.body.cost;
@@ -195,7 +195,7 @@ app.put('/add_product', csrfProtection, function(req, res){
 
 
 //update product 
-app.post('/update_product', csrfProtection, function(req, res){
+app.post('/update_product', function(req, res){
   var productId = req.body.id;
   var productName = req.body.name;
   var productCost = req.body.cost;
@@ -224,7 +224,7 @@ app.post('/update_product', csrfProtection, function(req, res){
 
 
 //delete product
-app.delete('/delete_product', csrfProtection, function(req, res){
+app.delete('/delete_product', function(req, res){
   var productId = req.body.id;
   var productName = req.body.name;
   var productCost = req.body.cost;
@@ -255,7 +255,7 @@ app.delete('/delete_product', csrfProtection, function(req, res){
 
 //========================RESTful API for users =====================//
 //get users
-app.get('/get_users', csrfProtection, function (req,res){
+app.get('/get_users', function (req,res){
   var userName = req.body.name;
 
   var query = client.query("select * from users");
@@ -279,14 +279,14 @@ app.get('/get_users', csrfProtection, function (req,res){
 });
 
 //adding users
-app.put('/add_user', csrfProtection, function(req, res){
+app.put('/add_user', function(req, res){
   var userId = req.body.id;
   var userEmail = req.body.email;
   var userPass = req.body.pass;
   var userName = req.body.name;
   var userCart = req.body.cart;
 
-  var q = "insert into users (email,pass,name) values ($1,$2,$3,$4) RETURNING id,email,pass,name,cart";
+  var q = "insert into users (email,pass,name) values ($1,$2,$3) RETURNING id,email,pass,name";
   var query = client.query(q, [userEmail,userPass,userName]);
   var results =[];
   
@@ -308,15 +308,15 @@ app.put('/add_user', csrfProtection, function(req, res){
 });
 
 //update users 
-app.post('/update_user', csrfProtection, function(req, res){
+app.post('/update_user', function(req, res){
   var userId = req.body.id;
   var userEmail = req.body.email;
   var userPass = req.body.pass;
   var userName = req.body.name;
   var userCart = req.body.cart;
 
-  var q = "update users set email = $1, pass = $2, name = $3 cart = $4 where id = $5 RETURNING id,email,pass,name,cart";
-  var query = client.query(q, [userEmail,userPass,userName,userCart,userId]);
+  var q = "update users set email = $1, pass = $2, name = $3 where id = $4 RETURNING id,email,pass,name";
+  var query = client.query(q, [userEmail,userPass,userName,userId]);
   var results =[];
 
   //error handler for /update_user
@@ -338,14 +338,14 @@ app.post('/update_user', csrfProtection, function(req, res){
 
 
 //delete users
-app.delete('/delete_user', csrfProtection, function(req, res){
+app.delete('/delete_user', function(req, res){
   var userId = req.body.id;
   var userEmail = req.body.email;
   var userPass = req.body.pass;
   var userName = req.body.name;
   var userCart = req.body.cart;
 
-  var q = "delete from users where id = $1 RETURNING id,email,pass,name,cart";
+  var q = "delete from users where id = $1 RETURNING id,email,pass,name";
   var query = client.query(q, [userId]);
   var results =[];
 
@@ -371,7 +371,7 @@ app.delete('/delete_user', csrfProtection, function(req, res){
 
 //========================RESTful API for cart =====================//
 //get cart
-app.get('/get_cart', csrfProtection, function (req,res){
+app.get('/get_cart', function (req,res){
   var cartUserId = req.body.userID;
 
   var query = client.query("select * from cart");
@@ -395,7 +395,7 @@ app.get('/get_cart', csrfProtection, function (req,res){
 });
 
 //adding items to cart
-app.put('/addTocart', csrfProtection, function(req, res){
+app.put('/addTocart', function(req, res){
   var cartId = req.body.id;
   var cartUserId = req.body.userID;
   var cartBalance = req.body.balance;
@@ -423,19 +423,19 @@ app.put('/addTocart', csrfProtection, function(req, res){
 });
 
 //update cart items 
-app.post('/update_cart', csrfProtection, function(req, res){
+app.post('/update_cart', function(req, res){
   var cartId = req.body.id;
   var cartUserId = req.body.userID;
   var cartBalance = req.body.balance;
   var cartItem = req.body.items;
 
-  var q = "update cart set balance = $1, items = $2 where id = $3 and userID = $4 RETURNING id,userID,balance,items";
-  var query = client.query(q, [cartBalance,cartItem,cartId,cartUserId]);
+  var q = "update cart set balance = $1, items = $2 where userID = $3 and id = $4 RETURNING id,userID,balance,items";
+  var query = client.query(q, [cartBalance,cartItem,cartUserId,cartId]);
   var results =[];
 
   //error handler for /update_cart
   query.on('error',function(){
-    res.status(500).send('Error, fail to update cart Id:'+cartId +' cartUserID: '+cartUserID+' items: '+cartItem);
+    res.status(500).send('Error, fail to update cart Id:'+cartId +' cartUserID: '+cartUserId+' items: '+cartItem);
   });
 
   //stream results back one row at a time
@@ -452,7 +452,7 @@ app.post('/update_cart', csrfProtection, function(req, res){
 
 
 //delete cart from user
-app.delete('/delete_cart', csrfProtection, function(req, res){
+app.delete('/delete_cart', function(req, res){
   var cartId = req.body.id;
   var cartUserId = req.body.userID;
   var cartBalance = req.body.balance;
