@@ -279,8 +279,8 @@ app.get('/get_user', function (req,res){
   var userEmail = req.body.email;
   var userPass = req.body.pass;
 console.log(userEmail);
-  var q = "SELECT * FROM users WHERE email=$1;";
-  var query = client.query(q, [userEmail]);
+  var q = "SELECT * FROM users WHERE email=$1 AND pass=$2;";
+  var query = client.query(q, [userEmail, userPass]);
 
 
   var results =[];
@@ -304,14 +304,13 @@ console.log(userEmail);
 
 //adding users
 app.put('/add_user', function(req, res){
-  var userId = req.body.id;
   var userEmail = req.body.email;
   var userPass = req.body.pass;
   var userName = req.body.name;
   var userCart = req.body.cart;
 
-  var q = "insert into users (email,pass,name) values ($1,$2,$3) RETURNING id,email,pass,name";
-  var query = client.query(q, [userEmail,userPass,userName]);
+  var q = "insert into users (email,pass,name, cart) values ($1,$2,$3, $4) RETURNING id,email,pass,name";
+  var query = client.query(q, [userEmail,userPass,userName, userCart]);
   var results =[];
 
   //error handler for /add_user
@@ -364,10 +363,8 @@ app.post('/update_user', function(req, res){
 //delete users
 app.delete('/delete_user', function(req, res){
   var userId = req.body.id;
-  var userEmail = req.body.email;
   var userPass = req.body.pass;
   var userName = req.body.name;
-  var userCart = req.body.cart;
 
   var q = "delete from users where id = $1 RETURNING id,email,pass,name";
   var query = client.query(q, [userId]);
