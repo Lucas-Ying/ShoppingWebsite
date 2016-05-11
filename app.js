@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //use to prevent csrf attack
-var csrf = require('csurf'); 
+var csrf = require('csurf');
 //set up route middlewares
 //var csrfProtection = csrf({cookie:true});
 //var parseForm = bodyParser.urlencoded({extended: false});
@@ -143,7 +143,7 @@ app.get('/',function(err,res,req,next){
 //========================RESTful API for Product ====================//
 //get products
 app.get('/get_product', function (req,res){
-  var productName = req.body.name;
+//  var productName = req.body.name;
 
   var query = client.query("select * from products");
   var results =[];
@@ -167,11 +167,10 @@ app.get('/get_product', function (req,res){
 
 //adding product
 app.put('/add_product', function(req, res){
-  var productId = req.body.id;
   var productName = req.body.name;
   var productCost = req.body.cost;
   var productDes = req.body.description;
-  
+
   var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
   var query = client.query(q, [productName,productCost,productDes]);
   var results =[];
@@ -183,7 +182,7 @@ app.put('/add_product', function(req, res){
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row); 
+    results.push(row);
   });
 
   //after all the data is returned close connection and return result
@@ -194,7 +193,7 @@ app.put('/add_product', function(req, res){
 });
 
 
-//update product 
+//update product
 app.post('/update_product', function(req, res){
   var productId = req.body.id;
   var productName = req.body.name;
@@ -289,7 +288,7 @@ app.put('/add_user', function(req, res){
   var q = "insert into users (email,pass,name) values ($1,$2,$3) RETURNING id,email,pass,name";
   var query = client.query(q, [userEmail,userPass,userName]);
   var results =[];
-  
+
   //error handler for /add_user
   query.on('error',function(){
     res.status(500).send('Error, fail to add user Id:'+userId +' Name: '+userName);
@@ -297,7 +296,7 @@ app.put('/add_user', function(req, res){
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row); 
+    results.push(row);
   });
 
   //after all the data is returned close connection and return result
@@ -307,7 +306,7 @@ app.put('/add_user', function(req, res){
   });
 });
 
-//update users 
+//update users
 app.post('/update_user', function(req, res){
   var userId = req.body.id;
   var userEmail = req.body.email;
@@ -404,7 +403,7 @@ app.put('/addTocart', function(req, res){
   var q = "insert into cart (userID,balance,items) values ($1,$2,$3) RETURNING id,userID,balance,items";
   var query = client.query(q, [cartUserId,cartBalance,cartItem]);
   var results =[];
-  
+
   //error handler for /addTocart
   query.on('error',function(){
     res.status(500).send('Error, fail to add to cart Id:'+cartId +' items: '+cartItem);
@@ -412,7 +411,7 @@ app.put('/addTocart', function(req, res){
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row); 
+    results.push(row);
   });
 
   //after all the data is returned close connection and return result
@@ -422,7 +421,7 @@ app.put('/addTocart', function(req, res){
   });
 });
 
-//update cart items 
+//update cart items
 app.post('/update_cart', function(req, res){
   var cartId = req.body.id;
   var cartUserId = req.body.userID;
@@ -486,7 +485,7 @@ app.use(function (err, req, res, next) {
   if (err.code !== 'EBADCSRFTOKEN'){
     return next(err);
   }
-  // handle CSRF token errors here 
+  // handle CSRF token errors here
   res.status(403);
   res.render('error', {
       message: err.message,
