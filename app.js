@@ -172,7 +172,7 @@ app.put('/add_product', function(req, res){
   var productDes = req.body.description;
   // console.log("add product request");
   console.log("name: " + productName + " cost: " + productCost + " Description: " + productDes);
-  var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING name,cost,description";
+  var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
   var query = client.query(q, [productName,productCost,productDes]);
   var results =[];
 
@@ -226,9 +226,6 @@ app.post('/update_product', function(req, res){
 //delete product
 app.delete('/delete_product', function(req, res){
   var productId = req.body.id;
-  var productName = req.body.name;
-  var productCost = req.body.cost;
-  var productDes = req.body.description;
 
   var q = "delete from products where id = $1 RETURNING id,name,cost,description";
   var query = client.query(q, [productId]);
