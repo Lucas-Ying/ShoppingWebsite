@@ -450,8 +450,7 @@ app.post('/update_cart', function(req, res){
   var cartBalance = req.body.balance;
   var cartItem = req.body.items;
 console.log("cartid: " + cartId + " car user id: " + cartUserId + "cart balance = " + cartBalance + " cart items: " + cartItem);
-  var q = "update cart set balance = $1, items = $2  where id=$4";
-  //where userID = $3
+  var q = "update cart set balance = $1, items = $2 where userID = $3 and id = $4";
   var query = client.query(q, [cartBalance,cartItem,cartUserId,cartId]);
   var results =[];
 
