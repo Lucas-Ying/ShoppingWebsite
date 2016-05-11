@@ -170,14 +170,15 @@ app.put('/add_product', function(req, res){
   var productName = req.body.name;
   var productCost = req.body.cost;
   var productDes = req.body.description;
-
-  var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
+  // console.log("add product request");
+  console.log("name: " + productName + " cost: " + productCost + " Description: " + productDes);
+  var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING name,cost,description";
   var query = client.query(q, [productName,productCost,productDes]);
   var results =[];
 
   //error handler for /add_product
   query.on('error',function(){
-    res.status(500).send('Error, fail to add product id:'+productId +' product: '+productName);
+    res.status(500).send('Error, fail to add product product: '+productName);
   });
 
   //stream results back one row at a time
