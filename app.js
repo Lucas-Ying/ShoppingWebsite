@@ -415,14 +415,14 @@ app.get('/get_cart', function (req,res){
   });
 });
 
-//adding items to cart
-app.put('/addTocart', function(req, res){
+//adding new cart
+app.put('/addCart', function(req, res){
   var cartId = req.body.id;
   var cartUserId = req.body.userID;
   var cartBalance = req.body.balance;
   var cartItem = req.body.items;
 
-  var q = "insert into cart (userID,balance,items) values ($1,$2,$3) RETURNING id,userID,balance,items";
+  var q = "insert into cart (userid,balance,items) values ($1,$2,$3) RETURNING id,userID,balance,items";
   var query = client.query(q, [cartUserId,cartBalance,cartItem]);
   var results =[];
 
@@ -449,8 +449,9 @@ app.post('/update_cart', function(req, res){
   var cartUserId = req.body.userID;
   var cartBalance = req.body.balance;
   var cartItem = req.body.items;
-
-  var q = "update cart set balance = $1, items = $2 where userID = $3 and id = $4 RETURNING id,userID,balance,items";
+console.log("cartid: " + cartId + " car user id: " + cartUserId + "cart balance = " + cartBalance + " cart items: " + cartItem);
+  var q = "update cart set balance = $1, items = $2  where id=$4";
+  //where userID = $3
   var query = client.query(q, [cartBalance,cartItem,cartUserId,cartId]);
   var results =[];
 
