@@ -1,9 +1,3 @@
-$.validator.setDefaults({
-	submitHandler: function() {
-		alert("Sign up Successful!");
-	}
-});
-
 $().ready(function() {
 
 	$("#signup").validate({
@@ -43,6 +37,30 @@ $().ready(function() {
 				required:"Please re-enter the password",
 				minlength:"Your password must be at least 6 characters long",
 				equalTo: "Please enter the same password as above"
+			}
+		}
+	});
+
+
+	$("#loginForm").validate({
+		rules: {
+			email: {
+				required: true,
+				email: true
+			},
+			password: {
+				required: true,
+				minlength: 6
+			}
+		},
+		messages:{
+			email:{
+				required:"Please enter a email",
+				email: "Please enter a valid email address "
+			},
+			password:{
+				required:"Please enter a password",
+				minlength:"Your password must be at least 6 characters long"
 			}
 		}
 	});

@@ -18,13 +18,15 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.validate.js"></script>
 	<script src="js/form.js"></script>
+
 	<script>
 	$.validator.setDefaults({
 		submitHandler: function() {
-			alert("Sign up Successful!");
+			alert("Login Successful!");
 		}
 	});
 	</script>
+
 	<body>
 		<div id="WholePage">
 			<div id="Inner">
@@ -119,15 +121,11 @@
 						</div>
 						<div id="RightPart">
 							<div id="Page">
-					
+
 								<div id="Page_center">				
-									<form class = "valForm" id = "signup" action = "" method = "PUT" >
+									<form class = "valForm" id = "loginForm" action = "" method = "GET" >
 										<fieldset>
-											<legend>Sign Up</legend>
-											<p>
-												<label for="username">Username:</label>
-												<input id="username" name="username" type="text">
-											</p>
+											<legend>Login</legend>
 											<p>
 												<label for="email">Email:</label>
 												<input id="email" name="email" type="email">
@@ -135,10 +133,6 @@
 											<p>
 												<label for="password">Password:</label>
 												<input id="password" name="password" type="password">
-											</p>
-											<p>
-												<label for="confirm_password">Confirm password:</label>
-												<input id="confirm_password" name="confirm_password" type="password">
 											</p>
 											<br>
 											<p>		
