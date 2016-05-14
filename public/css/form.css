@@ -50,7 +50,7 @@ form.valForm label.error {
 	width: 220px;
 }
 
-form.valForm input.submit {
+form.valForm input.submitbtn {
 	margin-left: 255px;
 	margin-bottom: 10px;
 }

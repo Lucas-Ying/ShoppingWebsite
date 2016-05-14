@@ -18,13 +18,9 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.validate.js"></script>
 	<script src="js/form.js"></script>
-	<script>
-	$.validator.setDefaults({
-		submitHandler: function() {
-			alert("Sign up Successful!");
-		}
-	});
-	</script>
+	<script src="js/authentication.js"></script>
+	
+
 	<body>
 		<div id="WholePage">
 			<div id="Inner">
@@ -121,7 +117,7 @@
 							<div id="Page">
 					
 								<div id="Page_center">				
-									<form class = "valForm" id = "signup" action = "" method = "PUT" >
+									<form class = "valForm" id = "signupForm" action = "" method = "PUT" >
 										<fieldset>
 											<legend>Sign Up</legend>
 											<p>
@@ -142,7 +138,7 @@
 											</p>
 											<br>
 											<p>		
-												<input class ="submit" type = "submit" value = "Submit"/>
+												<input id = "signUp" class ="submitbtn" type = "submit" value = "Submit"/>
 											</p>	
 										</fieldset>										
 									</form>

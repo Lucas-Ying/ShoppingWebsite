@@ -309,13 +309,13 @@ app.put('/add_user', function(req, res){
   var userName = req.body.name;
   var userCart = req.body.cart;
 
-  var q = "insert into users (email,pass,name, cart) values ($1,$2,$3, $4) RETURNING id,email,pass,name";
-  var query = client.query(q, [userEmail,userPass,userName, userCart]);
+  var q = "insert into users (email,pass,name) values ($1,$2,$3) RETURNING id,email,pass,name";
+  var query = client.query(q, [userEmail,userPass,userName]);
   var results =[];
 
   //error handler for /add_user
   query.on('error',function(){
-    res.status(500).send('Error, fail to add user Id:'+userId +' Name: '+userName);
+    res.status(500).send('Error, fail to add user Name: '+userName);
   });
 
   //stream results back one row at a time

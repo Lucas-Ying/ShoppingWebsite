@@ -1,6 +1,6 @@
 $().ready(function() {
 
-	$("#signup").validate({
+	$("#signupForm").validate({
 		rules: {
 			username: {
 				required: true,
@@ -27,7 +27,7 @@ $().ready(function() {
 			},
 			email:{
 				required:"Please enter a email",
-				email: "Please enter a valid email address "
+				email: "Please enter a valid email address"
 			},
 			password:{
 				required:"Please enter a password",
