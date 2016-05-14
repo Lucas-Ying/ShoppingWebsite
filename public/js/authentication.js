@@ -2,13 +2,17 @@ var ipAddress = "http://localhost:8080";
 
 $(document).ready(function(){
 
+    //signup
     $('#signupForm').submit(function(e){
         e.preventDefault();
-        
         var email = $('input[id="email"]').val();
         var pass = $('input[id="password"]').val();
         var name = $('input[id="username"]').val();
         var conPass = $('input[id="confirm_password"]').val();
+
+        $('#email').on('click',function(){
+            document.getElementById('err').style.visibility = 'hidden';
+        });
 
         var checker = false;
         //console.log("email: "+email+ "password: "+pass+" name: "+name);
@@ -32,8 +36,11 @@ $(document).ready(function(){
                     if(!checker){
                         document.getElementById('err').style.visibility = 'hidden';
                         //if email doesnt exist add the user to the database
-                        addUser();
+                        //addUser();
                     }      
+                },
+                error:function(){
+                    console.log("Error: fail to get users");
                 }               
              });
             
@@ -52,13 +59,22 @@ $(document).ready(function(){
                     error:function(){
                         console.log("Error: fail to add user: "+name);
                     }
-
                 });
                 //reset form
                 $('#signupForm').trigger('reset');
             }
         }
         //otherwise leave it to the form validation
+    });
+
+
+    //login 
+    $('#loginForm').submit(function(e){
+         e.preventDefault();
+         var email = $('input[id="email"]').val();
+
+
+
     });
 
 });
