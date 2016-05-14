@@ -67,7 +67,12 @@ form.valForm label.error, label.error {
 div.error { display: none; }
 form.input {	border: 1px solid black; }
 form.input.checkbox { border: none }
-form.input:focus { border: 1px dotted black; }
-form.input.error { border: 1px dotted red; }
-form.cmxform .gray * { color: gray; }
 
+form.valForm #err{ 
+	color: red;
+	font-style: italic;
+	font-weight: bold;
+	margin-left:5px;
+	width: auto;
+	display: inline;
+}
