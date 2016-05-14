@@ -36,7 +36,7 @@ $(document).ready(function(){
                     if(!checker){
                         document.getElementById('err').style.visibility = 'hidden';
                         //if email doesnt exist add the user to the database
-                        //addUser();
+                        addUser();
                     }      
                 },
                 error:function(){
