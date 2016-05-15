@@ -278,10 +278,9 @@ app.get('/get_users', function (req,res){
 app.get('/get_user', function (req,res){
   var userEmail = req.body.email;
   var userPass = req.body.pass;
-console.log(userEmail);
+  //console.log(userEmail);
   var q = "SELECT * FROM users WHERE email=$1 AND pass=$2;";
   var query = client.query(q, [userEmail, userPass]);
-
 
   var results =[];
 

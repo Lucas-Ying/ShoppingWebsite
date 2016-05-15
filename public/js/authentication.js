@@ -19,7 +19,7 @@ $(document).ready(function(){
         //if all values are not empty then add the user to table
         if(email && pass && name && conPass){
 
-             $.ajax({
+            $.ajax({
                 method:'GET',
                 url:ipAddress+'/get_users',
 
@@ -42,7 +42,7 @@ $(document).ready(function(){
                 error:function(){
                     console.log("Error: fail to get users");
                 }               
-             });
+            });
             
             function addUser(){
                 $.ajax({
@@ -70,11 +70,46 @@ $(document).ready(function(){
 
     //login 
     $('#loginForm').submit(function(e){
-         e.preventDefault();
-         var email = $('input[id="email"]').val();
+        e.preventDefault();
+        var email = $('input[id="email"]').val();
+        var passW = $('input[id="password"]').val();
 
+        $('#email,#password').on('click',function(){
+            document.getElementById('err').style.visibility = 'hidden';
+        });
 
+        if(email && passW){
+            //console.log("email: "+email+ "password: "+passW);
+            $.ajax({
+                method:'GET',
+                url:ipAddress+'/get_users',
 
+                success: function(data){
+                    //go through database check if email exist 
+                    for(i = 0; i<data.length; i++){                        
+                        if(data[i].email == email){
+                            if(data[i].pass == passW){
+                                alert("Login Successful!");
+                                //reset form
+                                $('#loginForm').trigger('reset');
+                                return;
+                                //do something here
+                            }
+                            else{
+                                document.getElementById('err').innerHTML="Incorrect password";
+                                document.getElementById('err').style.visibility = 'visible';
+                                return;
+                                //console.log("Error: incorrect password");
+                            }
+                        }
+                    }
+                    document.getElementById('err').innerHTML="Email doesn't exists";
+                    document.getElementById('err').style.visibility = 'visible';
+                },
+                error:function(){
+                    console.log("Error: fail to get users");
+                }               
+            });
+        }
     });
-
 });
