@@ -90,8 +90,8 @@ $(document).ready(function(){
                     for(i = 0; i<data.length; i++){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
-                              location.href = 'index.html';
-                              //  alert("Login Successful!");
+                              // location.href = 'index.html';
+                               alert("Login Successful!");
                                 //reset form
 
                                 $('#loginForm').trigger('reset');
