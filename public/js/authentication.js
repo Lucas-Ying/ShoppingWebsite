@@ -24,26 +24,26 @@ $(document).ready(function(){
                 url:ipAddress+'/get_users',
 
                 success: function(data){
-                    //go through database check if email already exist 
-                    for(i = 0; i<data.length; i++){                        
+                    //go through database check if email already exist
+                    for(i = 0; i<data.length; i++){
                         if(data[i].email == email){
                             checker = true;
                             document.getElementById('err').innerHTML="Email already exist please use a different email or login";
                             document.getElementById('err').style.visibility = 'visible';
-                        } 
+                        }
                     }
-                    
+
                     if(!checker){
                         document.getElementById('err').style.visibility = 'hidden';
                         //if email doesnt exist add the user to the database
                         addUser();
-                    }      
+                    }
                 },
                 error:function(){
                     console.log("Error: fail to get users");
-                }               
+                }
             });
-            
+
             function addUser(){
                 $.ajax({
                     method:'PUT',
@@ -51,7 +51,7 @@ $(document).ready(function(){
                     dataType:'json',
                     data:{'email':email,"pass":pass,"name":name},
 
-                    success:function(){                    
+                    success:function(){
                         alert("SignUp Successful!");
                         //do more. swap page etc
 
@@ -68,7 +68,7 @@ $(document).ready(function(){
     });
 
 
-    //login 
+    //login
     $('#loginForm').submit(function(e){
         e.preventDefault();
         var email = $('input[id="email"]').val();
@@ -85,12 +85,14 @@ $(document).ready(function(){
                 url:ipAddress+'/get_users',
 
                 success: function(data){
-                    //go through database check if email exist 
-                    for(i = 0; i<data.length; i++){                        
+                    //go through database check if email exist
+                    for(i = 0; i<data.length; i++){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
+                              location.href = 'index.html';
                                 alert("Login Successful!");
-                                //reset form
+                                //reset form                               
+
                                 $('#loginForm').trigger('reset');
                                 return;
                                 //do something here
@@ -108,7 +110,7 @@ $(document).ready(function(){
                 },
                 error:function(){
                     console.log("Error: fail to get users");
-                }               
+                }
             });
         }
     });
