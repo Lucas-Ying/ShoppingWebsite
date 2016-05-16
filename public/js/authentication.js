@@ -53,6 +53,7 @@ $(document).ready(function(){
 
                     success:function(){
                         alert("SignUp Successful!");
+                        location.href = 'login.html';
                         //do more. swap page etc
 
                     },
@@ -91,7 +92,7 @@ $(document).ready(function(){
                             if(data[i].pass == passW){
                               location.href = 'index.html';
                                 alert("Login Successful!");
-                                //reset form                               
+                                //reset form
 
                                 $('#loginForm').trigger('reset');
                                 return;
