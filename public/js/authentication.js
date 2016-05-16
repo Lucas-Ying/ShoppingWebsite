@@ -91,7 +91,7 @@ $(document).ready(function(){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
                               location.href = 'index.html';
-                                alert("Login Successful!");
+                              //  alert("Login Successful!");
                                 //reset form
 
                                 $('#loginForm').trigger('reset');
