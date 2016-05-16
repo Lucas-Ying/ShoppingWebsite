@@ -21,7 +21,7 @@ $(document).ready(function(){
 
             $.ajax({
                 method:'GET',
-                url:ipAddress+'/get_users',
+                url:'/get_users',
 
                 success: function(data){
                     //go through database check if email already exist
@@ -47,7 +47,7 @@ $(document).ready(function(){
             function addUser(){
                 $.ajax({
                     method:'PUT',
-                    url:ipAddress+'/add_user',
+                    url:'/add_user',
                     dataType:'json',
                     data:{'email':email,"pass":pass,"name":name},
 
@@ -83,14 +83,14 @@ $(document).ready(function(){
             //console.log("email: "+email+ "password: "+passW);
             $.ajax({
                 method:'GET',
-                url:ipAddress+'/get_users',
+                url:'/get_users',
 
                 success: function(data){
                     //go through database check if email exist
                     for(i = 0; i<data.length; i++){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
-                              // location.href = 'index.html';
+                               location.href = 'index.html';
                                alert("Login Successful!");
                                 //reset form
 
