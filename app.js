@@ -4,6 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var logger = require('morgan');
+var session = require('express-session');
+var Grant = require('grant-express');
+var grant = new Grant(require('./config.json'));
 //use to prevent csrf attack
 var csrf = require('csurf');
 //set up route middlewares
@@ -17,6 +21,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');*/
 
 var app = express();
+
 var port = process.env.PORT ||8080;
 var eng = require('consolidate');
 
@@ -41,6 +46,23 @@ pg.connect(connectionString, function(err, client, done)
   });
 });
 
+//====================OAUTH===================================
+app.use(logger('dev'))
+// REQUIRED:
+app.use(session({secret:'very secret'}))
+// mount grant
+app.use(grant)
+
+app.get('/connect/facebook/callback', function (req, res) {
+  console.log(req.query)
+  res.end(JSON.stringify(req.query, null, 2))
+})
+
+app.get('/connect/twitter/callback', function (req, res) {
+  console.log(req.query)
+  res.end(JSON.stringify(req.query, null, 2))
+})
+//=============================END OAUTH===========================
 
 //--------------------------------------------TESTS----------------------------------------------------
 app.get('/test_database_get', function(request, response) {
