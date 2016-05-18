@@ -7,7 +7,7 @@ function changeLoginName(checkName){
 }
 
 $().ready(function(){
-
+    changeLoginName(checkName);
     //signup
     $('#signupForm').submit(function(e){
         e.preventDefault();
@@ -76,6 +76,9 @@ $().ready(function(){
                 $('#signupForm').trigger('reset');
             }
         }
+        //oAuth register
+
+
         //otherwise leave it to the form validation
     });
 
@@ -130,5 +133,9 @@ $().ready(function(){
                 }
             });
         }
+
+        //oAuth login
+
+
     });
 });
