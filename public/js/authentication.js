@@ -1,8 +1,9 @@
 
-$(document).ready(function(){
+$().ready(function(){
 
-    document.getElementById('log-in').innerHTML = "LOG IN";
-    document.getElementById('registration').innerHTML = "REGISTRATION";
+/*    document.getElementById('log-in').innerHTML = "LOG IN";
+    document.getElementById('registration').innerHTML = "REGISTRATION";*/
+
     //signup
     $('#signupForm').submit(function(e){
         e.preventDefault();
@@ -99,8 +100,8 @@ $(document).ready(function(){
                             if(data[i].pass == passW){
                                 location.href = 'index.html';
                                 alert("Login Successful!");
-                                document.getElementById('log-in').innerHTML = data[i].name;
                                 
+                                document.getElementById('log-in').innerHTML = data[i].name;
                                 //reset form
                                 $('#loginForm').trigger('reset');
                                 return;
