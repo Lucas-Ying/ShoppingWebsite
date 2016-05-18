@@ -6,15 +6,15 @@
   "facebook": {
     "key": "1620018034981698",
     "secret": "3fd05406e3d547dafff4c0bf23bdf33b",
-    "callback": "/handle_facebook_callback",
+    "callback": "/connect/facebook/callback",
     "scope": [
-      "user_groups",
-      "user_likes"
+      "email",
+      "public_profile"
     ]
   },
   "twitter": {
     "key": "VDu9V8pV9ukxUs89JiWxoSwoH",
     "secret": "AR5aS5c2vZr9sVDkROnLg4ZylJTAPRy2NeHAP7QUEcyNr5v8j1",
-    "callback": "/handle_twitter_callback"
+    "callback": "/connect/twitter/callback"
   }
 }
