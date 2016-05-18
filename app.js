@@ -54,8 +54,12 @@ app.use(session({secret:'very secret'}))
 app.use(grant)
 
 app.get('/facebook_callback', function (req, res) {
-  console.log(req.query)
-  res.end(JSON.stringify(req.query, null, 2))
+  //var accessToken = req.body.access_token;
+  console.log(req.query.access_token) //This is used to iidentify a user
+  //console.log("Access token: " + accessToken)
+  res.end(JSON.stringify(req.query.access_token, null, 2))
+  //res.end(accessToken)
+
 })
 
 app.get('/twitter_callback', function (req, res) {
