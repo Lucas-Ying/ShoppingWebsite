@@ -1,7 +1,7 @@
 {
   "server": {
     "protocol": "https",
-    "host": "https://tranquil-journey-51576.herokuapp.com"
+    "host": "tranquil-journey-51576.herokuapp.com"
   },
   "facebook": {
     "key": "1620018034981698",
