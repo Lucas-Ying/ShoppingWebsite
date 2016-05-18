@@ -115,13 +115,14 @@ app.get('/auth/twitter/callback', function(req, res, next) {
         if (error) {
           console.log(error);
           res.send("Authentication Failure!");
+          res.redirect('https://tranquil-journey-51576.herokuapp.com/register.html');
         }
         else {
           req.session.oauth.access_token = oauth_access_token;
           req.session.oauth.access_token_secret = oauth_access_token_secret;
           console.log(results, req.session.oauth);
           res.send("Authentication Successful");
-           res.redirect('index.html'); 
+          res.redirect('https://tranquil-journey-51576.herokuapp.com/index.html'); 
         }
       }
     );
