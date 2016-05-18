@@ -12,7 +12,7 @@ form.valForm fieldset {
 form.valForm legend {
 	padding: 0 2px;
 	font-weight: bold;
-	margin: 0 -7px; /* IE Win */
+	_margin: 0 -7px; /* IE Win */
 }
 
 form.valForm label {

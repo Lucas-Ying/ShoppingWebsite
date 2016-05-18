@@ -11,22 +11,43 @@ $().ready(function(){
     
     //twitter login
     $('#twitterLogin').on('click',function(){
-        var checker = false;
         $.ajax({
             method:'GET',
-            url:'/twitter_callback',
-
+            url:'/auth_twitter',
             success: function(data){
+                //console.log(data);
+            }
+        });
+
+       /* var checker = false;
+        $.ajax({
+            method:'GET',
+            url:'/get_users',
+            success: function(data){
+                var access_token = "";
+                //use the twitter_callback function to get the access token back and check with the emails
+                $.ajax({
+                    method:'GET',
+                    url:'/twitter_callback',
+                    success: function(data){
+                        access_token = data[1];
+                    },
+                    error:function(){
+                         console.log("Error: fail to get users");
+                    }
+                });
                 //go through database check if email already exist
                 for(i = 0; i<data.length; i++){
-                    if(data[i].access_token){
+                    if(data[i].email == access_token){
                         checker = true;
-                        console.log("user exists");
+                        console.log("user exists do login");
                     }
                 }
 
                 if(!checker){
-                    console.log("user doesn't exists");
+                    console.log("user doesn't exists need to add to database");
+                   // access_token
+                    //window.location.href = '/twitter_callback';
                     //if email doesnt exist add the user to the database
                     //addUser();
                 }
@@ -34,8 +55,7 @@ $().ready(function(){
             error:function(){
                  console.log("Error: fail to get users");
             }
-        });
-
+        });*/
     });
 
     //facebook login
