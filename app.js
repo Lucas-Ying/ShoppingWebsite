@@ -78,7 +78,7 @@ var OAuth = require('oauth').OAuth
       "NFE9tO39ZJHqy0TcRJ8zT3JKp",
       "Xd4kzzp7rpxkmPzUPFHLyIwRrnbEvaNjlbpdMqCvB0Jt6NrcaQ",
       "1.0",
-      "https://tranquil-journey-51576.herokuapp.com/twitter_callback",
+      "https://tranquil-journey-51576.herokuapp.com/index.html",
       "HMAC-SHA1"
 );
 
@@ -128,7 +128,7 @@ app.get('/auth/twitter/callback', function(req, res, next) {
     );
   }
   else {
-    res.redirect('login.html'); // Redirect to login page
+    res.redirect('https://tranquil-journey-51576.herokuapp.com/login.html'); // Redirect to login page
   }
 });
 
