@@ -8,6 +8,41 @@ function changeLoginName(checkName){
 
 $().ready(function(){
     changeLoginName(checkName);
+    
+    //twitter login
+    $('#twitterLogin').on('click',function(){
+        var checker = false;
+        $.ajax({
+            method:'GET',
+            url:'/twitter_callback',
+
+            success: function(data){
+                //go through database check if email already exist
+                for(i = 0; i<data.length; i++){
+                    if(data[i].access_token){
+                        checker = true;
+                        console.log("user exists");
+                    }
+                }
+
+                if(!checker){
+                    console.log("user doesn't exists");
+                    //if email doesnt exist add the user to the database
+                    //addUser();
+                }
+            },
+            error:function(){
+                 console.log("Error: fail to get users");
+            }
+        });
+
+    });
+
+    //facebook login
+    $('#fbLogin').on('click',function(){
+        console.log("in fbLogin");
+    });
+    
     //signup
     $('#signupForm').submit(function(e){
         e.preventDefault();
@@ -24,6 +59,7 @@ $().ready(function(){
         //console.log("email: "+email+ "password: "+pass+" name: "+name);
         //if all values are not empty then add the user to table
         if(email && pass && name && conPass){
+            //user can not use login as username
             if(name == "LOG IN"){
                 document.getElementById('err').innerHTML="Can't use LOG IN as username, Please choose another username";
                 document.getElementById('err').style.visibility = 'visible';
@@ -39,7 +75,7 @@ $().ready(function(){
                     for(i = 0; i<data.length; i++){
                         if(data[i].email == email){
                             checker = true;
-                            document.getElementById('err').innerHTML="Email already exist please use a different email or login";
+                            document.getElementById('err').innerHTML="Email already exist please use a different email";
                             document.getElementById('err').style.visibility = 'visible';
                         }
                     }
@@ -75,11 +111,7 @@ $().ready(function(){
                 //reset form
                 $('#signupForm').trigger('reset');
             }
-        }
-        //oAuth register
-
-
-        //otherwise leave it to the form validation
+        }//otherwise leave it to the form validation
     });
 
 
@@ -106,9 +138,8 @@ $().ready(function(){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
                                 location.href = 'index.html';
-                                checkName = data[i].name;
-                                console.log(checkName+"3");
-                                changeLoginName(checkName);
+                               // checkName = data[i].name;
+                               // changeLoginName(checkName);
 
                                 alert("Login Successful!");
                                 //document.getElementById('log-in').innerHTML = data[i].name;
@@ -134,8 +165,6 @@ $().ready(function(){
             });
         }
 
-        //oAuth login
-
-
     });
 });
+
