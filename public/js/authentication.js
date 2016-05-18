@@ -1,8 +1,12 @@
+var checkName = "";
+
+function changeLoginName(checkName){
+    if(checkName){
+        document.getElementById('log-in').innerHTML=checkName;
+    }
+}
 
 $().ready(function(){
-
-/*    document.getElementById('log-in').innerHTML = "LOG IN";
-    document.getElementById('registration').innerHTML = "REGISTRATION";*/
 
     //signup
     $('#signupForm').submit(function(e){
@@ -99,9 +103,12 @@ $().ready(function(){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
                                 location.href = 'index.html';
+                                checkName = data[i].name;
+                                console.log(checkName+"3");
+                                changeLoginName(checkName);
+
                                 alert("Login Successful!");
-                                
-                                document.getElementById('log-in').innerHTML = data[i].name;
+                                //document.getElementById('log-in').innerHTML = data[i].name;
                                 //reset form
                                 $('#loginForm').trigger('reset');
                                 return;
