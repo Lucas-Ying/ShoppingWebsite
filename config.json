@@ -1,12 +1,12 @@
 {
   "server": {
     "protocol": "http",
-    "host": "https://tranquil-journey-51576.herokuapp.com/"
+    "host": "https://tranquil-journey-51576.herokuapp.com"
   },
   "facebook": {
     "key": "1620018034981698",
     "secret": "3fd05406e3d547dafff4c0bf23bdf33b",
-    "callback": "/connect/facebook/callback",
+    "callback": "/handle_facebook_callback",
     "scope": [
       "user_groups",
       "user_likes"
@@ -15,6 +15,6 @@
   "twitter": {
     "key": "VDu9V8pV9ukxUs89JiWxoSwoH",
     "secret": "AR5aS5c2vZr9sVDkROnLg4ZylJTAPRy2NeHAP7QUEcyNr5v8j1",
-    "callback": "/connect/twitter/callback"
+    "callback": "/handle_twitter_callback"
   }
 }
