@@ -64,11 +64,11 @@ app.get('/facebook_callback', function (req, res) {
 
 })
 
-app.get('/twitter_callback', function (req, res) {
+/*app.get('/twitter_callback', function (req, res) {
   var accessToken = req.query.access_tokens
   console.log(req.query)
   res.end(JSON.stringify(req.query, null, 2))
-})
+})*/
 
 
 var OAuth = require('oauth').OAuth
@@ -82,7 +82,7 @@ var OAuth = require('oauth').OAuth
       "HMAC-SHA1"
 );
 
-app.get('/auth_twitter', function(req, res) {
+app.get('/auth/twitter', function(req, res) {
  
   oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results) {
     if (error) {

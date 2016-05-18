@@ -10,7 +10,7 @@ $().ready(function(){
     changeLoginName(checkName);
     
     //twitter login
-    $('#twitterLogin').on('click',function(){
+    /*$('#twitterLogin').on('click',function(){
         $.ajax({
             method:'GET',
             url:'/auth_twitter',
@@ -19,7 +19,7 @@ $().ready(function(){
             }
         });
 
-       /* var checker = false;
+        var checker = false;
         $.ajax({
             method:'GET',
             url:'/get_users',
@@ -55,8 +55,8 @@ $().ready(function(){
             error:function(){
                  console.log("Error: fail to get users");
             }
-        });*/
-    });
+        });
+    });*/
 
     //facebook login
     $('#fbLogin').on('click',function(){
