@@ -1,7 +1,8 @@
-//var ipAddress = "http://localhost:8080";
 
 $(document).ready(function(){
 
+    document.getElementById('log-in').innerHTML = "LOG IN";
+    document.getElementById('registration').innerHTML = "REGISTRATION";
     //signup
     $('#signupForm').submit(function(e){
         e.preventDefault();
@@ -18,6 +19,11 @@ $(document).ready(function(){
         //console.log("email: "+email+ "password: "+pass+" name: "+name);
         //if all values are not empty then add the user to table
         if(email && pass && name && conPass){
+            if(name == "LOG IN"){
+                document.getElementById('err').innerHTML="Can't use LOG IN as username, Please choose another username";
+                document.getElementById('err').style.visibility = 'visible';
+                return;
+            }
 
             $.ajax({
                 method:'GET',
@@ -75,6 +81,7 @@ $(document).ready(function(){
         var email = $('input[id="email"]').val();
         var passW = $('input[id="password"]').val();
 
+
         $('#email,#password').on('click',function(){
             document.getElementById('err').style.visibility = 'hidden';
         });
@@ -90,10 +97,11 @@ $(document).ready(function(){
                     for(i = 0; i<data.length; i++){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
-                               location.href = 'index.html';
-                               alert("Login Successful!");
+                                location.href = 'index.html';
+                                alert("Login Successful!");
+                                document.getElementById('log-in').innerHTML = data[i].name;
+                                
                                 //reset form
-
                                 $('#loginForm').trigger('reset');
                                 return;
                                 //do something here
