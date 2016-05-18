@@ -54,7 +54,7 @@ app.use(session({secret:'very secret'}))
 app.use(grant)
 
 app.get('/facebook_callback', function (req, res) {
-  var accessToken = req.body.access_token;
+  //var accessToken = req.body.access_token;
   console.log(req.query)
   //console.log("Access token: " + accessToken)
   res.end(JSON.stringify(req.query, null, 2))
