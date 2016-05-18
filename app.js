@@ -53,12 +53,12 @@ app.use(session({secret:'very secret'}))
 // mount grant
 app.use(grant)
 
-app.get('/connect/facebook/callback', function (req, res) {
+app.get('/facebook_callback', function (req, res) {
   console.log(req.query)
   res.end(JSON.stringify(req.query, null, 2))
 })
 
-app.get('/connect/twitter/callback', function (req, res) {
+app.get('/twitter_callback', function (req, res) {
   console.log(req.query)
   res.end(JSON.stringify(req.query, null, 2))
 })

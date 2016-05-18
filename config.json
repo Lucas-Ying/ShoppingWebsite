@@ -6,7 +6,7 @@
   "facebook": {
     "key": "1620018034981698",
     "secret": "3fd05406e3d547dafff4c0bf23bdf33b",
-    "callback": "/connect/facebook/callback",
+    "callback": "/facebook_callback",
     "scope": [
       "email",
       "public_profile"
@@ -15,6 +15,6 @@
   "twitter": {
     "key": "VDu9V8pV9ukxUs89JiWxoSwoH",
     "secret": "AR5aS5c2vZr9sVDkROnLg4ZylJTAPRy2NeHAP7QUEcyNr5v8j1",
-    "callback": "/connect/twitter/callback"
+    "callback": "/twitter_callback"
   }
 }
