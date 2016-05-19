@@ -56,8 +56,54 @@ app.use(session({secret:'very secret'}))
 app.use(grant)
 
 app.get('/facebook_callback', function (req, res) {
-  var accessToken = req.query.access_token
-  console.log(req.query.access_token) //This is used to iidentify a user
+  var accessToken = req.query.access_token //This is used to iidentify a user
+//check if they exist in the db
+var q = "SELECT * FROM users WHERE accesstoken=$1;";
+  var query = client.query(q, [accessToken]);
+
+  var results =[];
+
+  //error handler for /get_users
+  query.on('error',function(){
+    res.status(500).send('Error, fail to get users: '+userEmail);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //After all data is returned, close connection and return results
+  query.on('end',function(){
+    if(results.length < 1)
+    {
+    	//user isnt in the db so we want to add them
+    	var q = "insert into users (accesstoken) values ($1)";
+  var query = client.query(q, [accessToken]);
+  var results =[];
+
+  //error handler for /add_product
+  query.on('error',function(){
+    res.status(500).send('Error, fail to add product product: '+productName);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+  });
+    }
+  });
+
+
+	//if they dont then add them and return to the home page
+	res.redirect('/index.html');
+
+  console.log(req.query.access_token) 
   //console.log("Access token: " + accessToken)
   res.end(JSON.stringify(req.query.access_token, null, 2))
   //res.end(accessToken)
