@@ -72,7 +72,7 @@ if(accessToken != null || accessToken != 'undefined'){
   query.on('error',function(){
     //res.status(500).send('Error, fail to get users: '+accessToken);
     needToAdd = true;
-    addUserByToken();
+    addUserByToken(accessToken);
     console.log("Need to add = " + needToAdd);
   });
 
@@ -87,37 +87,37 @@ if(accessToken != null || accessToken != 'undefined'){
   });
 }
 
-  if (typeof results == 'undefined' || results == null || results.length < 1)
+  // if (typeof results == 'undefined' || results == null || results.length < 1)
      
-    {
-    	console.log("Need to add after get= " + needToAdd);
+  //   {
+  //   	console.log("Need to add after get= " + needToAdd);
 
-    //if(needToAdd == true)
-    	console.log("in add user");
-    	//user isnt in the db so we want to add them
-    	var q = "insert into users (accesstoken) values ($1)";
-  		var query = client.query(q, [accessToken]);
-  		var results =[];
+  //   //if(needToAdd == true)
+  //   	console.log("in add user");
+  //   	//user isnt in the db so we want to add them
+  //   	var q = "insert into users (accesstoken) values ($1)";
+  // 		var query = client.query(q, [accessToken]);
+  // 		var results =[];
 
-  		//error handler 
-  		query.on('error',function(){
-   		 res.status(500).send('Error, failed to add new user');
-  		});
+  // 		//error handler 
+  // 		query.on('error',function(){
+  //  		 res.status(500).send('Error, failed to add new user');
+  // 		});
 
-  		//stream results back one row at a time
-  		query.on('row',function(row){
-  		  results.push(row);
-  		     console.log("Results of add user: " + row)
+  // 		//stream results back one row at a time
+  // 		query.on('row',function(row){
+  // 		  results.push(row);
+  // 		     console.log("Results of add user: " + row)
 
-  		});
+  // 		});
 
-  		//after all the data is returned close connection and return result
-  		query.on('end',function(){
-  			console.log(results);
-  			console.log("logged in successfully!");
-    		res.json(results);
-  		});
-    }
+  // 		//after all the data is returned close connection and return result
+  // 		query.on('end',function(){
+  // 			console.log(results);
+  // 			console.log("logged in successfully!");
+  //   		res.json(results);
+  // 		});
+  //   }
 
 	//if they dont then add them and return to the home page
 	res.redirect('/index.html');
@@ -148,7 +148,7 @@ var OAuth = require('oauth').OAuth
 );
 
 
-function addUserByToken()
+function addUserByToken(var accessToken)
 {
 	console.log("in add user");
     	//user isnt in the db so we want to add them
