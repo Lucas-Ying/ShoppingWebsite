@@ -75,11 +75,12 @@ var q = "SELECT * FROM users WHERE accesstoken=$1;";
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-   console.log("Results of get users: " + results)
+   console.log("Results of get users: " + results);
   });
 
  if (typeof results == 'undefined' || results == null)
     {
+    	console.log("in add user");
     	//user isnt in the db so we want to add them
     	var q = "insert into users (accesstoken) values ($1)";
   		var query = client.query(q, [accessToken]);
