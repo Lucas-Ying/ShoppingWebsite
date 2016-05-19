@@ -1,14 +1,35 @@
-var checkName = "";
 
-function changeLoginName(checkName){
-    if(checkName){
-        document.getElementById('log-in').innerHTML=checkName;
+function changeLoginName(){
+    if(sessionStorage.getItem('useremail')){
+        document.getElementById('registration').innerHTML='REGISTRATION';
+        document.getElementById('log-in').innerHTML=sessionStorage.getItem('useremail');
+    }else{
+        document.getElementById('registration').innerHTML='REGISTRATION';
+        document.getElementById('log-in').innerHTML='LOG IN';
     }
 }
 
 $().ready(function(){
-    changeLoginName(checkName);
+    changeLoginName();
+
+    //login button
+    $('#log-in').on('click',function(){
+        //get the name/email of the login button
+        var loginName = document.getElementById('log-in').text;
+        if(loginName =='LOG IN'){
+            location.href = 'login.html';
+        }
+        else{
+            //if a user has login goto user kart
+            location.href = 'kart.html';
+        }
+    });
     
+    //registeration button
+    $('#registration').on('click',function(){
+        location.href = 'register.html';
+    });
+
     //facebook login
     $('#fbLogin').on('click',function(){
         console.log("in fbLogin");
@@ -109,11 +130,10 @@ $().ready(function(){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
                                 location.href = 'index.html';
-                               // checkName = data[i].name;
-                               // changeLoginName(checkName);
-
+                                sessionStorage.setItem('useremail', data[i].email);
+                                changeLoginName();
                                 alert("Login Successful!");
-                                //document.getElementById('log-in').innerHTML = data[i].name;
+
                                 //reset form
                                 $('#loginForm').trigger('reset');
                                 return;
