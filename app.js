@@ -58,7 +58,7 @@ app.use(grant)
 app.get('/facebook_callback', function (req, res) {
   var accessToken = req.query.access_token //This is used to iidentify a user
   var needToAdd = false;
-  
+
 //check if they exist in the db
 if(accessToken != null || accessToken != 'undefined'){
   var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
@@ -72,7 +72,7 @@ if(accessToken != null || accessToken != 'undefined'){
   query.on('error',function(){
     //res.status(500).send('Error, fail to get users: '+accessToken);
     needToAdd = true;
-    //addUserByToken;
+    addUserByToken();
     console.log("Need to add = " + needToAdd);
   });
 
@@ -87,11 +87,12 @@ if(accessToken != null || accessToken != 'undefined'){
   });
 }
 
- // if (typeof results == 'undefined' || results == null || results.length < 1)
-     console.log("Need to add after get= " + needToAdd);
-
-    if(needToAdd == true)
+  if (typeof results == 'undefined' || results == null || results.length < 1)
+     
     {
+    	console.log("Need to add after get= " + needToAdd);
+
+    //if(needToAdd == true)
     	console.log("in add user");
     	//user isnt in the db so we want to add them
     	var q = "insert into users (accesstoken) values ($1)";
