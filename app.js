@@ -69,6 +69,7 @@ var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
   query.on('error',function(){
     //res.status(500).send('Error, fail to get users: '+accessToken);
     needToAdd = true;
+    console.log("Need to add = " + needToAdd);
   });
 
   //stream results back one row at a time
@@ -104,7 +105,8 @@ var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
 
   		//after all the data is returned close connection and return result
   		query.on('end',function(){
-  			console.log(results)
+  			console.log(results);
+  			console.log("logged in successfully!");
     		res.json(results);
   		});
     }
