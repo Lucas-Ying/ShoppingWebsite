@@ -82,29 +82,30 @@ var q = "SELECT * FROM users WHERE accesstoken=$1;";
     {
     	//user isnt in the db so we want to add them
     	var q = "insert into users (accesstoken) values ($1)";
-  var query = client.query(q, [accessToken]);
-  var results =[];
+  		var query = client.query(q, [accessToken]);
+  		var results =[];
 
-  //error handler for /add_product
-  query.on('error',function(){
-    res.status(500).send('Error, fail to add product product: '+productName);
-  });
+  		//error handler 
+  		query.on('error',function(){
+   		 res.status(500).send('Error, failed to add new user');
+  		});
 
-  //stream results back one row at a time
-  query.on('row',function(row){
-    results.push(row);
-  });
+  		//stream results back one row at a time
+  		query.on('row',function(row){
+  		  results.push(row);
+  		});
 
-  //after all the data is returned close connection and return result
-  query.on('end',function(){
-    res.json(results);
-  });
+  		//after all the data is returned close connection and return result
+  		query.on('end',function(){
+  			console.log(results)
+    		res.json(results);
+  		});
     }
 
 	//if they dont then add them and return to the home page
 	res.redirect('/index.html');
 
-  console.log(req.query.access_token) 
+  console.log("Access token " + req.query.access_token) 
   //console.log("Access token: " + accessToken)
   res.end(JSON.stringify(req.query.access_token, null, 2))
   //res.end(accessToken)
