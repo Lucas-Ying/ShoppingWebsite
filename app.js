@@ -75,7 +75,7 @@ var q = "SELECT * FROM users WHERE accesstoken=$1;";
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-   
+   console.log("Results of get users: " + results)
   });
 
  if (typeof results == 'undefined' || results == null)
@@ -93,6 +93,8 @@ var q = "SELECT * FROM users WHERE accesstoken=$1;";
   		//stream results back one row at a time
   		query.on('row',function(row){
   		  results.push(row);
+  		     console.log("Results of add user: " + row)
+
   		});
 
   		//after all the data is returned close connection and return result
@@ -105,7 +107,7 @@ var q = "SELECT * FROM users WHERE accesstoken=$1;";
 	//if they dont then add them and return to the home page
 	res.redirect('/index.html');
 
-  console.log("Access token " + req.query.access_token) 
+  console.log("Access token = " + req.query.access_token) 
   //console.log("Access token: " + accessToken)
   res.end(JSON.stringify(req.query.access_token, null, 2))
   //res.end(accessToken)
