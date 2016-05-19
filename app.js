@@ -57,13 +57,16 @@ app.use(grant)
 
 app.get('/facebook_callback', function (req, res) {
   var accessToken = req.query.access_token //This is used to iidentify a user
+  var needToAdd = false;
+  
 //check if they exist in the db
-var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
+if(accessToken != null || accessToken != 'undefined'){
+  var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
   var query = client.query(q, [accessToken]);
 
   var results =[];
 
-  var needToAdd = false;
+  
 
   //error handler for /get_users
   query.on('error',function(){
@@ -82,9 +85,10 @@ var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
   query.on('end',function(){
    console.log("Results of get users: " + results);
   });
+}
 
  // if (typeof results == 'undefined' || results == null || results.length < 1)
-     console.log("Need to add = " + needToAdd);
+     console.log("Need to add after get= " + needToAdd);
 
     if(needToAdd == true)
     {
