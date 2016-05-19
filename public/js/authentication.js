@@ -1,14 +1,3 @@
-
-function changeLoginName(){
-    if(sessionStorage.getItem('useremail')){
-        document.getElementById('registration').innerHTML=sessionStorage.getItem('useremail');
-        document.getElementById('log-in').innerHTML="LOG OUT";
-    }else{
-        document.getElementById('registration').innerHTML='REGISTRATION';
-        document.getElementById('log-in').innerHTML='LOG IN';
-    }
-}
-
 $().ready(function(){
     changeLoginName();
 
@@ -23,9 +12,6 @@ $().ready(function(){
             sessionStorage.setItem('useremail', "");
             changeLoginName();
             location.href = 'login.html';
-        }else{
-            //if a user has login goto user kart
-            location.href = 'kart.html';
         }
     });
 
@@ -33,16 +19,11 @@ $().ready(function(){
     $('#registration').on('click',function(){
         var loginName = document.getElementById('registration').text;
         if(loginName!= 'REGISTRATION'){
-            location.href = 'kart.html';      
+            location.href = 'kart.html';    
         }
         else{
             location.href = 'register.html';
         }
-    });
-
-    //facebook login
-    $('#fbLogin').on('click',function(){
-        console.log("in fbLogin");
     });
     
     //signup
@@ -79,6 +60,7 @@ $().ready(function(){
                             checker = true;
                             document.getElementById('err').innerHTML="Email already exist please use a different email";
                             document.getElementById('err').style.visibility = 'visible';
+                            break;
                         }
                     }
 
@@ -86,6 +68,7 @@ $().ready(function(){
                         document.getElementById('err').style.visibility = 'hidden';
                         //if email doesnt exist add the user to the database
                         addUser();
+                        
                     }
                 },
                 error:function(){
@@ -102,16 +85,52 @@ $().ready(function(){
 
                     success:function(){
                         alert("SignUp Successful!");
-                        location.href = 'login.html';
-                        //do more. swap page etc
-
+                        addCart();
                     },
                     error:function(){
                         console.log("Error: fail to add user: "+name);
                     }
                 });
-                //reset form
-                $('#signupForm').trigger('reset');
+            }
+
+            function addCart(){
+                var userid=0;
+                $.ajax({
+                    method:'GET',
+                    url:'/get_users',
+                    success: function(data){
+                        //go through database check if email already exist
+                        for(i = 0; i<data.length; i++){
+                            if(data[i].email == email){
+                                userid = data[i].id;
+                            }
+                        }
+
+                        if(userid!=0){
+                            //add cart
+                            $.ajax({
+                                method:'PUT',
+                                url:'/addCart',
+                                dataType:'json',
+                                data:{'userID':userid,"balance":0,"items":""},
+
+                                success:function(){
+                                    console.log('new cart added');
+                                    //redirect to homepage
+                                    location.href = 'login.html';
+                                    //reset form
+                                    $('#signupForm').trigger('reset');
+                                },
+                                error:function(){
+                                    console.log("Error: fail to add cart");
+                                }
+                            });
+                        }
+                    },
+                    error:function(){
+                        console.log("Error: fail to get users");
+                    }
+                });
             }
         }//otherwise leave it to the form validation
     });
@@ -165,7 +184,18 @@ $().ready(function(){
                 }
             });
         }
-
     });
 });
+
+
+function changeLoginName(){
+    if(sessionStorage.getItem('useremail')){
+        document.getElementById('registration').innerHTML=sessionStorage.getItem('useremail');
+        document.getElementById('log-in').innerHTML='LOG OUT';
+    }else{
+        document.getElementById('registration').innerHTML='REGISTRATION';
+        document.getElementById('log-in').innerHTML='LOG IN';
+    }
+}
+
 
