@@ -148,7 +148,7 @@ var OAuth = require('oauth').OAuth
 );
 
 
-function addUserByToken(var accessToken)
+function addUserByToken(accessToken)
 {
 	console.log("in add user");
     	//user isnt in the db so we want to add them
