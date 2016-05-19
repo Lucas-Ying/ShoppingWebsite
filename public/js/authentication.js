@@ -1,8 +1,8 @@
 
 function changeLoginName(){
     if(sessionStorage.getItem('useremail')){
-        document.getElementById('registration').innerHTML='REGISTRATION';
-        document.getElementById('log-in').innerHTML=sessionStorage.getItem('useremail');
+        document.getElementById('registration').innerHTML=sessionStorage.getItem('useremail');
+        document.getElementById('log-in').innerHTML="LOG OUT";
     }else{
         document.getElementById('registration').innerHTML='REGISTRATION';
         document.getElementById('log-in').innerHTML='LOG IN';
@@ -19,15 +19,25 @@ $().ready(function(){
         if(loginName =='LOG IN'){
             location.href = 'login.html';
         }
-        else{
+        else if(loginName =='LOG OUT'){
+            sessionStorage.setItem('useremail', "");
+            changeLoginName();
+            location.href = 'login.html';
+        }else{
             //if a user has login goto user kart
             location.href = 'kart.html';
         }
     });
-    
+
     //registeration button
     $('#registration').on('click',function(){
-        location.href = 'register.html';
+        var loginName = document.getElementById('registration').text;
+        if(loginName!= 'REGISTRATION'){
+            location.href = 'kart.html';      
+        }
+        else{
+            location.href = 'register.html';
+        }
     });
 
     //facebook login
