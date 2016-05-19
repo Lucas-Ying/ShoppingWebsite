@@ -158,7 +158,7 @@ function addUserByToken(accessToken)
 
   		//error handler 
   		query.on('error',function(){
-   		 res.status(500).send('Error, failed to add new user');
+   		 //res.status(500).send('Error, failed to add new user');
   		});
 
   		//stream results back one row at a time
@@ -172,7 +172,7 @@ function addUserByToken(accessToken)
   		query.on('end',function(){
   			console.log(results);
   			console.log("logged in successfully!");
-    		res.json(results);
+    		//res.json(results);
   		});
 }
 
