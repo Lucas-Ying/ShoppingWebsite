@@ -16,10 +16,6 @@ var csrf = require('csurf');
 //use to set http headers
 var helmet = require('helmet');
 
-/*
-var routes = require('./routes/index');
-var users = require('./routes/users');*/
-
 var app = express();
 
 var port = process.env.PORT ||8080;

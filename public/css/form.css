@@ -185,3 +185,7 @@ a.log-in{
 form legend.legend{
 	margin-left: 3%;
 }
+
+div.Name{
+	cursor:pointer;
+}

@@ -2,6 +2,13 @@ $().ready(function(){
     changeLoginName();
 
     //login button
+    $('#Name').on('click',function(){
+        
+        location.href = 'index.html';
+        
+    });
+
+    //login button
     $('#log-in').on('click',function(){
         //get the name/email of the login button
         var loginName = document.getElementById('log-in').text;
