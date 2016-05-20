@@ -52,6 +52,8 @@ $().ready(function(){
             $.ajax({
                 method:'GET',
                 url:'/get_users',
+                dataType:'json',
+                data:{'email':email},
 
                 success: function(data){
                     //go through database check if email already exist
@@ -66,6 +68,7 @@ $().ready(function(){
 
                     if(!checker){
                         document.getElementById('err').style.visibility = 'hidden';
+                        console.log("user doesnt exist add user");
                         //if email doesnt exist add the user to the database
                         addUser();
                         
