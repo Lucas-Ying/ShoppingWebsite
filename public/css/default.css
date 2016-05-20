@@ -31,7 +31,7 @@ body
 {
 	height: 212px;
 	width: 900px;
-	background: url("img/bac_logo.gif") top left repeat-x;
+	background: url("../img/bac_logo.gif") top left repeat-x;
 }
 
 #Head_left
@@ -43,7 +43,7 @@ body
 
 #Leaf_top
 {
-    background: url("img/leaf.gif") top left no-repeat;
+    background: url("../img/leaf.gif") top left no-repeat;
     height: 161px;
     width: 324px;
 	float: left;
@@ -51,7 +51,7 @@ body
 
 #Leaf_bottom
 {
-	background: url("img/leaf2.gif") top left no-repeat;
+	background: url("../img/leaf2.gif") top left no-repeat;
     height: 51px;
 	float: left;
 	width: 324px;
@@ -107,7 +107,7 @@ body
 
 #Name
 {
-    background: url("img/logo.gif") top left no-repeat;
+    background: url("../img/logo.gif") top left no-repeat;
     background-position: 54px 50px;
     font-size: 34px;
   	padding-top: 48px;
@@ -131,7 +131,7 @@ body
 {
     height: 51px;
 	width: 576px;
-	background: url("img/bac_button.gif") top left repeat-x;
+	background: url("../img/bac_button.gif") top left repeat-x;
 }
 
 #Top_menu a
@@ -153,27 +153,27 @@ body
 
 #Top_menu .home
 {
-    background: url("img/home.jpg") top left no-repeat;
+    background: url("../img/home.jpg") top left no-repeat;
 }
 
 #Top_menu .help
 {
-    background: url("img/help.jpg") top left no-repeat;
+    background: url("../img/help.jpg") top left no-repeat;
 }
 
 #Top_menu .contact
 {
-    background: url("img/contact.jpg") top left no-repeat;
+    background: url("../img/contact.jpg") top left no-repeat;
 }
 
 #Top_menu .orders
 {
-    background: url("img/orders.jpg") top left no-repeat;
+    background: url("../img/orders.jpg") top left no-repeat;
 }
 
 #Top_menu .kart
 {
-    background: url("img/kart.jpg") top left no-repeat;
+    background: url("../img/kart.jpg") top left no-repeat;
 }
 
 #LeftPart
@@ -203,7 +203,7 @@ body
 
 .menu_header_right
 {
-    background: url("img/ornament_menu.gif") top left no-repeat;
+    background: url("../img/ornament_menu.gif") top left no-repeat;
 	height: 31px;
 	width: 46px;
 	float: right;
@@ -211,7 +211,7 @@ body
 
 .menu_header_left
 {
-    background: url("img/bac_menu.gif") top left repeat-x;
+    background: url("../img/bac_menu.gif") top left repeat-x;
 	width: 169px;
 	height: 31px;
 	float: left;
@@ -243,7 +243,7 @@ body
 	color: #8d9395;
 	text-decoration: none;
 	padding-left: 20px;
-	background: url("img/arrow.gif") top left no-repeat;
+	background: url("../img/arrow.gif") top left no-repeat;
 	margin-left: 6px;
 	line-height: 18px;
 }
@@ -398,7 +398,7 @@ h1
 
 .page_center_buy
 {
-    background: url("img/buy.gif") top left no-repeat;
+    background: url("../img/buy.gif") top left no-repeat;
     height: 53px;
     width: 31px;
     float: left;
@@ -406,7 +406,7 @@ h1
 
 .page_center_info
 {
-    background: url("img/info.gif") top left no-repeat;
+    background: url("../img/info.gif") top left no-repeat;
     height: 99px;
     width: 31px;
     float: left;

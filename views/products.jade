@@ -1,17 +1,6 @@
 extends layout
 
 block content
-    script.
-        function abc() {
-            var arr = new Array("usepics/neck.jpg", "usepics/ban7.jpg", "usepics/ban5.jpg", "usepics/ban1.jpg", "usepics/akkriti-banner.jpg");
-            var ind = eval(document.f1.h1.value);
-            document.img.src = arr[ind];
-            document.f1.h1.value = ind + 1;
-            if (document.f1.h1.value == 5) {
-                document.f1.h1.value = 0;
-            }
-        }
-        setInterval("abc()", 3000);
     #WholePage
         #Inner
             #Container(style='border:groove;border-color:#00CCFF')
@@ -31,7 +20,7 @@ block content
                                 span hop
                             #Informations Latest trends in Fashion
                         #Top_menu
-                            a.kart(href='kart.html')
+                            a.kart(href='?page=home')
                                 span KART
                             a.orders(href='?page=home')
                                 span ORDERS
@@ -39,7 +28,7 @@ block content
                                 span CONTACT
                             a.help(href='help.html')
                                 span HELP
-                            a.home(href='?page=home')
+                            a.home(href='index.html')
                                 span HOME
                 #CentralPart
                     #LeftPart
@@ -51,11 +40,7 @@ block content
                                 .menu_header_right
                                 #Menu_content
                                     h5  
-                                    input(type='text', name='t1', value='search', onfocus="if(this.value=='search')\
-                      {this.value='';}\
-                      ", onblur="if(this.value=='')\
-                      {this.value='search';}\
-                      ")
+                                    input(type='text', name='t1', value='search', onfocus="if(this.value=='search'){this.value='';}", onblur="if(this.value==''){this.value='search';}")
                                     input#sub.button(name='sub', type='submit', value='Go')
                                     h5  
                                     br
@@ -71,8 +56,7 @@ block content
                                     span Jeans
                                 br
                                 a.menu_item(href='mtshirts.html')
-                                    span
-                                        | T-shirts
+                                    span T-shirts
                                 br
                                 a.menu_item(href='mshoe.html')
                                     span Footwear
@@ -81,8 +65,7 @@ block content
                                     span Shorts
                                 br
                                 a.menu_item(href='mwatches.html')
-                                    span
-                                        | Watches
+                                    span Watches
                                 br
                             .menu_header_left
                                 span.menu_text
@@ -126,19 +109,66 @@ block content
                                 br
                         img(src='usepics/4.jpg', width='228', height='183')
                     #RightPart
-                        #Page
-                            img(src='usepics/akkriti-banner.jpg', alt='', width='669', height='210', name='img')
-                            form(name='f1')
-                                input(type='hidden', name='h1', value='0')
-                            #Page_top
-                                p
-                                    marquee(behavior='scroll', direction='left', onmouseover='stop()', onmouseout='start()')
-                                        font(color='#FFFF99')
-                                            h3 30%off on all summer wear...Hurry!!!
-                                        font(color='#00CC99')
-                                            h4 Enjoy the pleasure of shopping with Fashion Shop...
-                                    br
-                            #Page_center
+                        div
+                            br
+                            center
+                                h2
+                                    font(face='Lucida Handwriting', size='+1', color='#00CCFF') Girls Apparel
+                        div(style='width:100%;float:left')
+                            form(method='post')
+                                table(border='0', align='center')
+                                    tr
+                                        // list products
+                                        td(height='280', width='240', align='center')
+                                            img(src='images/b1.jpg', height='200', width='200')
+                                            br
+                                            b Item No:
+                                            | g2
+                                            br
+                                            b Price:
+                                            | Rs 445
+                                            br
+                                            b Description:
+                                            | 612 Ivy League girls dress
+                                            br
+                                            br
+                                            a(href='/buynow/b1')
+                                                img(src='images/MetalPlakDa5new.gif', width='70', height='20')
+                                            a(href='/view/b1')
+                                                img(src='images/view7.jpg', width='70', height='20')
+                                        td(height='280', width='240', align='center')
+                                            img(src='images/b2.jpg', height='200', width='200')
+                                            br
+                                            b Item No:
+                                            | g2
+                                            br
+                                            b Price:
+                                            | Rs 445
+                                            br
+                                            b Description:
+                                            | 612 Ivy League girls dress
+                                            br
+                                            br
+                                            a(href='/buynow/b2')
+                                                img(src='images/MetalPlakDa5new.gif', width='70', height='20')
+                                            a(href='/view/b2')
+                                                img(src='images/view7.jpg', width='70', height='20')
+                            div
+                                br
+                                marquee(behavior='scroll', dir='ltr', align='absbottom')
+                                    img(src='usepics/logo5.jpg', width='100', height='70')
+                                    img(src='usepics/logo11.jpg', width='100', height='70')
+                                    img(src='usepics/logo12.jpg', width='100', height='70')
+                                    img(src='usepics/logo8.jpg', width='100', height='70')
+                                    img(src='usepics/logo6.jpg', width='100', height='70')
+                                    img(src='usepics/logo4.jpg', width='100', height='70')
+                                    img(src='usepics/logo3.jpg', width='100', height='70')
+                                    img(src='usepics/logo13.jpg', width='100', height='70')
+                                    img(src='usepics/logo15.jpg', width='100', height='70')
+                                    img(src='usepics/logo1.jpg', width='100', height='70')
+                                    img(src='usepics/logo2.jpg', width='100', height='70')
+                                    img(src='usepics/logo14.jpg', width='100', height='70')
+                                    img(src='usepics/logo9.jpg', width='100', height='70')
                     .cleaner
                 #Bottom
                     // <p class="down">Copyright © Fashion Shop, Design by:Priya Gupta</p>

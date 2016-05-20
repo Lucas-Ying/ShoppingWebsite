@@ -1,17 +1,6 @@
 extends layout
 
 block content
-    script.
-        function abc() {
-            var arr = new Array("usepics/neck.jpg", "usepics/ban7.jpg", "usepics/ban5.jpg", "usepics/ban1.jpg", "usepics/akkriti-banner.jpg");
-            var ind = eval(document.f1.h1.value);
-            document.img.src = arr[ind];
-            document.f1.h1.value = ind + 1;
-            if (document.f1.h1.value == 5) {
-                document.f1.h1.value = 0;
-            }
-        }
-        setInterval("abc()", 3000);
     #WholePage
         #Inner
             #Container(style='border:groove;border-color:#00CCFF')
@@ -39,7 +28,7 @@ block content
                                 span CONTACT
                             a.help(href='help.html')
                                 span HELP
-                            a.home(href='?page=home')
+                            a.home(href='index.html')
                                 span HOME
                 #CentralPart
                     #LeftPart
@@ -52,10 +41,10 @@ block content
                                 #Menu_content
                                     h5  
                                     input(type='text', name='t1', value='search', onfocus="if(this.value=='search')\
-                      {this.value='';}\
-                      ", onblur="if(this.value=='')\
-                      {this.value='search';}\
-                      ")
+                        {this.value='';}\
+                        ", onblur="if(this.value=='')\
+                        {this.value='search';}\
+                        ")
                                     input#sub.button(name='sub', type='submit', value='Go')
                                     h5  
                                     br
@@ -127,18 +116,31 @@ block content
                         img(src='usepics/4.jpg', width='228', height='183')
                     #RightPart
                         #Page
-                            img(src='usepics/akkriti-banner.jpg', alt='', width='669', height='210', name='img')
-                            form(name='f1')
-                                input(type='hidden', name='h1', value='0')
-                            #Page_top
-                                p
-                                    marquee(behavior='scroll', direction='left', onmouseover='stop()', onmouseout='start()')
-                                        font(color='#FFFF99')
-                                            h3 30%off on all summer wear...Hurry!!!
-                                        font(color='#00CC99')
-                                            h4 Enjoy the pleasure of shopping with Fashion Shop...
-                                    br
                             #Page_center
+                                form#signupForm.valForm(action='', method='PUT')
+                                    fieldset
+                                        legend#legend.legend Sign Up
+                                        br
+                                        p
+                                            a(href='/auth/twitter')
+                                                img#twitterLogin.twitterLogin(src='buttonImages/twitter.png', alt='twitter', style='width:120px; height:28px;')
+                                            a(href='/connect/facebook')
+                                                img#fbLogin.fbLogin(src='buttonImages/facebook.png', alt='facebook', style='width:120px; height:28px;')
+                                        p
+                                            label(for='username') Username:
+                                            input#username(name='username', type='text')
+                                        p
+                                            label(for='email') Email:
+                                            input#email(name='email', type='email')
+                                        p
+                                            label(for='password') Password:
+                                            input#password(name='password', type='password')
+                                        p
+                                            label(for='confirm_password') Confirm password:
+                                            input#confirm_password(name='confirm_password', type='password')
+                                        label#err.errs
+                                        p
+                                            input#signUp.submitbtn(type='submit', value='Register')
                     .cleaner
                 #Bottom
                     // <p class="down">Copyright © Fashion Shop, Design by:Priya Gupta</p>

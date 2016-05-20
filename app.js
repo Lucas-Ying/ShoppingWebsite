@@ -16,10 +16,13 @@ var csrf = require('csurf');
 //use to set http headers
 var helmet = require('helmet');
 
+var routes = require('./routes/index');
+var users = require('./routes/users');
+
 var app = express();
 
 var port = process.env.PORT ||8080;
-var eng = require('consolidate');
+// var eng = require('consolidate');
 
 var pg = require('pg').native;
 var connectionString = "postgres://mppnikubyzarbu:Pn4vmfbqSSS22ZFW3N-35Xflf1@ec2-50-17-249-147.compute-1.amazonaws.com:5432/dbgkce5fglr4rs";
@@ -296,9 +299,9 @@ app.get('/test_database_delete', function(request, response) {
 
 
 // view engine setup
-app.set('views', path.join(__dirname, '/public'));
-app.engine('html', eng.swig);
-app.set('view engine', 'html');
+app.set('views', path.join(__dirname, 'views'));
+// app.engine('html', eng.swig);
+app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -306,17 +309,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());//use to set http headers
 
-/*app.use('/', routes);
-app.use('/users', users);*/
+app.use('/', routes);
+app.use('/users', users);
 
 //render main page
 app.get('/',function(err,res,req,next){
   //pass the csrftoken to the view
   //when using this can see example at https://www.npmjs.com/package/csurf
-  res.render('index.html',{csrftoken: req.csrftoken()});
+  res.render('index',{csrftoken: req.csrftoken()});
 });
 
 //========================RESTful API for Product ====================//
@@ -685,9 +688,41 @@ app.delete('/delete_cart', function(req, res){
 //======================== Products =====================//
 
 app.get('/collection/*', function(req, res) {
-  
-
+  res.render('products', {});
 });
+
+//===================================================================//
+
+//======================== pages =====================//
+
+app.get('/index.html', function(req, res) {
+  res.render('index', {});
+});
+
+app.get('/kart.html', function(req, res) {
+  res.render('kart', {});
+});
+
+app.get('/kids1.html', function(req, res) {
+  res.render('kids1', {});
+});
+
+app.get('/login.html', function(req, res) {
+  res.render('login', {});
+});
+
+app.get('/men.html', function(req, res) {
+  res.render('men', {});
+});
+
+app.get('/register.html', function(req, res) {
+  res.render('register', {});
+});
+
+app.get('/women1.html', function(req, res) {
+  res.render('women1', {});
+});
+
 
 //===================================================================//
 
