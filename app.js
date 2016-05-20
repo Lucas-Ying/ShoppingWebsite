@@ -171,6 +171,7 @@ function addUserByToken(accessToken)
   		//after all the data is returned close connection and return result
   		query.on('end',function(){
   			console.log(results);
+  			alert("logged in successfully")
   			console.log("logged in successfully!");
     		//res.json(results);
   		});
