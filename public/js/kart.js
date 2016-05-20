@@ -34,9 +34,7 @@ $().ready(function(){
                                 checkCart = true;
                                 var items = data[i].items;
                                 var balance = data[i].balance;
-                                //console.log(data[i].items);
                                 //display item
-                                //document.getElementById('itemTable').innerHTML=items+" "+balance;
                                 var row ="<tr>"
                                             +"<td>"+items+"</td>"
                                             +"<td>"+balance+"</td>"
