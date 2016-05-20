@@ -688,7 +688,25 @@ app.delete('/delete_cart', function(req, res){
 //======================== Products =====================//
 
 app.get('/collection/*', function(req, res) {
-  res.render('products', {});
+  var collection = req.originalUrl.replace('/collection/', '');
+
+  query = client.query("SELECT * FROM products " +
+      "where collection = '" + collection + "';");
+  var results = [];
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+    results.push(row);
+  });
+
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+    resultsInJson = JSON.stringify(results);
+    res.render('products', { products: resultsInJson });
+    // res.json(resultsInJson);
+    console.log('Result: ' + resultsInJson);
+  });
+
+  // res.render('products', {});
 });
 
 //===================================================================//
