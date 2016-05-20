@@ -1,0 +1,7 @@
+table.itemTable{
+	border-collapse: collapse;
+}
+
+table.itemTable td{
+	border: 1px solid black;
+}

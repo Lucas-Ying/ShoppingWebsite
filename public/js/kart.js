@@ -15,7 +15,7 @@ $().ready(function(){
                 if(data[i].email == sessionStorage.getItem('useremail')){
                     checker = true;
                     //display user item here
-                    userId = data[i].id;
+                    userId = data[i].id; 
                     //console.log('found user');
                     break;
                 }
@@ -31,12 +31,19 @@ $().ready(function(){
                             //if this user have a shopping cart then display the item 
                             if(data[i].userid == userId){                               
                                 kartId = data[i].id;
-                                //console.log('found cart');
                                 checkCart = true;
+                                var items = data[i].items;
+                                var balance = data[i].balance;
                                 //console.log(data[i].items);
                                 //display item
-                                document.getElementById('tempItem').innerHTML=data[i].items;
+                                //document.getElementById('itemTable').innerHTML=items+" "+balance;
+                                var row ="<tr>"
+                                            +"<td>"+items+"</td>"
+                                            +"<td>"+balance+"</td>"
+                                        +"</tr>"
 
+                                $('#itemTable').append(row);
+                                
                                 break;
                             }
                         }
