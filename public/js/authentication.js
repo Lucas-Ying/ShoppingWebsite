@@ -4,7 +4,7 @@ $().ready(function(){
     //login button
     $('#Name').on('click',function(){
         
-        location.href = 'index.html';
+        location.href = 'index';
         
     });
 
@@ -13,12 +13,12 @@ $().ready(function(){
         //get the name/email of the login button
         var loginName = document.getElementById('log-in').text;
         if(loginName =='LOG IN'){
-            location.href = 'login.html';
+            location.href = 'login';
         }
         else if(loginName =='LOG OUT'){
             sessionStorage.setItem('useremail', "");
             changeLoginName();
-            location.href = 'login.html';
+            location.href = 'login';
         }
     });
 
@@ -26,10 +26,10 @@ $().ready(function(){
     $('#registration').on('click',function(){
         var loginName = document.getElementById('registration').text;
         if(loginName!= 'REGISTRATION'){
-            location.href = 'kart.html';    
+            location.href = 'kart';    
         }
         else{
-            location.href = 'register.html';
+            location.href = 'register';
         }
     });
     
@@ -127,7 +127,7 @@ $().ready(function(){
                                 success:function(){
                                     console.log('new cart added');
                                     //redirect to homepage
-                                    location.href = 'login.html';
+                                    location.href = 'login';
                                     //reset form
                                     $('#signupForm').trigger('reset');
                                 },
@@ -168,7 +168,7 @@ $().ready(function(){
                     for(i = 0; i<data.length; i++){
                         if(data[i].email == email){
                             if(data[i].pass == passW){
-                                location.href = 'index.html';
+                                location.href = 'index';
                                 sessionStorage.setItem('useremail', data[i].email);
                                 changeLoginName();
                                 alert("Login Successful!");
