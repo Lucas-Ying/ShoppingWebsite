@@ -140,7 +140,8 @@ form.valForm label.error {
 }
 
 form.valForm input.submitbtn {
-	margin-left: 255px;
+	float: right;
+	margin-right: 51.5%;
 	margin-bottom: 10px;
 }
 
@@ -179,4 +180,8 @@ a.registration, a.log-in{
 a.log-in{
 	float: right;
 	margin-right: 40%;
+}
+
+form legend.legend{
+	margin-left: 3%;
 }

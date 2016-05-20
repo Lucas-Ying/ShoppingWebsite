@@ -66,8 +66,6 @@ if(accessToken != null || accessToken != 'undefined'){
 
   var results =[];
 
-  
-
   //error handler for /get_users
   query.on('error',function(){
     //res.status(500).send('Error, fail to get users: '+accessToken);
@@ -146,7 +144,6 @@ var OAuth = require('oauth').OAuth
       "https://tranquil-journey-51576.herokuapp.com/index.html",
       "HMAC-SHA1"
 );
-
 
 function addUserByToken(accessToken)
 {
@@ -465,8 +462,8 @@ app.get('/get_user', function (req,res){
   var userEmail = req.body.email;
   var userPass = req.body.pass;
   //console.log(userEmail);
-  var q = "SELECT * FROM users WHERE email=$1 AND pass=$2;";
-  var query = client.query(q, [userEmail, userPass]);
+  var q = "SELECT * FROM users WHERE email=$1 RETURNING id,email,pass,name";
+  var query = client.query(q, [userEmail]);
 
   var results =[];
 
@@ -474,6 +471,8 @@ app.get('/get_user', function (req,res){
   query.on('error',function(){
     res.status(500).send('Error, fail to get users: '+userEmail);
   });
+
+  //console.log(results);
 
   //stream results back one row at a time
   query.on('row',function(row){
