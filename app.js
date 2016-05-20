@@ -117,7 +117,7 @@ if(accessToken != null || accessToken != 'undefined'){
   //   }
 
 	//if they dont then add them and return to the home page
-	res.redirect('/index.html');
+	res.redirect('/index');
 
   console.log("Access token = " + req.query.access_token) 
   //console.log("Access token: " + accessToken)
@@ -695,31 +695,35 @@ app.get('/collection/*', function(req, res) {
 
 //======================== pages =====================//
 
-app.get('/index.html', function(req, res) {
+app.get('/help', function(req, res) {
+  res.render('help', {});
+});
+
+app.get('/index', function(req, res) {
   res.render('index', {});
 });
 
-app.get('/kart.html', function(req, res) {
+app.get('/kart', function(req, res) {
   res.render('kart', {});
 });
 
-app.get('/kids1.html', function(req, res) {
+app.get('/kids1', function(req, res) {
   res.render('kids1', {});
 });
 
-app.get('/login.html', function(req, res) {
+app.get('/login', function(req, res) {
   res.render('login', {});
 });
 
-app.get('/men.html', function(req, res) {
+app.get('/men', function(req, res) {
   res.render('men', {});
 });
 
-app.get('/register.html', function(req, res) {
+app.get('/register', function(req, res) {
   res.render('register', {});
 });
 
-app.get('/women1.html', function(req, res) {
+app.get('/women1', function(req, res) {
   res.render('women1', {});
 });
 

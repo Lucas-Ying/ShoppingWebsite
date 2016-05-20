@@ -1,0 +1,83 @@
+#LeftPart
+    #Menu
+        #Menu_header
+            .menu_header_left
+                span.menu_text
+                    font(face='Georgia, Times New Roman, Times, serif') Search
+            .menu_header_right
+            #Menu_content
+                h5  
+                input(type='text', name='t1', value='search', onfocus="if(this.value=='search')\
+                                    {this.value='';}\
+                                    ", onblur="if(this.value=='')\
+                                    {this.value='search';}\
+                                    ")
+                input#sub.button(name='sub', type='submit', value='Go')
+                h5  
+                br
+            .menu_header_left
+                span.menu_text
+                    a(href='/men') MEN
+            .menu_header_right
+        #Menu_content
+            a.menu_item(href='/collection/casualshirts')
+                span Casual Shirts
+            br
+            a.menu_item(href='/collection/jeans')
+                span Jeans
+            br
+            a.menu_item(href='/collection/tshirts')
+                span
+                    | T-shirts
+            br
+            a.menu_item(href='/collection/footwear')
+                span Footwear
+            br
+            a.menu_item(href='/collection/shorts')
+                span Shorts
+            br
+            a.menu_item(href='/collection/watches')
+                span
+                    | Watches
+            br
+        .menu_header_left
+            span.menu_text
+                a(href='/collection/women1') WOMEN
+        .menu_header_right
+        #Menu_content
+            a.menu_item(href='/collection/dresses')
+                span Dresses
+            br
+            a.menu_item(href='/collection/churidarsuits')
+                span Churidar Suits
+            br
+            a.menu_item(href='/collection/kurtas')
+                span Kurtas
+            br
+            a.menu_item(href='/collection/sandals')
+                span Sandals
+            br
+            a.menu_item(href='/collection/officewear')
+                span Office Wear
+            br
+            a.menu_item(href='/collection/artificialjewellery')
+                span Artificial Jewellery
+            br
+        .menu_header_left
+            span.menu_text
+                a(href='/collection/kids1') KIDS
+        .menu_header_right
+        #Menu_content
+            a.menu_item(href='/collection/babyapparel')
+                span Baby Apparel
+            br
+            a.menu_item(href='/collection/girlsapparel')
+                span Girls Apparel
+            br
+            a.menu_item(href='/collection/boysapparel')
+                span Boys Apparel
+            br
+            a.menu_item(href='/collection/kidstoys')
+                span Kids Toys
+            br
+    img(src='/usepics/4.jpg', width='228', height='183')

@@ -1,146 +1,40 @@
 extends layout
 
+block header
+    include header
+
+block sidebar
+    include sidebar
+
 block content
-    #WholePage
-        #Inner
-            #Container(style='border:groove;border-color:#00CCFF')
-                #Head
-                    #Head_left
-                        #Leaf_top
-                            img(src='img/shop3.jpg', width='324')
-                        #Leaf_bottom
-                            a#registration.registration
-                            a#log-in.log-in
-                    #Head_right
-                        #Logo
-                            #Name.Name
-                                span.blue F
-                                span ashion
-                                span.blue S
-                                span hop
-                            #Informations Latest trends in Fashion
-                        #Top_menu
-                            a.kart(href='kart.html')
-                                span KART
-                            a.orders(href='?page=home')
-                                span ORDERS
-                            a.contact(href='?page=home')
-                                span CONTACT
-                            a.help(href='help.html')
-                                span HELP
-                            a.home(href='index.html')
-                                span HOME
-                #CentralPart
-                    #LeftPart
-                        #Menu
-                            #Menu_header
-                                .menu_header_left
-                                    span.menu_text
-                                        font(face='Georgia, Times New Roman, Times, serif') Search
-                                .menu_header_right
-                                #Menu_content
-                                    h5  
-                                    input(type='text', name='t1', value='search', onfocus="if(this.value=='search')\
-                        {this.value='';}\
-                        ", onblur="if(this.value=='')\
-                        {this.value='search';}\
-                        ")
-                                    input#sub.button(name='sub', type='submit', value='Go')
-                                    h5  
-                                    br
-                                .menu_header_left
-                                    span.menu_text
-                                        a(href='men.html') MEN
-                                .menu_header_right
-                            #Menu_content
-                                a.menu_item(href='products.html')
-                                    span Casual Shirts
-                                br
-                                a.menu_item(href='mjeans.html')
-                                    span Jeans
-                                br
-                                a.menu_item(href='mtshirts.html')
-                                    span
-                                        | T-shirts
-                                br
-                                a.menu_item(href='mshoe.html')
-                                    span Footwear
-                                br
-                                a.menu_item(href='mshorts.html')
-                                    span Shorts
-                                br
-                                a.menu_item(href='mwatches.html')
-                                    span
-                                        | Watches
-                                br
-                            .menu_header_left
-                                span.menu_text
-                                    a(href='women1.html') WOMEN
-                            .menu_header_right
-                            #Menu_content
-                                a.menu_item(href='dress.php?catg=2 & subcatg=dresses')
-                                    span Dresses
-                                br
-                                a.menu_item(href='msuits.html')
-                                    span Churidar Suits
-                                br
-                                a.menu_item(href='mkurtas.html')
-                                    span Kurtas
-                                br
-                                a.menu_item(href='msandals.html')
-                                    span Sandals
-                                br
-                                a.menu_item(href='moffice.html')
-                                    span Office Wear
-                                br
-                                a.menu_item(href='mjewel.html')
-                                    span Artificial Jewellery
-                                br
-                            .menu_header_left
-                                span.menu_text
-                                    a(href='kids1.html') KIDS
-                            .menu_header_right
-                            #Menu_content
-                                a.menu_item(href='mbaby.html')
-                                    span Baby Apparel
-                                br
-                                a.menu_item(href='mgirl.html')
-                                    span Girls Apparel
-                                br
-                                a.menu_item(href='mboy.html')
-                                    span Boys Apparel
-                                br
-                                a.menu_item(href='mbabytoy.html')
-                                    span Kids Toys
-                                br
-                        img(src='usepics/4.jpg', width='228', height='183')
-                    #RightPart
-                        #Page
-                            #Page_center
-                                form#signupForm.valForm(action='', method='PUT')
-                                    fieldset
-                                        legend#legend.legend Sign Up
-                                        br
-                                        p
-                                            a(href='/auth/twitter')
-                                                img#twitterLogin.twitterLogin(src='buttonImages/twitter.png', alt='twitter', style='width:120px; height:28px;')
-                                            a(href='/connect/facebook')
-                                                img#fbLogin.fbLogin(src='buttonImages/facebook.png', alt='facebook', style='width:120px; height:28px;')
-                                        p
-                                            label(for='username') Username:
-                                            input#username(name='username', type='text')
-                                        p
-                                            label(for='email') Email:
-                                            input#email(name='email', type='email')
-                                        p
-                                            label(for='password') Password:
-                                            input#password(name='password', type='password')
-                                        p
-                                            label(for='confirm_password') Confirm password:
-                                            input#confirm_password(name='confirm_password', type='password')
-                                        label#err.errs
-                                        p
-                                            input#signUp.submitbtn(type='submit', value='Register')
-                    .cleaner
-                #Bottom
-                    // <p class="down">Copyright © Fashion Shop, Design by:Priya Gupta</p>
+    #RightPart
+        #Page
+            #Page_center
+                form#signupForm.valForm(action='', method='PUT')
+                    fieldset
+                        legend#legend.legend Sign Up
+                        br
+                        p
+                            a(href='/auth/twitter')
+                                img#twitterLogin.twitterLogin(src='/buttonImages/twitter.png', alt='twitter', style='width:120px; height:28px;')
+                            a(href='/connect/facebook')
+                                img#fbLogin.fbLogin(src='/buttonImages/facebook.png', alt='facebook', style='width:120px; height:28px;')
+                        p
+                            label(for='username') Username:
+                            input#username(name='username', type='text')
+                        p
+                            label(for='email') Email:
+                            input#email(name='email', type='email')
+                        p
+                            label(for='password') Password:
+                            input#password(name='password', type='password')
+                        p
+                            label(for='confirm_password') Confirm password:
+                            input#confirm_password(name='confirm_password', type='password')
+                        label#err.errs
+                        p
+                            input#signUp.submitbtn(type='submit', value='Register')
+    .cleaner
+
+block footer
+    include footer
