@@ -687,6 +687,15 @@ app.delete('/delete_cart', function(req, res){
 
 //===================================================================//
 
+//======================== Products =====================//
+
+app.get('/collection/*', function(req, res) {
+  
+
+});
+
+//===================================================================//
+
 // error handler for CSRF
 app.use(function (err, req, res, next) {
   if (err.code !== 'EBADCSRFTOKEN'){
