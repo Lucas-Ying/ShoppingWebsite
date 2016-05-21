@@ -4,12 +4,18 @@ $().ready(function(){
     //console.log(sessionStorage.getItem('useremail'));
     var userId =0;
     var kartId = "";
+    var registerName = document.getElementById('registration').text;
 
     $.ajax({
         method:'GET',
         url:'/get_users',
 
         success: function(data){
+	    
+            if(registerName =='REGISTRATION'){
+                return;
+            }
+
             //go through database check if email already exist
             for(i = 0; i<data.length; i++){
                 if(data[i].email == sessionStorage.getItem('useremail')){
