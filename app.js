@@ -19,6 +19,11 @@ var helmet = require('helmet');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var Purest = require('purest')
+  , facebook = new Purest({provider: 'facebook'})
+  , twitter = new Purest({provider: 'twitter',
+    key: 'VDu9V8pV9ukxUs89JiWxoSwoH', secret: 'AR5aS5c2vZr9sVDkROnLg4ZylJTAPRy2NeHAP7QUEcyNr5v8j1'})
+
 var app = express();
 
 var port = process.env.PORT ||8080;
@@ -124,10 +129,7 @@ app.get('/facebook_callback', function (req, res) {
 //   res.end(JSON.stringify(req.query.access_token, null, 2))
   //res.end(accessToken)
 
-  console.log(req.query)
-
-  var Purest = require('purest')
-  , facebook = new Purest({provider: 'facebook'})
+  //console.log(req.query)
 
 facebook.query()
   .get('me')
