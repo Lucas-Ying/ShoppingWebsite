@@ -55,74 +55,77 @@ app.use(session({secret:'very secret'}))
 app.use(grant)
 
 app.get('/facebook_callback', function (req, res) {
-  var accessToken = req.query.access_token //This is used to iidentify a user
-  var needToAdd = false;
+//   var accessToken = req.query.access_token //This is used to iidentify a user
+//   var needToAdd = false;
 
-//check if they exist in the db
-if(accessToken != null || accessToken != 'undefined'){
-  var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
-  var query = client.query(q, [accessToken]);
+// //check if they exist in the db
+// if(accessToken != null || accessToken != 'undefined'){
+//   var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
+//   var query = client.query(q, [accessToken]);
 
-  var results =[];
+//   var results =[];
 
-  //error handler for /get_users
-  query.on('error',function(){
-    //res.status(500).send('Error, fail to get users: '+accessToken);
-    needToAdd = true;
-    addUserByToken(accessToken);
-    console.log("Need to add = " + needToAdd);
-  });
+//   //error handler for /get_users
+//   query.on('error',function(){
+//     //res.status(500).send('Error, fail to get users: '+accessToken);
+//     needToAdd = true;
+//     addUserByToken(accessToken);
+//     console.log("Need to add = " + needToAdd);
+//   });
 
-  //stream results back one row at a time
-  query.on('row',function(row){
-    results.push(row);
-  });
+//   //stream results back one row at a time
+//   query.on('row',function(row){
+//     results.push(row);
+//   });
 
-  //After all data is returned, close connection and return results
-  query.on('end',function(){
-   console.log("Results of get users: " + results);
-  });
-}
+//   //After all data is returned, close connection and return results
+//   query.on('end',function(){
+//    console.log("Results of get users: " + results);
+//   });
+// }
 
-  // if (typeof results == 'undefined' || results == null || results.length < 1)
+//   // if (typeof results == 'undefined' || results == null || results.length < 1)
      
-  //   {
-  //    console.log("Need to add after get= " + needToAdd);
+//   //   {
+//   //    console.log("Need to add after get= " + needToAdd);
 
-  //   //if(needToAdd == true)
-  //    console.log("in add user");
-  //    //user isnt in the db so we want to add them
-  //    var q = "insert into users (accesstoken) values ($1)";
-  //    var query = client.query(q, [accessToken]);
-  //    var results =[];
+//   //   //if(needToAdd == true)
+//   //    console.log("in add user");
+//   //    //user isnt in the db so we want to add them
+//   //    var q = "insert into users (accesstoken) values ($1)";
+//   //    var query = client.query(q, [accessToken]);
+//   //    var results =[];
 
-  //    //error handler 
-  //    query.on('error',function(){
-  //       res.status(500).send('Error, failed to add new user');
-  //    });
+//   //    //error handler 
+//   //    query.on('error',function(){
+//   //       res.status(500).send('Error, failed to add new user');
+//   //    });
 
-  //    //stream results back one row at a time
-  //    query.on('row',function(row){
-  //      results.push(row);
-  //         console.log("Results of add user: " + row)
+//   //    //stream results back one row at a time
+//   //    query.on('row',function(row){
+//   //      results.push(row);
+//   //         console.log("Results of add user: " + row)
 
-  //    });
+//   //    });
 
-  //    //after all the data is returned close connection and return result
-  //    query.on('end',function(){
-  //      console.log(results);
-  //      console.log("logged in successfully!");
-  //      res.json(results);
-  //    });
-  //   }
+//   //    //after all the data is returned close connection and return result
+//   //    query.on('end',function(){
+//   //      console.log(results);
+//   //      console.log("logged in successfully!");
+//   //      res.json(results);
+//   //    });
+//   //   }
 
-  //if they dont then add them and return to the home page
-  res.redirect('/index');
+//   //if they dont then add them and return to the home page
+//   res.redirect('/index');
 
-  console.log("Access token = " + req.query.access_token) 
-  //console.log("Access token: " + accessToken)
-  res.end(JSON.stringify(req.query.access_token, null, 2))
+//   console.log("Access token = " + req.query.access_token) 
+//   //console.log("Access token: " + accessToken)
+//   res.end(JSON.stringify(req.query.access_token, null, 2))
   //res.end(accessToken)
+
+  console.log(req.query)
+  res.end(JSON.stringify(req.query, null, 2))
 
 })
 
