@@ -17,6 +17,7 @@ $().ready(function(){
         }
         else if(loginName =='LOG OUT'){
             sessionStorage.setItem('useremail', "");
+            sessionStorage.setItem('username', "");
             changeLoginName();
             location.href = 'login';
         }
@@ -152,7 +153,6 @@ $().ready(function(){
         var email = $('input[id="email"]').val();
         var passW = $('input[id="password"]').val();
 
-
         $('#email,#password').on('click',function(){
             document.getElementById('err').style.visibility = 'hidden';
         });
@@ -170,6 +170,8 @@ $().ready(function(){
                             if(data[i].pass == passW){
                                 location.href = 'index';
                                 sessionStorage.setItem('useremail', data[i].email);
+                                sessionStorage.setItem('username',data[i].name);
+                                //console.log(sessionStorage.getItem('username'));
                                 changeLoginName();
                                 alert("Login Successful!");
 
@@ -200,12 +202,10 @@ $().ready(function(){
 
 function changeLoginName(){
     if(sessionStorage.getItem('useremail')){
-        document.getElementById('registration').innerHTML=sessionStorage.getItem('useremail');
+        document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
     }else{
         document.getElementById('registration').innerHTML='REGISTRATION';
         document.getElementById('log-in').innerHTML='LOG IN';
     }
 }
-
-
