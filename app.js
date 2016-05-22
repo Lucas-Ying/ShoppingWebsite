@@ -55,7 +55,7 @@ app.use(session({secret:'very secret'}))
 app.use(grant)
 
 app.get('/facebook_callback', function (req, res) {
-//   var accessToken = req.query.access_token //This is used to iidentify a user
+  var accessToken = req.query.access_token //This is used to iidentify a user
 //   var needToAdd = false;
 
 // //check if they exist in the db
@@ -125,6 +125,20 @@ app.get('/facebook_callback', function (req, res) {
   //res.end(accessToken)
 
   console.log(req.query)
+
+  var Purest = require('purest')
+  , facebook = new Purest({provider: 'facebook'})
+
+facebook.query()
+  .get('me')
+  .auth(accessToken)
+  .request(function (err, res, body) {
+    // here body is a parsed JSON object containing
+    // id, first_name, last_name, gender, username, ...
+    console.log("Facebook data: " + body);
+  })
+
+
   res.end(JSON.stringify(req.query, null, 2))
 
 })
