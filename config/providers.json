@@ -1,0 +1,14 @@
+"facebook": {
+  "https://graph.facebook.com": {
+    "__domain": {
+      "auth": {
+        "auth": {"bearer": "[0]"}
+      }
+    },
+    "{endpoint}": {
+      "__path": {
+        "alias": "__default"
+      }
+    }
+  }
+}
