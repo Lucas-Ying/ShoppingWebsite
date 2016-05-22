@@ -11,10 +11,18 @@ block content
         #Page
             #Page_center
                 table#itemTable.itemTable
-                    tr
-                        td Items
-                        td Balance
+                    tr.tableHeader
+                        td Product
+                        td Price
+                        td Quantity
+                        td Total
+                        td#remove.remove
+                p#btn.btn
+                    br
+                    input#Continue.Continue(type='submit', value='Continue Shopping')
+                    input#Checkout.Checkout(type='submit', value='Check Out')
     .cleaner
 
 block footer
     include footer
+

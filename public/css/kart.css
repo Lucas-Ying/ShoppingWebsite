@@ -3,5 +3,42 @@ table.itemTable{
 }
 
 table.itemTable td{
-	border: 1px solid black;
+	border-left: none;
+	border-right: none;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
 }
+
+table.itemTable tr.tableHeader{
+	font-weight: bold;
+}
+
+table.itemTable td span.chout{
+	font-weight: bold;
+	float:right;
+}
+
+table.itemTable td span.money{
+	font-weight: bold;
+	float: center;
+}
+
+table.itemTable td.quantity input.count{
+	width:50px;
+}
+
+p.btn{ 
+	width: 200px;
+	display: inline;
+}
+
+p.btn input.Continue{
+	float:left;
+}
+
+p.btn input.Checkout{
+	margin-right: 48%;
+	float:right;
+}
+
+
