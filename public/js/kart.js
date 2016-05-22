@@ -11,7 +11,7 @@ $().ready(function(){
         url:'/get_users',
 
         success: function(data){
-	    
+        
             if(registerName =='REGISTRATION'){
                 return;
             }
@@ -38,21 +38,35 @@ $().ready(function(){
                             if(data[i].userid == userId){                               
                                 kartId = data[i].id;
                                 checkCart = true;
-                                var items = data[i].items;
-                                var balance = data[i].balance;
-                                //display item
-                                var row ="<tr>"
-                                            +"<td>"+items+"</td>"
-                                            +"<td>"+balance+"</td>"
-                                        +"</tr>"
-
-                                $('#itemTable').append(row);
-                                
                                 break;
                             }
                         }
+                    
+                        //found cart then display the items that belong to that cart
+                        if(checkCart){
+                             $.ajax({
+                                method:'GET',
+                                url:'/get_purchases',
+                                success: function(data){
+                                    for(i = 0; i<data.length; i++){
+                                        if(data[i].cartid == kartId){
+                                            var items = data[i].name;
+                                            var cost = data[i].price;
+                                            var count = data[i].quantity;
 
-                       if(!checkCart){
+                                            //display item
+                                            var row ="<tr>"
+                                                        +"<td>"+items+"</td>"
+                                                        +"<td>"+count+"</td>"
+                                                        +"<td>"+cost+"</td>" 
+                                                    +"</tr>"
+
+                                            $('#itemTable').append(row);
+                                        }
+                                    }
+                                }
+                            });
+                        }else{
                             //otherwise add a new shopping cart to the user
                             $.ajax({
                                 method:'PUT',
@@ -83,5 +97,3 @@ $().ready(function(){
     });
 
 });
-
- 
