@@ -601,6 +601,7 @@ app.get('/get_cart', function (req,res){
   });
 });
 
+
 //adding new cart
 app.put('/addCart', function(req, res){
   var cartId = req.body.id;
