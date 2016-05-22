@@ -13,17 +13,33 @@ table.itemTable tr.tableHeader{
 	font-weight: bold;
 }
 
+table.itemTable tr.tableHeader td.product{
+	width:150px;
+}
+
+table.itemTable tr.tableHeader td.count{
+	width:60px;
+}
+
+table.itemTable tr td.dollar{
+	width: 110px;
+	text-align: center;
+}
+
 table.itemTable td span.chout{
 	font-weight: bold;
 	float:right;
 }
 
-table.itemTable td span.money{
-	font-weight: bold;
-	float: center;
+table.itemTable tr td.money{
+	text-align:center;
 }
 
-table.itemTable td.quantity input.count{
+table.itemTable tr td.money span{
+	font-weight: bold;
+}
+
+table.itemTable tr td.quantity input.count{
 	width:50px;
 }
 
@@ -37,7 +53,7 @@ p.btn input.Continue{
 }
 
 p.btn input.Checkout{
-	margin-right: 48%;
+	margin-right: 20%;
 	float:right;
 }
 

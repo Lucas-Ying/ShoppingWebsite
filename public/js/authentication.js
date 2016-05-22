@@ -3,9 +3,7 @@ $().ready(function(){
 
     //login button
     $('#Name').on('click',function(){
-        
         location.href = 'index';
-        
     });
 
     //login button
@@ -209,3 +207,4 @@ function changeLoginName(){
         document.getElementById('log-in').innerHTML='LOG IN';
     }
 }
+

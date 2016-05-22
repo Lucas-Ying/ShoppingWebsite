@@ -1,37 +1,41 @@
 $().ready(function(){
+    
+    //only load when user is on /kart page
+    if (window.location.pathname == '/kart') {
+        var checker = false;
+        var userId =0;
+        var registerName = document.getElementById('registration').text;
 
-    var checker = false;
-    var userId =0;
-    var registerName = document.getElementById('registration').text;
-
-    $.ajax({
-        method:'GET',
-        url:'/get_users',
-        success: function(data){
-            if(registerName =='REGISTRATION'){return;}
-            //go through database check if email already exist
-            for(i = 0; i<data.length; i++){
-                if(data[i].email == sessionStorage.getItem('useremail')){
-                    checker = true;
-                    //display user item here
-                    userId = data[i].id; 
-                    //console.log('found user');
-                    break;
+        $.ajax({
+            method:'GET',
+            url:'/get_users',
+            success: function(data){
+                if(registerName =='REGISTRATION'){return;}
+                //go through database check if email already exist
+                for(i = 0; i<data.length; i++){
+                    if(data[i].email == sessionStorage.getItem('useremail')){
+                        checker = true;
+                        //display user item here
+                        userId = data[i].id; 
+                        //console.log('found user');
+                        break;
+                    }
                 }
-            }
 
-            if(checker){
-                getKartID(userId);
+                if(checker){
+                    getKartID(userId);
+                }
+                else{
+                    console.log("Error: user doesnt exists");
+                }
+            },
+            error:function(){
+                console.log("Error: fail to get users");
             }
-            else{
-                console.log("Error: user doesnt exists");
-            }
-        },
-        error:function(){
-            console.log("Error: fail to get users");
-        }
-    });
+        });
+    }
 });
+
 
 //get kart to display the purchases item
 function getKartID(userId){
@@ -96,9 +100,9 @@ function displayItem(kartId){
                     //display item
                     var row ="<tr>"
                     +"<td>"+product+"</td>"
-                    +"<td><span class='money'> $"+cost+"</span></td>"
                     +"<td class='quantity'><input class = 'count' type ='input' value="+count+"></input></td>" 
-                    +"<td><span class='money'> $"+subtotal+"</span></td>"
+                    +"<td class='money'><span> $"+cost+"</span></td>"
+                    +"<td class='money'><span> $"+subtotal+"</span></td>"
                     +"<td>remove button here</td>" 
                     +"</tr>"
 
