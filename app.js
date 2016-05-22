@@ -138,7 +138,7 @@ facebook.query()
     // here body is a parsed JSON object containing
     // id, first_name, last_name, gender, username, ...
     //console.log("Facebook data: " + body.query);
-    console.log("Facebook data: " + JSON.stringify(req.query, null, 2));
+    console.log("Facebook data: " + JSON.stringify(body.query, null, 2));
   })
 
 
