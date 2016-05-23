@@ -104,8 +104,8 @@ app.get('/logout', function(req, res){
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
   	console.log(JSON.stringify(req.user, null, 4));
-  // html += "<p>authenticated as user:</p>"
-  // html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+ html += "<p>authenticated as user:</p>"
+  html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
    return next(); }
   res.redirect('/login')
 }
