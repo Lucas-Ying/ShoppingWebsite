@@ -5,8 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
+var config            =     require('./configuration/config');
+var FacebookStrategy  =     require('passport-facebook').Strategy;
 var session = require('express-session');
 var Grant = require('grant-express');
+var passport = require('passport');
 var grant = new Grant(require('./config.json'));
 //use to prevent csrf attack
 var csrf = require('csurf');
@@ -50,7 +53,31 @@ pg.connect(connectionString, function(err, client, done)
   });
 });
 
+// Passport session setup.
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+// Use the FacebookStrategy within Passport.
+passport.use(new FacebookStrategy({
+    clientID: config.facebook_api_key,
+    clientSecret:config.facebook_api_secret ,
+    callbackURL: config.callback_url
+  },
+  function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      //Check whether the User exists or not using profile.id
+      //Further DB code.
+      return done(null, profile);
+    });
+  }
+));
 
+app.use(session({ secret: 'keyboard cat', key: 'sid'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //====================OAUTH===================================
 app.use(logger('dev'))
@@ -58,6 +85,29 @@ app.use(logger('dev'))
 app.use(session({secret:'very secret'}))
 // mount grant
 app.use(grant)
+
+//Passport Router
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { 
+       successRedirect : '/', 
+       failureRedirect: '/login' 
+  }),
+  function(req, res) {
+    res.redirect('/');
+  });
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+  html += "<p>authenticated as user:</p>"
+  html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+   return next(); }
+  res.redirect('/login')
+}
+
 
 app.get('/facebook_callback', function (req, res) {
   var accessToken = req.query.access_token //This is used to iidentify a user

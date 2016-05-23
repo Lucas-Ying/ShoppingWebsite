@@ -31,6 +31,8 @@
     "morgan": "~1.6.1",
     "node-twitter-api": "^1.7.2",
     "oauth": "^0.9.14",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "pg": "^4.5.5",
     "pg-native": "^1.10.0",
     "purest": "^2.0.1",
