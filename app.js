@@ -114,8 +114,6 @@ function ensureAuthenticated(req, res, next) {
 		var profileID = profile.id;
 		var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
 		var usersEmail =  profile.emails[0].value;
- // var accessToken = req.query.access_token //This is used to iidentify a user
-//   var needToAdd = false;
 
 // //check if they exist in the db
 	if(usersEmail != null || usersEmail != 'undefined')
