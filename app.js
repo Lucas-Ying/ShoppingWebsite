@@ -388,15 +388,26 @@ app.use('/', routes);
 app.use('/users', users);
 
 //render main page
-app.get('/',function(err,res,req,next){
-  //pass the csrftoken to the view
-  //when using this can see example at https://www.npmjs.com/package/csurf
-if (req.isAuthenticated()) {
-  html += "<p>authenticated as user:</p>"
-  html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
-}
-res.send(html);
-//  res.render('index',{csrftoken: req.csrftoken()});
+// app.get('/',function(err,res,req,next){
+//   //pass the csrftoken to the view
+//   //when using this can see example at https://www.npmjs.com/package/csurf
+//   res.render('index',{csrftoken: req.csrftoken()});
+});
+
+
+app.get('/', function (req, res) {
+  var html = "<ul>\
+    <li><a href='/auth/github'>GitHub</a></li>\
+    <li><a href='/logout'>logout</a></li>\
+  </ul>";
+
+  // dump the user for debugging
+  if (req.isAuthenticated()) {
+    html += "<p>authenticated as user:</p>"
+    html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+  }
+
+  res.send(html);
 });
 
 //========================RESTful API for Product ====================//
