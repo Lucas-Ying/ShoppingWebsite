@@ -64,7 +64,9 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
     clientID: config.facebook_api_key,
     clientSecret:config.facebook_api_secret ,
-    callbackURL: config.callback_url
+    callbackURL: config.callback_url,
+    profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'],
+
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function () {
@@ -92,7 +94,8 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
 
        successRedirect : '/test', 
-       failureRedirect: '/login' 
+       failureRedirect: '/login',
+       scope['email'] 
   }),
   function(req, res) {
     res.redirect('/');
@@ -103,9 +106,6 @@ app.get('/logout', function(req, res){
 });
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-  	console.log(JSON.stringify(req.user, null, 4));
-  // html += "<p>authenticated as user:</p>"
-  // html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
    return next(); }
   res.redirect('/login')
 }
