@@ -95,7 +95,7 @@ app.get('/auth/facebook/callback',
 
        successRedirect : '/test', 
        failureRedirect: '/login',
-       scope['email'] 
+    //   scope['email'] 
   }),
   function(req, res) {
     res.redirect('/');
