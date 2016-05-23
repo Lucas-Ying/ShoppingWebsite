@@ -133,9 +133,8 @@ function ensureAuthenticated(req, res, next) {
   	console.log('Result: ' + results);
   });
 }
-	}
 
-};
+}
 
 /*app.get('/twitter_callback', function (req, res) {
   var accessToken = req.query.access_tokens
