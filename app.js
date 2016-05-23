@@ -119,7 +119,7 @@ function ensureAuthenticated(req, res, next) {
 	if(usersEmail != null || usersEmail != 'undefined')
 	{
 	var q = "SELECT * FROM users WHERE email=$1 RETURNING name, email;";
-	var query = client.query(q, [accessToken]);
+	var query = client.query(q, [usersEmail]);
 
 	var results =[];
 
