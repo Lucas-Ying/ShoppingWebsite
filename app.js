@@ -89,9 +89,13 @@ app.use(grant)
 //Passport Router
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { 
-       successRedirect : '/', 
-       failureRedirect: '/login' 
+  passport.authenticate('facebook', {
+  if (req.isAuthenticated()) {
+  html += "<p>authenticated as user:</p>"
+  html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+} 
+ //      successRedirect : '/', 
+   //    failureRedirect: '/login' 
   }),
   function(req, res) {
     res.redirect('/');
@@ -102,8 +106,8 @@ app.get('/logout', function(req, res){
 });
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-  html += "<p>authenticated as user:</p>"
-  html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+  // html += "<p>authenticated as user:</p>"
+  // html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
    return next(); }
   res.redirect('/login')
 }
