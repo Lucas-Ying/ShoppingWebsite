@@ -86,6 +86,29 @@ app.use(session({secret:'very secret'}))
 // mount grant
 app.use(grant)
 
+//Passport Router
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+
+       successRedirect : '/test', 
+       failureRedirect: '/login' 
+  }),
+  function(req, res) {
+    res.redirect('/');
+  });
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+  	console.log(JSON.stringify(req.user, null, 4));
+  // html += "<p>authenticated as user:</p>"
+  // html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+   return next(); }
+  res.redirect('/login')
+}
 
 
 app.get('/facebook_callback', function (req, res) {
@@ -160,20 +183,20 @@ app.get('/facebook_callback', function (req, res) {
 
   //console.log(req.query)
 
-// facebook.query()
-//   .get('me')
-//   .auth(accessToken)
-//   .request(function (err, res, body) {
-//     // here body is a parsed JSON object containing
-//     // id, first_name, last_name, gender, username, ...
-//     //console.log("Facebook data: " + body.query);
-//     console.log("Facebook data: " + body.query + " res: " + res.query);
-//   })
+facebook.query()
+  .get('me')
+  .auth(accessToken)
+  .request(function (err, res, body) {
+    // here body is a parsed JSON object containing
+    // id, first_name, last_name, gender, username, ...
+    //console.log("Facebook data: " + body.query);
+    console.log("Facebook data: " + body.query + " res: " + res.query);
+  })
 
 
-//   res.end(JSON.stringify(req.query, null, 2))
+  res.end(JSON.stringify(req.query, null, 2))
 
-// })
+})
 
 /*app.get('/twitter_callback', function (req, res) {
   var accessToken = req.query.access_tokens
@@ -364,38 +387,12 @@ app.use(helmet());//use to set http headers
 app.use('/', routes);
 app.use('/users', users);
 
-
-//Passport Router
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
-
-       successRedirect : '/test', 
-       failureRedirect: '/login' 
-  }),
-  function(req, res) {
-    res.redirect('/');
-  });
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-  	console.log(JSON.stringify(req.user, null, 4));
-  // html += "<p>authenticated as user:</p>"
-  // html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
-   return next(); }
-  res.redirect('/login')
-}
-
 //render main page
 app.get('/',function(err,res,req,next){
   //pass the csrftoken to the view
   //when using this can see example at https://www.npmjs.com/package/csurf
   res.render('index',{csrftoken: req.csrftoken()});
 });
-
 
 app.get('/test', function (req, res) {
   var html = "<ul>\
