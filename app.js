@@ -142,61 +142,6 @@ function ensureAuthenticated(req, res, next) {
   });
 	}
 
-  // if (typeof results == 'undefined' || results == null || results.length < 1)
-
-  //   {
-  //    console.log("Need to add after get= " + needToAdd);
-
-  //   //if(needToAdd == true)
-  //    console.log("in add user");
-  //    //user isnt in the db so we want to add them
-  //    var q = "insert into users (accesstoken) values ($1)";
-  //    var query = client.query(q, [accessToken]);
-  //    var results =[];
-
-  //    //error handler 
-  //    query.on('error',function(){
-  //       res.status(500).send('Error, failed to add new user');
-  //    });
-
-  //    //stream results back one row at a time
-  //    query.on('row',function(row){
-  //      results.push(row);
-  //         console.log("Results of add user: " + row)
-
-  //    });
-
-  //    //after all the data is returned close connection and return result
-  //    query.on('end',function(){
-  //      console.log(results);
-  //      console.log("logged in successfully!");
-  //      res.json(results);
-  //    });
-  //   }
-
-//   //if they dont then add them and return to the home page
-//   res.redirect('/index');
-
-//   console.log("Access token = " + req.query.access_token) 
-//   //console.log("Access token: " + accessToken)
-//   res.end(JSON.stringify(req.query.access_token, null, 2))
-  //res.end(accessToken)
-
-  //console.log(req.query)
-
-//   facebook.query()
-//   .get('me')
-//   .auth(accessToken)
-//   .request(function (err, res, body) {
-//     // here body is a parsed JSON object containing
-//     // id, first_name, last_name, gender, username, ...
-//     //console.log("Facebook data: " + body.query);
-//     console.log("Facebook data: " + body.query + " res: " + res.query);
-// })
-
-
- // res.end("finished");
-
 };
 
 /*app.get('/twitter_callback', function (req, res) {
