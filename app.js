@@ -136,14 +136,15 @@ function ensureAuthenticated(req, res, next) {
   	results.push(row);
   });
 
+
+  //After all data is returned, close connection and return results
+  query.on('end',function(){
+
   if(results.length < 1)
   {
   	console.log("nothing returned");
   }
-
-  //After all data is returned, close connection and return results
-  query.on('end',function(){
-  	console.log("Results of get users: " + results);
+  //	console.log("Results of get users: " + results);
   });
 	}
 
