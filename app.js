@@ -23,9 +23,9 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var Purest = require('purest')
-  , facebook = new Purest({provider: 'facebook'})
-  , twitter = new Purest({provider: 'twitter',
-    key: 'VDu9V8pV9ukxUs89JiWxoSwoH', secret: 'AR5aS5c2vZr9sVDkROnLg4ZylJTAPRy2NeHAP7QUEcyNr5v8j1'})
+, facebook = new Purest({provider: 'facebook'})
+, twitter = new Purest({provider: 'twitter',
+	key: 'VDu9V8pV9ukxUs89JiWxoSwoH', secret: 'AR5aS5c2vZr9sVDkROnLg4ZylJTAPRy2NeHAP7QUEcyNr5v8j1'})
 
 var app = express();
 
@@ -39,50 +39,41 @@ client.connect();
 
 pg.connect(connectionString, function(err, client, done)
 {
-  if(err){
-    console.error('Could not connect to the database');
-    console.error(err);
-    return;
-  }
-  console.log('Connected to database');
-  client.query("SELECT * FROM users;", function(error, result){
-    done();
-    if(error){
-    }
+	if(err){
+		console.error('Could not connect to the database');
+		console.error(err);
+		return;
+	}
+	console.log('Connected to database');
+	client.query("SELECT * FROM users;", function(error, result){
+		done();
+		if(error){
+		}
     //console.log(result);
-  });
+});
 });
 
 // Passport session setup.
 passport.serializeUser(function(user, done) {
-  done(null, user);
+	done(null, user);
 });
 passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+	done(null, obj);
 });
 // Use the FacebookStrategy within Passport.
 passport.use(new FacebookStrategy({
-    clientID: config.facebook_api_key,
-    clientSecret:config.facebook_api_secret ,
-    callbackURL: config.callback_url,
-    profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'],
+	clientID: config.facebook_api_key,
+	clientSecret:config.facebook_api_secret ,
+	callbackURL: config.callback_url,
+	profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'],
 
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      //Check whether the User exists or not using profile.id
-      //Further DB code.
-        // var newUser= new User();
-
-        //             // set all of the facebook information in our user model
-        //             newUser.facebook.id    = profile.id; // set the users facebook id                   
-        //             newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
-        //             newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-        //             newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-console.log("ID: " +  profile.id + " name: " +  profile.name.givenName + ' ' + profile.name.familyName + " email: " + profile.emails[0].value);
-      return done(null, profile);
-    });
-  }
+},
+function(accessToken, refreshToken, profile, done) {
+	process.nextTick(function () {
+		console.log("ID: " +  profile.id + " name: " +  profile.name.givenName + ' ' + profile.name.familyName + " email: " + profile.emails[0].value);
+		return done(null, profile);
+	});
+}
 ));
 
 app.use(session({ secret: 'keyboard cat', key: 'sid'}));
@@ -99,87 +90,92 @@ app.use(grant)
 //Passport Router
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
+	passport.authenticate('facebook', {
 
-       successRedirect : '/userPresent', 
-       failureRedirect: '/login',
+		successRedirect : '/userPresent', 
+		failureRedirect: '/login',
     //   scope['email'] 
-  }),
-  function(req, res) {
-    res.redirect('/');
-  });
+}),
+	function(req, res) {
+		res.redirect('/');
+	});
 app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+	req.logout();
+	res.redirect('/');
 });
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-   return next(); }
-  res.redirect('/login')
-}
+	if (req.isAuthenticated()) {
+		return next(); }
+		res.redirect('/login')
+	}
 
 
-app.get('/facebook_callback', function (req, res) {
-  var accessToken = req.query.access_token //This is used to iidentify a user
+//app.get('/facebook_callback', function (req, res) {
+	function addUserIfNeeded (profile) {
+		var profileID = profile.id;
+		var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
+		var usersEmail =  profile.emails[0].value;
+ // var accessToken = req.query.access_token //This is used to iidentify a user
 //   var needToAdd = false;
 
 // //check if they exist in the db
-// if(accessToken != null || accessToken != 'undefined'){
-//   var q = "SELECT * FROM users WHERE accesstoken=$1 RETURNING accesstoken;";
-//   var query = client.query(q, [accessToken]);
+	if(usersEmail != null || usersEmail != 'undefined')
+	{
+	var q = "SELECT * FROM users WHERE email=$1 RETURNING name, email;";
+	var query = client.query(q, [accessToken]);
 
-//   var results =[];
+	var results =[];
 
-//   //error handler for /get_users
-//   query.on('error',function(){
-//     //res.status(500).send('Error, fail to get users: '+accessToken);
-//     needToAdd = true;
-//     addUserByToken(accessToken);
-//     console.log("Need to add = " + needToAdd);
-//   });
+  //error handler for /get_users
+  query.on('error',function(){
+    //res.status(500).send('Error, fail to get users: '+accessToken);
+    needToAdd = true;
+    addUser(usersName, usersEmail);
+    console.log("Need to add = " + needToAdd);
+	});
 
-//   //stream results back one row at a time
-//   query.on('row',function(row){
-//     results.push(row);
-//   });
+  //stream results back one row at a time
+  query.on('row',function(row){
+  	results.push(row);
+  });
 
-//   //After all data is returned, close connection and return results
-//   query.on('end',function(){
-//    console.log("Results of get users: " + results);
-//   });
-// }
+  //After all data is returned, close connection and return results
+  query.on('end',function(){
+  	console.log("Results of get users: " + results);
+  });
+	}
 
-//   // if (typeof results == 'undefined' || results == null || results.length < 1)
-     
-//   //   {
-//   //    console.log("Need to add after get= " + needToAdd);
+  // if (typeof results == 'undefined' || results == null || results.length < 1)
 
-//   //   //if(needToAdd == true)
-//   //    console.log("in add user");
-//   //    //user isnt in the db so we want to add them
-//   //    var q = "insert into users (accesstoken) values ($1)";
-//   //    var query = client.query(q, [accessToken]);
-//   //    var results =[];
+  //   {
+  //    console.log("Need to add after get= " + needToAdd);
 
-//   //    //error handler 
-//   //    query.on('error',function(){
-//   //       res.status(500).send('Error, failed to add new user');
-//   //    });
+  //   //if(needToAdd == true)
+  //    console.log("in add user");
+  //    //user isnt in the db so we want to add them
+  //    var q = "insert into users (accesstoken) values ($1)";
+  //    var query = client.query(q, [accessToken]);
+  //    var results =[];
 
-//   //    //stream results back one row at a time
-//   //    query.on('row',function(row){
-//   //      results.push(row);
-//   //         console.log("Results of add user: " + row)
+  //    //error handler 
+  //    query.on('error',function(){
+  //       res.status(500).send('Error, failed to add new user');
+  //    });
 
-//   //    });
+  //    //stream results back one row at a time
+  //    query.on('row',function(row){
+  //      results.push(row);
+  //         console.log("Results of add user: " + row)
 
-//   //    //after all the data is returned close connection and return result
-//   //    query.on('end',function(){
-//   //      console.log(results);
-//   //      console.log("logged in successfully!");
-//   //      res.json(results);
-//   //    });
-//   //   }
+  //    });
+
+  //    //after all the data is returned close connection and return result
+  //    query.on('end',function(){
+  //      console.log(results);
+  //      console.log("logged in successfully!");
+  //      res.json(results);
+  //    });
+  //   }
 
 //   //if they dont then add them and return to the home page
 //   res.redirect('/index');
@@ -191,20 +187,20 @@ app.get('/facebook_callback', function (req, res) {
 
   //console.log(req.query)
 
-facebook.query()
-  .get('me')
-  .auth(accessToken)
-  .request(function (err, res, body) {
-    // here body is a parsed JSON object containing
-    // id, first_name, last_name, gender, username, ...
-    //console.log("Facebook data: " + body.query);
-    console.log("Facebook data: " + body.query + " res: " + res.query);
-  })
+//   facebook.query()
+//   .get('me')
+//   .auth(accessToken)
+//   .request(function (err, res, body) {
+//     // here body is a parsed JSON object containing
+//     // id, first_name, last_name, gender, username, ...
+//     //console.log("Facebook data: " + body.query);
+//     console.log("Facebook data: " + body.query + " res: " + res.query);
+// })
 
 
-  res.end(JSON.stringify(req.query, null, 2))
+  res.end(JSON.stringify(req.query, null, 2));
 
-})
+};
 
 /*app.get('/twitter_callback', function (req, res) {
   var accessToken = req.query.access_tokens
@@ -214,92 +210,92 @@ facebook.query()
 
 
 var OAuth = require('oauth').OAuth
-  , oauth = new OAuth(
-      "https://api.twitter.com/oauth/request_token",
-      "https://api.twitter.com/oauth/access_token",
-      "NFE9tO39ZJHqy0TcRJ8zT3JKp",
-      "Xd4kzzp7rpxkmPzUPFHLyIwRrnbEvaNjlbpdMqCvB0Jt6NrcaQ",
-      "1.0",
-      "https://tranquil-journey-51576.herokuapp.com/index.html",
-      "HMAC-SHA1"
-);
+, oauth = new OAuth(
+	"https://api.twitter.com/oauth/request_token",
+	"https://api.twitter.com/oauth/access_token",
+	"NFE9tO39ZJHqy0TcRJ8zT3JKp",
+	"Xd4kzzp7rpxkmPzUPFHLyIwRrnbEvaNjlbpdMqCvB0Jt6NrcaQ",
+	"1.0",
+	"https://tranquil-journey-51576.herokuapp.com/index.html",
+	"HMAC-SHA1"
+	);
 
-function addUserByToken(accessToken)
+function addUser(name, email)
 {
-  console.log("in add user");
+	console.log("in add user");
       //user isnt in the db so we want to add them
-      var q = "insert into users (accesstoken) values ($1)";
-      var query = client.query(q, [accessToken]);
+      var q = "insert into users (name, email) values ($1, $2)";
+      var query = client.query(q, [name, email]);
       var results =[];
 
       //error handler 
       query.on('error',function(){
        //res.status(500).send('Error, failed to add new user');
-      });
+   });
 
       //stream results back one row at a time
       query.on('row',function(row){
-        results.push(row);
-           console.log("Results of add user: " + row)
+      	results.push(row);
+      	console.log("Results of add user: " + row)
 
       });
 
       //after all the data is returned close connection and return result
       query.on('end',function(){
-        console.log(results);
-        console.log("logged in successfully!");
+      	console.log(results);
+      	console.log("logged in successfully!");
         //res.json(results);
-      });
-}
+    });
+  }
 
-app.get('/auth/twitter', function(req, res) {
- 
-  oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results) {
-    if (error) {
-      console.log(error);
-      res.send("Authentication Failed!");
-    }
-    else {
-      req.session.oauth = {
-        token: oauth_token,
-        token_secret: oauth_token_secret
-      };
-      console.log(req.session.oauth);
-      res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
-    }
+  app.get('/auth/twitter', function(req, res) {
+
+  	oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results) {
+  		if (error) {
+  			console.log(error);
+  			res.send("Authentication Failed!");
+  		}
+  		else {
+  			req.session.oauth = {
+  				token: oauth_token,
+  				token_secret: oauth_token_secret
+  			};
+  			console.log(req.session.oauth);
+  			res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
+  		}
+  	});
+
   });
- 
-});
 
-app.get('/auth/twitter/callback', function(req, res, next) {
- 
-  if (req.session.oauth) {
-    req.session.oauth.verifier = req.query.oauth_verifier;
-    var oauth_data = req.session.oauth;
- 
-    oauth.getOAuthAccessToken(
-      oauth_data.token,
-      oauth_data.token_secret,
-      oauth_data.verifier,
-      function(error, oauth_access_token, oauth_access_token_secret, results) {
-        if (error) {
-          console.log(error);
-          res.send("Authentication Failure!");
-          res.redirect('https://tranquil-journey-51576.herokuapp.com/register.html');
-        }
-        else {
-          req.session.oauth.access_token = oauth_access_token;
-          req.session.oauth.access_token_secret = oauth_access_token_secret;
-          console.log(results, req.session.oauth);
-          res.send("Authentication Successful");
-          res.redirect('https://tranquil-journey-51576.herokuapp.com/index.html'); 
-        }
-      }
-    );
-  }
-  else {
+  app.get('/auth/twitter/callback', function(req, res, next) {
+
+  	if (req.session.oauth) {
+  		req.session.oauth.verifier = req.query.oauth_verifier;
+  		var oauth_data = req.session.oauth;
+
+  		oauth.getOAuthAccessToken(
+  			oauth_data.token,
+  			oauth_data.token_secret,
+  			oauth_data.verifier,
+  			function(error, oauth_access_token, oauth_access_token_secret, results) {
+  				if (error) {
+  					console.log(error);
+  					res.send("Authentication Failure!");
+  					res.redirect('https://tranquil-journey-51576.herokuapp.com/register.html');
+  				}
+  				else {
+  					req.session.oauth.access_token = oauth_access_token;
+  					req.session.oauth.access_token_secret = oauth_access_token_secret;
+  					console.log(results, req.session.oauth);
+  					res.send("Authentication Successful");
+  					res.redirect('https://tranquil-journey-51576.herokuapp.com/index.html'); 
+  				}
+  			}
+  			);
+  	}
+  	else {
     res.redirect('https://tranquil-journey-51576.herokuapp.com/login.html'); // Redirect to login page
-  }
+}
 });
 
 //=============================END OAUTH===========================
@@ -307,17 +303,17 @@ app.get('/auth/twitter/callback', function(req, res, next) {
 //--------------------------------------------TESTS----------------------------------------------------
 app.get('/test_database_get', function(request, response) {
 
-  var query = client.query("SELECT * FROM users");
-  var results = []
+	var query = client.query("SELECT * FROM users");
+	var results = []
   // Stream results back one row at a time
   query.on('row', function(row) {
-    results.push(row);
+  	results.push(row);
   });
 
   // After all data is returned, close connection and return results
   query.on('end', function() {
-    response.json(results);
-    console.log('Result: ' + results);
+  	response.json(results);
+  	console.log('Result: ' + results);
   });
 });
 
@@ -329,13 +325,13 @@ app.get('/test_database_put', function(request, response) {
   var results = []
   // Stream results back one row at a time
   query.on('row', function(row) {
-    results.push(row);
+  	results.push(row);
   });
 
   // After all data is returned, close connection and return results
   query.on('end', function() {
-    response.json(results);
-    console.log('Result: ' + results);
+  	response.json(results);
+  	console.log('Result: ' + results);
   });
 });
 
@@ -347,14 +343,14 @@ app.get('/test_database_post', function(request, response) {
   var results = []
   // Stream results back one row at a time
   query.on('row', function(row) {
-    results.push(row);
+  	results.push(row);
   });
 
 // After all data is returned, close connection and return results
 query.on('end', function() {
-    response.json(results);
-    console.log('Result: ' + results);
-  });
+	response.json(results);
+	console.log('Result: ' + results);
+});
 });
 
 app.get('/test_database_delete', function(request, response) {
@@ -365,13 +361,13 @@ app.get('/test_database_delete', function(request, response) {
   var results = []
   // Stream results back one row at a time
   query.on('row', function(row) {
-    results.push(row);
+  	results.push(row);
   });
 
   // After all data is returned, close connection and return results
   query.on('end', function() {
-    response.json(results);
-    console.log('Result: ' + results);
+  	response.json(results);
+  	console.log('Result: ' + results);
   });
 });
 
@@ -403,16 +399,16 @@ app.get('/',function(err,res,req,next){
 });
 
 app.get('/userPresent', function (req, res) {
-  var html = "<ul>\
-    <li><a href='/auth/github'>GitHub</a></li>\
-    <li><a href='/logout'>logout</a></li>\
-  </ul>";
+	var html = "<ul>\
+	<li><a href='/auth/github'>GitHub</a></li>\
+	<li><a href='/logout'>logout</a></li>\
+	</ul>";
 
   // dump the user for debugging
   if (req.isAuthenticated()) {
-    html += "<p>authenticated as user:</p>"
-    html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
-    console.log("User email: " + req.user.email + "User email2: " + req.user.value + " users name: " + req.user.familyName + " " + req.user.last_name)
+  	html += "<p>authenticated as user:</p>"
+  	html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+  	console.log("User email: " + req.user.email + "User email2: " + req.user.value + " users name: " + req.user.givenName+ " " + res.name.givenName)
   }
 
   res.send(html);
@@ -423,31 +419,31 @@ app.get('/userPresent', function (req, res) {
 app.get('/get_product', function (req,res){
 //  var productName = req.body.name;
 
-  var query = client.query("select * from products");
-  var results =[];
+var query = client.query("select * from products");
+var results =[];
 
   //error handler for /get_product
   query.on('error',function(){
-    res.status(500).send('Error, fail to get product: '+productName);
+  	res.status(500).send('Error, fail to get product: '+productName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 //adding product
 app.put('/add_product', function(req, res){
-  var productName = req.body.name;
-  var productCost = req.body.cost;
-  var productDes = req.body.description;
+	var productName = req.body.name;
+	var productCost = req.body.cost;
+	var productDes = req.body.description;
   // console.log("add product request");
   console.log("name: " + productName + " cost: " + productCost + " Description: " + productDes);
   var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
@@ -456,73 +452,73 @@ app.put('/add_product', function(req, res){
 
   //error handler for /add_product
   query.on('error',function(){
-    res.status(500).send('Error, fail to add product product: '+productName);
+  	res.status(500).send('Error, fail to add product product: '+productName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 
 //update product
 app.post('/update_product', function(req, res){
-  var productId = req.body.id;
-  var productName = req.body.name;
-  var productCost = req.body.cost;
-  var productDes = req.body.description;
+	var productId = req.body.id;
+	var productName = req.body.name;
+	var productCost = req.body.cost;
+	var productDes = req.body.description;
 
-  var q = "update products set name = $1, cost = $2, description = $3 where id = $4 RETURNING id,name,cost,description";
-  var query = client.query(q, [productName,productCost,productDes,productId]);
-  var results =[];
+	var q = "update products set name = $1, cost = $2, description = $3 where id = $4 RETURNING id,name,cost,description";
+	var query = client.query(q, [productName,productCost,productDes,productId]);
+	var results =[];
 
   //error handler for /update_product
   query.on('error',function(){
-    res.status(500).send('Error, fail to update product id:'+productId +' product: '+productName);
+  	res.status(500).send('Error, fail to update product id:'+productId +' product: '+productName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 
 //delete product
 app.delete('/delete_product', function(req, res){
-  var productId = req.body.id;
+	var productId = req.body.id;
 
-  var q = "delete from products where id = $1 RETURNING id,name,cost,description";
-  var query = client.query(q, [productId]);
-  var results =[];
+	var q = "delete from products where id = $1 RETURNING id,name,cost,description";
+	var query = client.query(q, [productId]);
+	var results =[];
 
   //error handler for /delete_product
   query.on('error',function(){
-    res.status(500).send('Error, fail to delete product id:'+productId +' product: '+productName);
+  	res.status(500).send('Error, fail to delete product id:'+productId +' product: '+productName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
@@ -531,31 +527,31 @@ app.delete('/delete_product', function(req, res){
 //========================RESTful API for users =====================//
 //get users
 app.get('/get_users', function (req,res){
-  var userName = req.body.name;
+	var userName = req.body.name;
 
-  var query = client.query("select * from users");
-  var results =[];
+	var query = client.query("select * from users");
+	var results =[];
 
   //error handler for /get_users
   query.on('error',function(){
-    res.status(500).send('Error, fail to get users: '+userName);
+  	res.status(500).send('Error, fail to get users: '+userName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 app.get('/get_user', function (req,res){
-  var userEmail = req.body.email;
-  var userPass = req.body.pass;
+	var userEmail = req.body.email;
+	var userPass = req.body.pass;
   //console.log(userEmail);
   var q = "SELECT * FROM users WHERE email=$1 RETURNING id,email,pass,name";
   var query = client.query(q, [userEmail]);
@@ -564,105 +560,105 @@ app.get('/get_user', function (req,res){
 
   //error handler for /get_users
   query.on('error',function(){
-    res.status(500).send('Error, fail to get users: '+userEmail);
+  	res.status(500).send('Error, fail to get users: '+userEmail);
   });
 
   //console.log(results);
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 //adding users
 app.put('/add_user', function(req, res){
-  var userEmail = req.body.email;
-  var userPass = req.body.pass;
-  var userName = req.body.name;
-  var userCart = req.body.cart;
+	var userEmail = req.body.email;
+	var userPass = req.body.pass;
+	var userName = req.body.name;
+	var userCart = req.body.cart;
 
-  var q = "insert into users (email,pass,name) values ($1,$2,$3) RETURNING id,email,pass,name";
-  var query = client.query(q, [userEmail,userPass,userName]);
-  var results =[];
+	var q = "insert into users (email,pass,name) values ($1,$2,$3) RETURNING id,email,pass,name";
+	var query = client.query(q, [userEmail,userPass,userName]);
+	var results =[];
 
   //error handler for /add_user
   query.on('error',function(){
-    res.status(500).send('Error, fail to add user Name: '+userName);
+  	res.status(500).send('Error, fail to add user Name: '+userName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 //update users
 app.post('/update_user', function(req, res){
-  var userId = req.body.id;
-  var userEmail = req.body.email;
-  var userPass = req.body.pass;
-  var userName = req.body.name;
-  var userCart = req.body.cart;
+	var userId = req.body.id;
+	var userEmail = req.body.email;
+	var userPass = req.body.pass;
+	var userName = req.body.name;
+	var userCart = req.body.cart;
 
-  var q = "update users set email = $1, pass = $2, name = $3 where id = $4 RETURNING id,email,pass,name";
-  var query = client.query(q, [userEmail,userPass,userName,userId]);
-  var results =[];
+	var q = "update users set email = $1, pass = $2, name = $3 where id = $4 RETURNING id,email,pass,name";
+	var query = client.query(q, [userEmail,userPass,userName,userId]);
+	var results =[];
 
   //error handler for /update_user
   query.on('error',function(){
-    res.status(500).send('Error, fail to update user Id:'+userId +' Name: '+userName);
+  	res.status(500).send('Error, fail to update user Id:'+userId +' Name: '+userName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 
 //delete users
 app.delete('/delete_user', function(req, res){
-  var userId = req.body.id;
-  var userPass = req.body.pass;
-  var userName = req.body.name;
+	var userId = req.body.id;
+	var userPass = req.body.pass;
+	var userName = req.body.name;
 
-  var q = "delete from users where id = $1 RETURNING id,email,pass,name";
-  var query = client.query(q, [userId]);
-  var results =[];
+	var q = "delete from users where id = $1 RETURNING id,email,pass,name";
+	var query = client.query(q, [userId]);
+	var results =[];
 
   //error handler for /delete_user
   query.on('error',function(){
-    res.status(500).send('Error, fail to delete user Id:'+userId +' Name: '+userName);
+  	res.status(500).send('Error, fail to delete user Id:'+userId +' Name: '+userName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
@@ -672,111 +668,111 @@ app.delete('/delete_user', function(req, res){
 //========================RESTful API for cart =====================//
 //get cart
 app.get('/get_cart', function (req,res){
-  var cartUserId = req.body.userID;
+	var cartUserId = req.body.userID;
 
-  var query = client.query("select * from cart");
-  var results =[];
+	var query = client.query("select * from cart");
+	var results =[];
 
   //error handler for /get_cart
   query.on('error',function(){
-    res.status(500).send('Error, fail to get cart from user userID: '+cartUserId);
+  	res.status(500).send('Error, fail to get cart from user userID: '+cartUserId);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 
 //adding new cart
 app.put('/addCart', function(req, res){
-  var cartId = req.body.id;
-  var cartUserId = req.body.userID;
-  var cartBalance = req.body.balance;
-  var cartItem = req.body.items;
+	var cartId = req.body.id;
+	var cartUserId = req.body.userID;
+	var cartBalance = req.body.balance;
+	var cartItem = req.body.items;
 
-  var q = "insert into cart (userid,balance,items) values ($1,$2,$3) RETURNING id,userID,balance,items";
-  var query = client.query(q, [cartUserId,cartBalance,cartItem]);
-  var results =[];
+	var q = "insert into cart (userid,balance,items) values ($1,$2,$3) RETURNING id,userID,balance,items";
+	var query = client.query(q, [cartUserId,cartBalance,cartItem]);
+	var results =[];
 
   //error handler for /addTocart
   query.on('error',function(){
-    res.status(500).send('Error, fail to add to cart Id:'+cartId +' items: '+cartItem);
+  	res.status(500).send('Error, fail to add to cart Id:'+cartId +' items: '+cartItem);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 //update cart items
 app.post('/update_cart', function(req, res){
-  var cartId = req.body.id;
-  var cartUserId = req.body.userID;
-  var cartBalance = req.body.balance;
-  var cartItem = req.body.items;
+	var cartId = req.body.id;
+	var cartUserId = req.body.userID;
+	var cartBalance = req.body.balance;
+	var cartItem = req.body.items;
 
-  var q = "update cart set balance = $1, items = $2 where userID = $3 and id = $4";
-  var query = client.query(q, [cartBalance,cartItem,cartUserId,cartId]);
-  var results =[];
+	var q = "update cart set balance = $1, items = $2 where userID = $3 and id = $4";
+	var query = client.query(q, [cartBalance,cartItem,cartUserId,cartId]);
+	var results =[];
 
   //error handler for /update_cart
   query.on('error',function(){
-    res.status(500).send('Error, fail to update cart Id:'+cartId +' cartUserID: '+cartUserId+' items: '+cartItem);
+  	res.status(500).send('Error, fail to update cart Id:'+cartId +' cartUserID: '+cartUserId+' items: '+cartItem);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 
 //delete cart from user
 app.delete('/delete_cart', function(req, res){
-  var cartId = req.body.id;
-  var cartUserId = req.body.userID;
-  var cartBalance = req.body.balance;
-  var cartItem = req.body.items;
+	var cartId = req.body.id;
+	var cartUserId = req.body.userID;
+	var cartBalance = req.body.balance;
+	var cartItem = req.body.items;
 
-  var q = "delete from cart where id = $1 RETURNING id,userID,balance,items";
-  var query = client.query(q, [cartId]);
-  var results =[];
+	var q = "delete from cart where id = $1 RETURNING id,userID,balance,items";
+	var query = client.query(q, [cartId]);
+	var results =[];
 
   //error handler for /delete_cart
   query.on('error',function(){
-    res.status(500).send('Error, fail to delete cart Id:'+cartId +' items: '+cartItem);
+  	res.status(500).send('Error, fail to delete cart Id:'+cartId +' items: '+cartItem);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
@@ -785,109 +781,109 @@ app.delete('/delete_cart', function(req, res){
 //========================RESTful API for purchases =====================//
 //get purchases
 app.get('/get_purchases', function (req,res){
-  var purchases_cartId = req.body.cartid;
+	var purchases_cartId = req.body.cartid;
 
-  var query = client.query("select * from purchases");
-  var results =[];
+	var query = client.query("select * from purchases");
+	var results =[];
 
   //error handler for /get_purchases
   query.on('error',function(){
-    res.status(500).send('Error, fail to get purchases from cart cartID: '+purchases_cartId);
+  	res.status(500).send('Error, fail to get purchases from cart cartID: '+purchases_cartId);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 //adding purchases
 app.put('/add_purchases', function(req, res){
-  var purchases_cartId = req.body.cartid;
-  var purchasesName = req.body.name;
-  var purchaseQuantity = req.body.quantity;
-  var pruchasePrice = req.body.price;
+	var purchases_cartId = req.body.cartid;
+	var purchasesName = req.body.name;
+	var purchaseQuantity = req.body.quantity;
+	var pruchasePrice = req.body.price;
 
-  var q = "insert into purchases (cartid,name,quantity,price) values ($1,$2,$3,$4) RETURNING cartid,name,quantity,price";
-  var query = client.query(q, [purchases_cartId,purchasesName,purchaseQuantity,pruchasePrice]);
-  var results =[];
+	var q = "insert into purchases (cartid,name,quantity,price) values ($1,$2,$3,$4) RETURNING cartid,name,quantity,price";
+	var query = client.query(q, [purchases_cartId,purchasesName,purchaseQuantity,pruchasePrice]);
+	var results =[];
 
   //error handler for /add_purchases
   query.on('error',function(){
-    res.status(500).send('Error, fail to add to purchases Id:'+purchases_cartId +' items: '+purchasesName);
+  	res.status(500).send('Error, fail to add to purchases Id:'+purchases_cartId +' items: '+purchasesName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 //update purchase items
 app.post('/update_purchase', function(req, res){
-  var purchases_cartId = req.body.cartid;
-  var purchasesName = req.body.name;
-  var purchaseQuantity = req.body.quantity;
-  var pruchasePrice = req.body.price;
+	var purchases_cartId = req.body.cartid;
+	var purchasesName = req.body.name;
+	var purchaseQuantity = req.body.quantity;
+	var pruchasePrice = req.body.price;
 
-  var q = "update purchases set quantity = $1 where cartid = $2 and name = $3";
-  var query = client.query(q, [purchaseQuantity,purchases_cartId,purchasesName]);
-  var results =[];
+	var q = "update purchases set quantity = $1 where cartid = $2 and name = $3";
+	var query = client.query(q, [purchaseQuantity,purchases_cartId,purchasesName]);
+	var results =[];
 
   //error handler for /update_purchases
   query.on('error',function(){
-    res.status(500).send('Error, fail to increment quantity:'+purchaseQuantity+' item: '+purchasesName);
+  	res.status(500).send('Error, fail to increment quantity:'+purchaseQuantity+' item: '+purchasesName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
 //delete purchase from cart
 app.delete('/delete_purchase', function(req, res){
-  var purchases_cartId = req.body.cartid;
-  var purchasesName = req.body.name;
-  var purchaseQuantity = req.body.quantity;
-  var pruchasePrice = req.body.price;
+	var purchases_cartId = req.body.cartid;
+	var purchasesName = req.body.name;
+	var purchaseQuantity = req.body.quantity;
+	var pruchasePrice = req.body.price;
 
-  var q = "delete from purchases where name = $1 and cartid=$2";
-  var query = client.query(q, [purchasesName,purchases_cartId]);
-  var results =[];
+	var q = "delete from purchases where name = $1 and cartid=$2";
+	var query = client.query(q, [purchasesName,purchases_cartId]);
+	var results =[];
 
   //error handler for /delete_cart
   query.on('error',function(){
-    res.status(500).send('Error, fail to delete purchases cartId:'+purchases_cartId +' items: '+purchasesName);
+  	res.status(500).send('Error, fail to delete purchases cartId:'+purchases_cartId +' items: '+purchasesName);
   });
 
   //stream results back one row at a time
   query.on('row',function(row){
-    results.push(row);
+  	results.push(row);
   });
 
   //after all the data is returned close connection and return result
   query.on('end',function(){
-    res.json(results);
-    console.log("result: "+results);
+  	res.json(results);
+  	console.log("result: "+results);
   });
 });
 
@@ -897,23 +893,23 @@ app.delete('/delete_purchase', function(req, res){
 //======================== Products =====================//
 
 app.get('/collection/*', function(req, res) {
-  var collection = req.originalUrl.replace('/collection/', '');
+	var collection = req.originalUrl.replace('/collection/', '');
 
-  query = client.query("SELECT * FROM products " +
-      "where collection = '" + collection + "';");
-  var results = [];
+	query = client.query("SELECT * FROM products " +
+		"where collection = '" + collection + "';");
+	var results = [];
   // Stream results back one row at a time
   query.on('row', function(row) {
-    results.push(row);
+  	results.push(row);
   });
 
   // After all data is returned, close connection and return results
   query.on('end', function() {
-    resultsInJson = JSON.stringify(results);
-    res.render('products', { products: resultsInJson });
+  	resultsInJson = JSON.stringify(results);
+  	res.render('products', { products: resultsInJson });
     // res.json(resultsInJson);
     console.log('Result: ' + resultsInJson);
-  });
+});
 
   // res.render('products', {});
 });
@@ -923,35 +919,35 @@ app.get('/collection/*', function(req, res) {
 //======================== pages =====================//
 
 app.get('/help', function(req, res) {
-  res.render('help', {});
+	res.render('help', {});
 });
 
 app.get('/index', function(req, res) {
-  res.render('index', {});
+	res.render('index', {});
 });
 
 app.get('/kart', function(req, res) {
-  res.render('kart', {});
+	res.render('kart', {});
 });
 
 app.get('/kids1', function(req, res) {
-  res.render('kids1', {});
+	res.render('kids1', {});
 });
 
 app.get('/login', function(req, res) {
-  res.render('login', {});
+	res.render('login', {});
 });
 
 app.get('/men', function(req, res) {
-  res.render('men', {});
+	res.render('men', {});
 });
 
 app.get('/register', function(req, res) {
-  res.render('register', {});
+	res.render('register', {});
 });
 
 app.get('/women1', function(req, res) {
-  res.render('women1', {});
+	res.render('women1', {});
 });
 
 
@@ -959,23 +955,23 @@ app.get('/women1', function(req, res) {
 
 // error handler for CSRF
 app.use(function (err, req, res, next) {
-  if (err.code !== 'EBADCSRFTOKEN'){
-    return next(err);
-  }
+	if (err.code !== 'EBADCSRFTOKEN'){
+		return next(err);
+	}
   // handle CSRF token errors here
   res.status(403);
   res.render('error', {
-      message: err.message,
-      error: err
+  	message: err.message,
+  	error: err
   });
   //res.send('form tampered with');
 })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
 
 // error handlers
@@ -983,28 +979,28 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
+	app.use(function(err, req, res, next) {
+		res.status(err.status || 500);
+		res.render('error', {
+			message: err.message,
+			error: err
+		});
+	});
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+	res.status(err.status || 500);
+	res.render('error', {
+		message: err.message,
+		error: {}
+	});
 });
 
 
 module.exports = app;
 
 app.listen(port, function () {
-  console.log("ShoppingWebsite app listening on port: "+port+"!");
+	console.log("ShoppingWebsite app listening on port: "+port+"!");
 });
