@@ -71,19 +71,18 @@ passport.use(new FacebookStrategy({
 function(accessToken, refreshToken, profile, done) {
 	process.nextTick(function () {
 		console.log("ID: " +  profile.id + " name: " +  profile.name.givenName + ' ' + profile.name.familyName + " email: " + profile.emails[0].value);
+		addUserIfNeeded(profile);
 		return done(null, profile);
 	});
 }
 ));
 
-app.use(session({ secret: 'keyboard cat', key: 'sid'}));
+app.use(session({ secret: 'a secret shopping cart', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
 //====================OAUTH===================================
 app.use(logger('dev'))
-// REQUIRED:
-app.use(session({secret:'very secret'}))
 // mount grant
 app.use(grant)
 
@@ -92,7 +91,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
 
-		successRedirect : '/userPresent', 
+		successRedirect : '/', 
 		failureRedirect: '/login',
     //   scope['email'] 
 }),
