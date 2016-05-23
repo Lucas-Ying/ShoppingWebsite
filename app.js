@@ -130,6 +130,10 @@ function ensureAuthenticated(req, res, next) {
   // After all data is returned, close connection and return results
   query.on('end', function() {
   	console.log("results length " + results.length);
+  	if(results.length == 0)
+  	{
+  		addUser(usersName, usersEmail);
+  	}
   	console.log('Result: ' + results);
   });
 }
