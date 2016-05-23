@@ -97,7 +97,16 @@ app.get('/auth/facebook/callback',
        failureRedirect: '/login',
     //   scope['email'] 
   }),
-  function(req, res) {
+  function(req, res, token, refreshToken, profile, done) {
+  	  var newUser            = new User();
+
+                    // set all of the facebook information in our user model
+                    newUser.facebook.id    = profile.id; // set the users facebook id                   
+                    newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
+                    newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                    newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+
+console.log("fb id: " + newUser.facebook.id + " name: " + newUser.facebook.name + "  email: " + newUser.facebook.email);
     res.redirect('/');
   });
 app.get('/logout', function(req, res){
