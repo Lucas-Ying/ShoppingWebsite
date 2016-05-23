@@ -195,7 +195,7 @@ function ensureAuthenticated(req, res, next) {
 // })
 
 
-  res.end(JSON.stringify(req.query, null, 2));
+  res.end("finished");
 
 };
 
