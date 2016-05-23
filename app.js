@@ -404,7 +404,7 @@ app.get('/userPresent', function (req, res) {
   if (req.isAuthenticated()) {
     html += "<p>authenticated as user:</p>"
     html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
-    console.log("User email: " + req.user.email + " users name: " + req.user.first_name + " " + req.user.last_name)
+    console.log("User email: " + req.user.email + "User email2: " + req.user.value + " users name: " + req.user.familyName + " " + req.user.last_name)
   }
 
   res.send(html);
