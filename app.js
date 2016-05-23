@@ -395,10 +395,10 @@ app.get('/',function(err,res,req,next){
 });
 
 app.get('/userPresent', function (req, res) {
-  // var html = "<ul>\
-  //   <li><a href='/auth/github'>GitHub</a></li>\
-  //   <li><a href='/logout'>logout</a></li>\
-  // </ul>";
+  var html = "<ul>\
+    <li><a href='/auth/github'>GitHub</a></li>\
+    <li><a href='/logout'>logout</a></li>\
+  </ul>";
 
   // dump the user for debugging
   if (req.isAuthenticated()) {
