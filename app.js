@@ -93,7 +93,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
 
-       successRedirect : '/test', 
+       successRedirect : '/userPresent', 
        failureRedirect: '/login',
     //   scope['email'] 
   }),
@@ -394,16 +394,17 @@ app.get('/',function(err,res,req,next){
   res.render('index',{csrftoken: req.csrftoken()});
 });
 
-app.get('/test', function (req, res) {
-  var html = "<ul>\
-    <li><a href='/auth/github'>GitHub</a></li>\
-    <li><a href='/logout'>logout</a></li>\
-  </ul>";
+app.get('/userPresent', function (req, res) {
+  // var html = "<ul>\
+  //   <li><a href='/auth/github'>GitHub</a></li>\
+  //   <li><a href='/logout'>logout</a></li>\
+  // </ul>";
 
   // dump the user for debugging
   if (req.isAuthenticated()) {
     html += "<p>authenticated as user:</p>"
     html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+    console.log("User email: " + req.user.email + " users name: " + req.user.first_name + " " + req.user.last_name)
   }
 
   res.send(html);
