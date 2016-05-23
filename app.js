@@ -129,7 +129,7 @@ function ensureAuthenticated(req, res, next) {
 
   // After all data is returned, close connection and return results
   query.on('end', function() {
-  	console.log("results length " + results.length());
+  	console.log("results length " + results.length);
   	console.log('Result: ' + results);
   });
 }
