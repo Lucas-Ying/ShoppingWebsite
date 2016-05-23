@@ -118,7 +118,7 @@ function ensureAuthenticated(req, res, next) {
 // //check if they exist in the db
 	if(usersEmail != null || usersEmail != 'undefined')
 	{
-	var q = "SELECT * FROM users WHERE email=$1 RETURNING name, email;";
+	var q = "SELECT * FROM users WHERE email=$1 RETURNING email;";
 	var query = client.query(q, [usersEmail]);
 
 	var results =[];
