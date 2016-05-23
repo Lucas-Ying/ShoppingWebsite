@@ -123,7 +123,7 @@ function ensureAuthenticated(req, res, next) {
 
 	var results =[];
 
-  //error handler for /get_users
+  //error handler
   query.on('error',function(){
     //res.status(500).send('Error, fail to get users: '+accessToken);
     needToAdd = true;
@@ -135,6 +135,11 @@ function ensureAuthenticated(req, res, next) {
   query.on('row',function(row){
   	results.push(row);
   });
+
+  if(results.length < 1)
+  {
+  	console.log("nothing returned");
+  }
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
