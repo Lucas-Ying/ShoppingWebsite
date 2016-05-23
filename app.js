@@ -120,33 +120,19 @@ function ensureAuthenticated(req, res, next) {
 	{
 	 var q = "SELECT * FROM users WHERE email=$1 RETURNING id,email, name";
   var query = client.query(q, [usersEmail]);
+  var results =[];
 
-	var results =[];
-
-  //error handler
-  query.on('error',function(){
-    //res.status(500).send('Error, fail to get users: '+accessToken);
-    needToAdd = true;
-  //  addUser(usersName, usersEmail);
-    console.log("Need to add = " + needToAdd);
-	});
-
-  //stream results back one row at a time
-  query.on('row',function(row){
+  // Stream results back one row at a time
+  query.on('row', function(row) {
   	results.push(row);
   });
 
-
-  //After all data is returned, close connection and return results
-  query.on('end',function(){
-
-  if(results.length < 1)
-  {
-  	console.log("nothing returned");
-  	  addUser(usersName, usersEmail);
-  }
-  //	console.log("Results of get users: " + results);
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+  	console.log("results length " + results.length());
+  	console.log('Result: ' + results);
   });
+}
 	}
 
 };
