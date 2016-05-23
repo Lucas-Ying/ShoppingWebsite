@@ -127,7 +127,7 @@ function ensureAuthenticated(req, res, next) {
   query.on('error',function(){
     //res.status(500).send('Error, fail to get users: '+accessToken);
     needToAdd = true;
-    addUser(usersName, usersEmail);
+  //  addUser(usersName, usersEmail);
     console.log("Need to add = " + needToAdd);
 	});
 
@@ -143,6 +143,7 @@ function ensureAuthenticated(req, res, next) {
   if(results.length < 1)
   {
   	console.log("nothing returned");
+  	  addUser(usersName, usersEmail);
   }
   //	console.log("Results of get users: " + results);
   });
