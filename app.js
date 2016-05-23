@@ -90,12 +90,9 @@ app.use(grant)
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
-  if (req.isAuthenticated()) {
-  html += "<p>authenticated as user:</p>"
-  html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
-} 
- //      successRedirect : '/', 
-   //    failureRedirect: '/login' 
+
+       successRedirect : '/', 
+       failureRedirect: '/login' 
   }),
   function(req, res) {
     res.redirect('/');
@@ -106,6 +103,7 @@ app.get('/logout', function(req, res){
 });
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
+  	console.log(req.user);
   // html += "<p>authenticated as user:</p>"
   // html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
    return next(); }
