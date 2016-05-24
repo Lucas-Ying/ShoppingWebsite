@@ -141,9 +141,12 @@ function addUserIfNeeded (profile) {
 function addUser(name, email){
   console.log("in add user");
 
-  sessionStorage.setItem('username', name);
+  /*sessionStorage.setItem('username', name);
   sessionStorage.setItem('useremail', email);
-  console.log("name: "+sessionStorage.getItem('userName')+" email: " +sessionStorage.getItem('useremail'));
+  console.log("name: "+sessionStorage.getItem('userName')+" email: " +sessionStorage.getItem('useremail'));*/
+  console.log("name: "+name+" email:"+email);
+
+
   //user isnt in the db so we want to add them
   var q = "insert into users (name, email) values ($1, $2)";
   var query = client.query(q, [name, email]);
