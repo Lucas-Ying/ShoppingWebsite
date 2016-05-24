@@ -196,9 +196,9 @@ $().ready(function(){
         }
     });
 
-    $('#fbLogin').on('click','.done',function(){
+   /* $('#fbLogin').on('click','.done',function(){
         changeLoginName();
-    });
+    });*/
 
 });
 

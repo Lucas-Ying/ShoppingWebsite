@@ -131,10 +131,10 @@ function addUserIfNeeded (profile) {
     	console.log("results length " + results.length);
     	if(results.length == 0){
     		addUser(usersName, usersEmail);
-    	}else{
-        /*sessionStorage.setItem('username', usersName);
-        sessionStorage.setItem('useremail', usersEmail);*/
-      }
+    	}/*else{
+        sessionStorage.setItem('username', usersName);
+        sessionStorage.setItem('useremail', usersEmail);
+      }*/
     	console.log('Result: ' + results);
     });
   }
@@ -143,10 +143,10 @@ function addUserIfNeeded (profile) {
 function addUser(name, email){
   console.log("in add user");
 
-  sessionStorage.setItem('username', name);
+  /*sessionStorage.setItem('username', name);
   sessionStorage.setItem('useremail', email);
-  console.log("name: "+sessionStorage.getItem('userName')+" email: " +sessionStorage.getItem('useremail'));
-  //console.log("name: "+name+" email:"+email);
+  console.log("name: "+sessionStorage.getItem('userName')+" email: " +sessionStorage.getItem('useremail'));*/
+ //console.log("name: "+name+" email:"+email);
 
   //user isnt in the db so we want to add them
   var q = "insert into users (name, email) values ($1, $2)";
