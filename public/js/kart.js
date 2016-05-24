@@ -1,7 +1,8 @@
 $().ready(function(){
     
     //only load when user is on /kart page
-    //if (window.location.pathname == '/kart'  ) {
+    if (window.location.pathname == '/kart' || window.location.pathname == '/kart#_=_' ) {
+        console.log('loading cart');
         var checker = false;
         var userId =0;
         var registerName = document.getElementById('registration').text;
@@ -34,7 +35,7 @@ $().ready(function(){
                 console.log("Error: fail to get users");
             }
         });
-    //}
+    }
 });
 
 

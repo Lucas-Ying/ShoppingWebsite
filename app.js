@@ -18,6 +18,7 @@ var csrf = require('csurf');
 //var parseForm = bodyParser.urlencoded({extended: false});
 //use to set http headers
 var helmet = require('helmet');
+var sessionStorage = require('sessionstorage');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -91,7 +92,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
 
-		successRedirect : '/kart', 
+		successRedirect : '/', 
 		failureRedirect: '/login',
     //   scope['email'] 
 }),
@@ -114,38 +115,38 @@ function addUserIfNeeded (profile) {
 		var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
 		var usersEmail =  profile.emails[0].value;
 
-// //check if they exist in the db
-	if(usersEmail != null || usersEmail != 'undefined')
-	{
-	var q = "SELECT * FROM users where email = $1";
-  var query = client.query(q, [usersEmail]);
-  var results =[];
+  //check if they exist in the db
+	if(usersEmail != null || usersEmail != 'undefined'){
+  	var q = "SELECT * FROM users where email = $1";
+    var query = client.query(q, [usersEmail]);
+    var results =[];
 
-  // Stream results back one row at a time
-  query.on('row', function(row) {
-  	results.push(row);
-  });
+    // Stream results back one row at a time
+    query.on('row', function(row) {
+    	results.push(row);
+    });
 
-  // After all data is returned, close connection and return results
-  query.on('end', function() {
-  	console.log("results length " + results.length);
-  	if(results.length == 0)
-  	{
-  		addUser(usersName, usersEmail);
-  	}
-  	console.log('Result: ' + results);
-  });
-}
+    // After all data is returned, close connection and return results
+    query.on('end', function() {
+    	console.log("results length " + results.length);
+    	if(results.length == 0){
+    		addUser(usersName, usersEmail);
+    	}else{
+        sessionStorage.setItem('username', usersName);
+        sessionStorage.setItem('useremail', usersEmail);
+      }
+    	console.log('Result: ' + results);
+    });
+  }
 }
 
 function addUser(name, email){
   console.log("in add user");
 
-  /*sessionStorage.setItem('username', name);
+  sessionStorage.setItem('username', name);
   sessionStorage.setItem('useremail', email);
-  console.log("name: "+sessionStorage.getItem('userName')+" email: " +sessionStorage.getItem('useremail'));*/
-  console.log("name: "+name+" email:"+email);
-
+  console.log("name: "+sessionStorage.getItem('userName')+" email: " +sessionStorage.getItem('useremail'));
+ // console.log("name: "+name+" email:"+email);
 
   //user isnt in the db so we want to add them
   var q = "insert into users (name, email) values ($1, $2)";
