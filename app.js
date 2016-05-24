@@ -108,9 +108,8 @@ function ensureAuthenticated(req, res, next) {
 		res.redirect('/login')
 	}
 
-
 //app.get('/facebook_callback', function (req, res) {
-	function addUserIfNeeded (profile) {
+function addUserIfNeeded (profile) {
 		var profileID = profile.id;
 		var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
 		var usersEmail =  profile.emails[0].value;
@@ -137,7 +136,36 @@ function ensureAuthenticated(req, res, next) {
   	console.log('Result: ' + results);
   });
 }
+}
 
+function addUser(name, email){
+  console.log("in add user");
+
+  sessionStorage.setItem('username', name);
+  sessionStorage.setItem('useremail', email);
+  //user isnt in the db so we want to add them
+  var q = "insert into users (name, email) values ($1, $2)";
+  var query = client.query(q, [name, email]);
+  var results =[];
+
+  //error handler 
+  query.on('error',function(){
+   //res.status(500).send('Error, failed to add new user');
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+    console.log("Results of add user: " + row)
+
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    console.log(results);
+    console.log("logged in successfully!");
+    //res.json(results);
+  });
 }
 
 /*app.get('/twitter_callback', function (req, res) {
@@ -154,37 +182,10 @@ var OAuth = require('oauth').OAuth
 	"NFE9tO39ZJHqy0TcRJ8zT3JKp",
 	"Xd4kzzp7rpxkmPzUPFHLyIwRrnbEvaNjlbpdMqCvB0Jt6NrcaQ",
 	"1.0",
-	"https://tranquil-journey-51576.herokuapp.com/index.html",
+	"https://tranquil-journey-51576.herokuapp.com/index",
 	"HMAC-SHA1"
 	);
 
-function addUser(name, email)
-{
-	console.log("in add user");
-      //user isnt in the db so we want to add them
-      var q = "insert into users (name, email) values ($1, $2)";
-      var query = client.query(q, [name, email]);
-      var results =[];
-
-      //error handler 
-      query.on('error',function(){
-       //res.status(500).send('Error, failed to add new user');
-   });
-
-      //stream results back one row at a time
-      query.on('row',function(row){
-      	results.push(row);
-      	console.log("Results of add user: " + row)
-
-      });
-
-      //after all the data is returned close connection and return result
-      query.on('end',function(){
-      	console.log(results);
-      	console.log("logged in successfully!");
-        //res.json(results);
-    });
-  }
 
   app.get('/auth/twitter', function(req, res) {
 
@@ -942,3 +943,4 @@ module.exports = app;
 app.listen(port, function () {
 	console.log("ShoppingWebsite app listening on port: "+port+"!");
 });
+
