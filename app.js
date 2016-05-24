@@ -91,7 +91,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
 
-		successRedirect : '/', 
+		successRedirect : '/kart', 
 		failureRedirect: '/login',
     //   scope['email'] 
 }),
@@ -143,6 +143,7 @@ function addUser(name, email){
 
   sessionStorage.setItem('username', name);
   sessionStorage.setItem('useremail', email);
+  console.log("name: "+sessionStorage.getItem('userName')+" email: " +sessionStorage.getItem('useremail'));
   //user isnt in the db so we want to add them
   var q = "insert into users (name, email) values ($1, $2)";
   var query = client.query(q, [name, email]);

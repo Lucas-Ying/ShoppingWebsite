@@ -66,6 +66,7 @@ function getKartID(userId){
                     data:{'userID':userId,"balance":0,"items":""},
                     success:function(){
                         console.log('new cart added');
+                        location.href = 'index';
                     },
                     error:function(){
                         console.log("Error: fail to add cart");
@@ -135,4 +136,5 @@ function displayItem(kartId){
         }
     });
 }
+
 
