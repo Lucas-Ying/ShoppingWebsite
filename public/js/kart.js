@@ -23,6 +23,7 @@ $().ready(function(){
                 }
 
                 if(checker){
+                    console.log(userId);
                     getKartID(userId);
                 }
                 else{
@@ -56,8 +57,10 @@ function getKartID(userId){
         
             //found cart then display the items that belong to that cart
             if(checkCart){
-                  displayItem(kartId);
+                    console.log("carID: "+kartId);
+                    displayItem(kartId);
             }else{
+                console.log('adding new cart');
                 //otherwise add a new shopping cart to the user
                 $.ajax({
                     method:'PUT',
