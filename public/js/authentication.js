@@ -195,6 +195,11 @@ $().ready(function(){
             });
         }
     });
+
+    $('#fbLogin').on('click','.done',function(){
+        changeLoginName();
+    });
+
 });
 
 
@@ -207,4 +212,5 @@ function changeLoginName(){
         document.getElementById('log-in').innerHTML='LOG IN';
     }
 }
+
 
