@@ -95,6 +95,8 @@ passport.use(new GoogleStrategy({
         // make the code asynchronous
         // User.findOne won't fire until we have all our data back from Google
         process.nextTick(function() {
+        	console.log("ID: " +  profile.id + " name: " +  profile.name.givenName + ' ' + profile.name.familyName + " email: " + profile.emails[0].value);
+        	addUserIfNeeded(profile);
         	return done(null, profile);
         	});
     }
