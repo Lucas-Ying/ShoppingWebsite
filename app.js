@@ -67,9 +67,9 @@ passport.deserializeUser(function(obj, done) {
 });
 // Use the FacebookStrategy within Passport.
 passport.use(new FacebookStrategy({
-	clientID: config.facebook_api_key,
-	clientSecret:config.facebook_api_secret ,
-	callbackURL: config.callback_url,
+	clientID: config.facebook.facebook_api_key,
+	clientSecret:config.facebook.facebook_api_secret ,
+	callbackURL: config.facebook.callback_url,
 	profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'],
 
 },
@@ -85,9 +85,9 @@ function(accessToken, refreshToken, profile, done) {
 
 passport.use(new GoogleStrategy({
 
-        clientID        : configAuth.googleAuth.clientID,
-        clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : configAuth.googleAuth.callbackURL,
+        clientID        : config.googleAuth.clientID,
+        clientSecret    : config.googleAuth.clientSecret,
+        callbackURL     : config.googleAuth.callbackURL,
 
     },
     function(token, refreshToken, profile, done) {
@@ -99,8 +99,7 @@ passport.use(new GoogleStrategy({
         	addUserIfNeeded(profile);
         	return done(null, profile);
         	});
-    }
-   });
+   }));
 
 app.use(session({ secret: 'a secret shopping cart', key: 'sid'}));
 app.use(passport.initialize());
@@ -116,6 +115,27 @@ app.use(grant)
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
+
+		successRedirect : '/', 
+		failureRedirect: '/login',
+    //   scope['email'] 
+}),
+	function(req, res) {
+		res.redirect('/');
+	});
+app.get('/logout', function(req, res){
+	req.logout();
+	res.redirect('/');
+});
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next(); }
+		res.redirect('/login')
+	}
+
+	app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google/callback',
+	passport.authenticate('google', {
 
 		successRedirect : '/', 
 		failureRedirect: '/login',

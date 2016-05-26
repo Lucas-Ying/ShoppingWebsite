@@ -33,6 +33,7 @@
     "oauth": "^0.9.14",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
     "pg": "^4.5.5",
     "pg-native": "^1.10.0",
     "purest": "^2.0.1",
