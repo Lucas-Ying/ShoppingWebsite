@@ -7,4 +7,10 @@ module.exports={
   "username"              :     "root",
   "password"              :     "",
   "database"              :     "DB NAME"
-}
+,
+
+ 'googleAuth' : {
+        'clientID'      : '958028766608-3cqb4342d2248qaailmpmu4bfgpc64i5.apps.googleusercontent.com',
+        'clientSecret'  : 'n9aT8P-QtQH_LgHP9ObzGJzL',
+        'callbackURL'   : '/auth/google/callback'
+    };

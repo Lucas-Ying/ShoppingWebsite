@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var config            =     require('./configuration/config');
 var FacebookStrategy  =     require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var session = require('express-session');
 var Grant = require('grant-express');
 var passport = require('passport');
@@ -54,6 +55,9 @@ pg.connect(connectionString, function(err, client, done)
 });
 });
 
+
+
+//====================OAUTH===================================
 // Passport session setup.
 passport.serializeUser(function(user, done) {
 	done(null, user);
@@ -78,11 +82,30 @@ function(accessToken, refreshToken, profile, done) {
 }
 ));
 
+
+passport.use(new GoogleStrategy({
+
+        clientID        : configAuth.googleAuth.clientID,
+        clientSecret    : configAuth.googleAuth.clientSecret,
+        callbackURL     : configAuth.googleAuth.callbackURL,
+
+    },
+    function(token, refreshToken, profile, done) {
+
+        // make the code asynchronous
+        // User.findOne won't fire until we have all our data back from Google
+        process.nextTick(function() {
+        	return done(null, profile);
+        	});
+    }
+   });
+
 app.use(session({ secret: 'a secret shopping cart', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//====================OAUTH===================================
+
+
 app.use(logger('dev'))
 // mount grant
 app.use(grant)
