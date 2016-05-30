@@ -55,7 +55,13 @@ pg.connect(connectionString, function(err, client, done)
 });
 });
 
-
+//using https to communicate with the webpage
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https'&&process.env.NODE_ENV === 'production')
+    res.redirect('https://'+req.hostname+req.url)
+  else
+    next() /* Continue to other routes if we're not redirecting */
+});
 
 //====================OAUTH===================================
 // Passport session setup.
