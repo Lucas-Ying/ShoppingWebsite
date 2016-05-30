@@ -423,6 +423,8 @@ var results =[];
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
+    //setting the cache to public so only reflash at a specific time (300 second)
+    res.setHeader('Cache-Control','public, max-age=300');
   	res.json(results);
   	console.log("result: "+results);
   });
@@ -434,7 +436,7 @@ app.put('/add_product', function(req, res){
 	var productCost = req.body.cost;
 	var productDes = req.body.description;
   // console.log("add product request");
-  console.log("name: " + productName + " cost: " + productCost + " Description: " + productDes);
+  //console.log("name: " + productName + " cost: " + productCost + " Description: " + productDes);
   var q = "insert into products (name,cost,description) values ($1,$2,$3) RETURNING id,name,cost,description";
   var query = client.query(q, [productName,productCost,productDes]);
   var results =[];
@@ -533,11 +535,13 @@ app.get('/get_users', function (req,res){
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
+    //setting the cache to public so only reflash at a specific time (5 second)
+    res.setHeader('Cache-Control','public, max-age=5');
   	res.json(results);
   	console.log("result: "+results);
   });
 });
-
+/*
 app.get('/get_user', function (req,res){
 	var userEmail = req.body.email;
 	var userPass = req.body.pass;
@@ -564,7 +568,7 @@ app.get('/get_user', function (req,res){
   	res.json(results);
   	console.log("result: "+results);
   });
-});
+});*/
 
 //adding users
 app.put('/add_user', function(req, res){
@@ -674,6 +678,8 @@ app.get('/get_cart', function (req,res){
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
+    //setting the cache to public so only reflash at a specific time (300 second)
+    res.setHeader('Cache-Control','public, max-age=5');
   	res.json(results);
   	console.log("result: "+results);
   });
@@ -787,6 +793,8 @@ app.get('/get_purchases', function (req,res){
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
+    //setting the cache to public so only reflash at a specific time (300 second)
+    res.setHeader('Cache-Control','public, max-age=5');
   	res.json(results);
   	console.log("result: "+results);
   });
