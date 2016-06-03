@@ -5,8 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-var config            =     require('./configuration/config');
-var FacebookStrategy  =     require('passport-facebook').Strategy;
+var config = require('./configuration/config');
+var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var session = require('express-session');
 var Grant = require('grant-express');
@@ -14,9 +14,7 @@ var passport = require('passport');
 var grant = new Grant(require('./config.json'));
 //use to prevent csrf attack
 var csrf = require('csurf');
-//set up route middlewares
-//var csrfProtection = csrf({cookie:true});
-//var parseForm = bodyParser.urlencoded({extended: false});
+
 //use to set http headers
 var helmet = require('helmet');
 var sessionStorage = require('sessionstorage');
@@ -110,8 +108,6 @@ passport.use(new GoogleStrategy({
 app.use(session({ secret: 'a secret shopping cart', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 app.use(logger('dev'))
 // mount grant
@@ -223,75 +219,6 @@ function addUser(name, email){
     //res.json(results);
   });
 }
-
-/*app.get('/twitter_callback', function (req, res) {
-  var accessToken = req.query.access_tokens
-  console.log(req.query)
-  res.end(JSON.stringify(req.query, null, 2))
-})*/
-
-
-var OAuth = require('oauth').OAuth
-, oauth = new OAuth(
-	"https://api.twitter.com/oauth/request_token",
-	"https://api.twitter.com/oauth/access_token",
-	"NFE9tO39ZJHqy0TcRJ8zT3JKp",
-	"Xd4kzzp7rpxkmPzUPFHLyIwRrnbEvaNjlbpdMqCvB0Jt6NrcaQ",
-	"1.0",
-	"https://tranquil-journey-51576.herokuapp.com/index",
-	"HMAC-SHA1"
-	);
-
-
-  app.get('/auth/twitter', function(req, res) {
-
-  	oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results) {
-  		if (error) {
-  			console.log(error);
-  			res.send("Authentication Failed!");
-  		}
-  		else {
-  			req.session.oauth = {
-  				token: oauth_token,
-  				token_secret: oauth_token_secret
-  			};
-  			console.log(req.session.oauth);
-  			res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
-  		}
-  	});
-
-  });
-
-  app.get('/auth/twitter/callback', function(req, res, next) {
-
-  	if (req.session.oauth) {
-  		req.session.oauth.verifier = req.query.oauth_verifier;
-  		var oauth_data = req.session.oauth;
-
-  		oauth.getOAuthAccessToken(
-  			oauth_data.token,
-  			oauth_data.token_secret,
-  			oauth_data.verifier,
-  			function(error, oauth_access_token, oauth_access_token_secret, results) {
-  				if (error) {
-  					console.log(error);
-  					res.send("Authentication Failure!");
-  					res.redirect('https://tranquil-journey-51576.herokuapp.com/register.html');
-  				}
-  				else {
-  					req.session.oauth.access_token = oauth_access_token;
-  					req.session.oauth.access_token_secret = oauth_access_token_secret;
-  					console.log(results, req.session.oauth);
-  					res.send("Authentication Successful");
-  					res.redirect('https://tranquil-journey-51576.herokuapp.com/index.html'); 
-  				}
-  			}
-  			);
-  	}
-  	else {
-    res.redirect('https://tranquil-journey-51576.herokuapp.com/login.html'); // Redirect to login page
-}
-});
 
 //=============================END OAUTH===========================
 
@@ -542,7 +469,7 @@ app.get('/get_users', function (req,res){
   //After all data is returned, close connection and return results
   query.on('end',function(){
     //setting the cache to public so only reflash at a specific time (5 second)
-    res.setHeader('Cache-Control','public, max-age=5');
+    res.setHeader('Cache-Control','public, max-age=1');
   	res.json(results);
   	console.log("result: "+results);
   });
@@ -684,8 +611,8 @@ app.get('/get_cart', function (req,res){
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-    //setting the cache to public so only reflash at a specific time (300 second)
-    res.setHeader('Cache-Control','public, max-age=5');
+    //setting the cache to public so only reflash at a specific time
+    res.setHeader('Cache-Control','public, max-age=0');
   	res.json(results);
   	console.log("result: "+results);
   });
@@ -799,8 +726,8 @@ app.get('/get_purchases', function (req,res){
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-    //setting the cache to public so only reflash at a specific time (300 second)
-    res.setHeader('Cache-Control','public, max-age=5');
+    //setting the cache to public so only reflash at a specific time
+    res.setHeader('Cache-Control','public, max-age=0');
   	res.json(results);
   	console.log("result: "+results);
   });
@@ -1007,4 +934,5 @@ module.exports = app;
 app.listen(port, function () {
 	console.log("ShoppingWebsite app listening on port: "+port+"!");
 });
+
 
