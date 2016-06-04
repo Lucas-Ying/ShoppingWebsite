@@ -164,6 +164,9 @@ function addUserIfNeeded (profile) {
 
   //check if they exist in the db
 	if(usersEmail != null || usersEmail != 'undefined'){
+    sessionStorage.setItem('username', usersName);
+    sessionStorage.setItem('useremail', usersEmail);
+
   	var q = "SELECT * FROM users where email = $1";
     var query = client.query(q, [usersEmail]);
     var results =[];
@@ -178,10 +181,7 @@ function addUserIfNeeded (profile) {
     	console.log("results length " + results.length);
     	if(results.length == 0){
     		addUser(usersName, usersEmail);
-    	}/*else{
-        sessionStorage.setItem('username', usersName);
-        sessionStorage.setItem('useremail', usersEmail);
-      }*/
+    	}
     	console.log('Result: ' + results);
     });
   }
@@ -202,7 +202,7 @@ function addUser(name, email){
 
   //error handler 
   query.on('error',function(){
-   //res.status(500).send('Error, failed to add new user');
+   res.status(500).send('Error, failed to add new user');
   });
 
   //stream results back one row at a time

@@ -196,14 +196,15 @@ $().ready(function(){
         }
     });
 
-   /* $('#fbLogin').on('click','.done',function(){
+    $('#fbLogin').on('click','.done',function(){
         changeLoginName();
-    });*/
+    });
 
 });
 
 
 function changeLoginName(){
+    //if sessionstorage is not empty
     if(sessionStorage.getItem('useremail')){
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
@@ -212,5 +213,6 @@ function changeLoginName(){
         document.getElementById('log-in').innerHTML='LOG IN';
     }
 }
+
 
 
