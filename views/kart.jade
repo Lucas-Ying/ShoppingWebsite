@@ -19,10 +19,13 @@ block content
                         td#remove.remove
                 p#btn.btn
                     br
-                    input#Continue.Continue(type='submit', value='Continue Shopping')
-                    input#Checkout.Checkout(type='submit', value='Check Out')
+                    a(href='/index')
+                        input#Continue.Continue(type='submit', value='Continue Shopping')
+                    a(href='')
+                        input#Checkout.Checkout(type='submit', value='Check Out')
     .cleaner
 
 block footer
     include footer
+
 

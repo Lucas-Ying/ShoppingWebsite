@@ -28,6 +28,22 @@ $().ready(function(){
     }
 });
 
+function removeItem(){
+    //var $temp = $(this).parent('tr');
+    //console.log($temp.find('.name').text());
+    //console.log(document.getElementById("name").innerText);
+    //console.log($(this).parent('tr').find(".name").textContent);
+    //console.log($(this).parent().closest('tr').children('td:first').text());
+
+    /*$('td:first-child').each(function() {
+        if($(this).parent('tr').selected){
+            console.log($(this).text());
+        }
+    });*/
+    //find the element from td when click on the remove button
+    console.log($('#itemTable tr td.name').text());
+}
+
 //display items purchases by user
 function displayItem(kartId){
     var subtotal = 0;
@@ -48,11 +64,11 @@ function displayItem(kartId){
 
                     //display item
                     var row ="<tr>"
-                    +"<td>"+product+"</td>"
+                    +"<td class='name' id='name'><span>"+product+"</span></td>"
                     +"<td class='quantity'><input class = 'count' type ='input' value="+count+"></input></td>" 
                     +"<td class='money'><span> $"+cost+"</span></td>"
                     +"<td class='money'><span> $"+subtotal+"</span></td>"
-                    +"<td>remove button here</td>" 
+                    +"<td> <input onclick=removeItem() class = 'removebtn' id ='removebtn' type ='submit' value='Remove'></input></td>" 
                     +"</tr>"
 
                     $('#itemTable').append(row);
@@ -78,10 +94,10 @@ function displayItem(kartId){
                     +"<td>Total</td>"
                     +"<td><span class='chout'> $"+total+"</span></td>" 
                     +"</tr>"
-
              $('#itemTable').append(endRow);
         }
     });
+
 }
 
 
