@@ -88,22 +88,21 @@ function(accessToken, refreshToken, profile, done) {
 
 
 passport.use(new GoogleStrategy({
+    clientID        : config.googleAuth.clientID,
+    clientSecret    : config.googleAuth.clientSecret,
+    callbackURL     : config.googleAuth.callbackURL,
+},
+function(token, refreshToken, profile, done) {
 
-        clientID        : config.googleAuth.clientID,
-        clientSecret    : config.googleAuth.clientSecret,
-        callbackURL     : config.googleAuth.callbackURL,
-
-    },
-    function(token, refreshToken, profile, done) {
-
-        // make the code asynchronous
-        // User.findOne won't fire until we have all our data back from Google
-        process.nextTick(function() {
-        	console.log("ID: " +  profile.id + " name: " +  profile.name.givenName + ' ' + profile.name.familyName + " email: " + profile.emails[0].value);
-        	addUserIfNeeded(profile);
-        	return done(null, profile);
-        	});
-   }));
+  // make the code asynchronous
+  // User.findOne won't fire until we have all our data back from Google
+  process.nextTick(function() {
+  	console.log("ID: " +  profile.id + " name: " +  profile.name.givenName + ' ' + profile.name.familyName + " email: " + profile.emails[0].value);
+  	addUserIfNeeded(profile);
+  	return done(null, profile);
+  });
+}
+));
 
 app.use(session({ secret: 'a secret shopping cart', key: 'sid'}));
 app.use(passport.initialize());
@@ -156,7 +155,6 @@ function ensureAuthenticated(req, res, next) {
 		res.redirect('/login')
 	}
 
-//app.get('/facebook_callback', function (req, res) {
 function addUserIfNeeded (profile) {
 		var profileID = profile.id;
 		var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
@@ -164,8 +162,8 @@ function addUserIfNeeded (profile) {
 
   //check if they exist in the db
 	if(usersEmail != null || usersEmail != 'undefined'){
-    sessionStorage.setItem('username', usersName);
-    sessionStorage.setItem('useremail', usersEmail);
+    /*sessionStorage.setItem('username', usersName);
+    sessionStorage.setItem('useremail', usersEmail);*/
 
   	var q = "SELECT * FROM users where email = $1";
     var query = client.query(q, [usersEmail]);
@@ -468,18 +466,18 @@ app.get('/get_users', function (req,res){
 
   //After all data is returned, close connection and return results
   query.on('end',function(){
-    //setting the cache to public so only reflash at a specific time (5 second)
-    res.setHeader('Cache-Control','public, max-age=1');
+    //setting the cache to public so only reflash at a specific time (100 second)
+    res.setHeader('Cache-Control','public, max-age=100');
   	res.json(results);
   	console.log("result: "+results);
   });
 });
-/*
-app.get('/get_user', function (req,res){
+
+app.put('/get_user', function (req,res){
 	var userEmail = req.body.email;
 	var userPass = req.body.pass;
   //console.log(userEmail);
-  var q = "SELECT * FROM users WHERE email=$1 RETURNING id,email,pass,name";
+  var q = "SELECT * FROM users WHERE email=$1";
   var query = client.query(q, [userEmail]);
 
   var results =[];
@@ -488,8 +486,6 @@ app.get('/get_user', function (req,res){
   query.on('error',function(){
   	res.status(500).send('Error, fail to get users: '+userEmail);
   });
-
-  //console.log(results);
 
   //stream results back one row at a time
   query.on('row',function(row){
@@ -501,7 +497,7 @@ app.get('/get_user', function (req,res){
   	res.json(results);
   	console.log("result: "+results);
   });
-});*/
+});
 
 //adding users
 app.put('/add_user', function(req, res){
@@ -615,6 +611,35 @@ app.get('/get_cart', function (req,res){
     res.setHeader('Cache-Control','public, max-age=0');
   	res.json(results);
   	console.log("result: "+results);
+  });
+});
+
+//get cart
+app.put('/get_userCart', function (req,res){
+  var cartUserId = req.body.userID;
+  var userEmail = req.body.email;
+
+  var q = "select * from (select cart.id,users.email from cart inner join users "+
+    "on cart.userID = users.id) userCart where userCart.email =$1";
+  var query = client.query(q, [userEmail]);
+  var results =[];
+
+  //error handler for /get_cart
+  query.on('error',function(){
+    res.status(500).send('Error, fail to get cart from user userID: '+cartUserId);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //After all data is returned, close connection and return results
+  query.on('end',function(){
+    //setting the cache to public so only reflash at a specific time
+    res.setHeader('Cache-Control','public, max-age=0');
+    res.json(results);
+    console.log("result: "+results);
   });
 });
 

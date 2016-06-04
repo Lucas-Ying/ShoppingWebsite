@@ -2,87 +2,31 @@ $().ready(function(){
     
     //only load when user is on /kart page
     if (window.location.pathname == '/kart' || window.location.pathname == '/kart#_=_' ) {
-        console.log('loading cart');
-        var checker = false;
-        var userId =0;
+        //console.log('loading cart...');
+        var kartID =0;
         var registerName = document.getElementById('registration').text;
+        var email = sessionStorage.getItem('useremail');
+        //if email is not empty
+        if(email){
+            if(registerName =='REGISTRATION'){return;}
+            $.ajax({
+                method:'PUT',
+                url:'/get_userCart',
+                dataType:'json',
+                data:{'email':email},
 
-        $.ajax({
-            method:'GET',
-            url:'/get_users',
-            success: function(data){
-                if(registerName =='REGISTRATION'){return;}
-                //go through database check if email already exist
-                for(i = 0; i<data.length; i++){
-                    if(data[i].email == sessionStorage.getItem('useremail')){
-                        checker = true;
-                        //display user item here
-                        userId = data[i].id; 
-                        //console.log('found user');
-                        break;
-                    }
+                success: function(data){
+                    kartID = data[0].id; 
+                    //display user cart since one email can only have on usercart
+                    displayItem(kartID);
+                },
+                error:function(){
+                    console.log("Error: fail to get userCart");
                 }
-
-                if(checker){
-                    console.log(userId);
-                    getKartID(userId);
-                }
-                else{
-                    console.log("Error: user doesnt exists");
-                }
-            },
-            error:function(){
-                console.log("Error: fail to get users");
-            }
-        });
+            });
+        }
     }
 });
-
-
-//get kart to display the purchases item
-function getKartID(userId){
-    var kartId = "";
-    var checkCart = false;
-    $.ajax({
-        method:'GET',
-        url:'/get_cart',
-        success: function(data){
-            for(i = 0; i<data.length; i++){
-                //if this user have a shopping cart then display the item 
-                if(data[i].userid == userId){                               
-                    kartId = data[i].id;
-                    checkCart = true;
-                    break;
-                }
-            }
-        
-            //found cart then display the items that belong to that cart
-            if(checkCart){
-                    console.log("carID: "+kartId);
-                    displayItem(kartId);
-            }else{
-                console.log('adding new cart');
-                //otherwise add a new shopping cart to the user
-                $.ajax({
-                    method:'PUT',
-                    url:'/addCart',
-                    dataType:'json',
-                    data:{'userID':userId,"balance":0,"items":""},
-                    success:function(){
-                        console.log('new cart added');
-                        location.href = 'index';
-                    },
-                    error:function(){
-                        console.log("Error: fail to add cart");
-                    }
-                });
-            }
-        },
-        error:function(){
-            console.log("Error: fail to get cart");
-        }
-    });
-}
 
 //display items purchases by user
 function displayItem(kartId){
@@ -136,9 +80,9 @@ function displayItem(kartId){
                     +"</tr>"
 
              $('#itemTable').append(endRow);
-
         }
     });
 }
+
 
 

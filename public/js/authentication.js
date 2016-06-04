@@ -1,7 +1,7 @@
 $().ready(function(){
     changeLoginName();
 
-    //login button
+    //logo
     $('#Name').on('click',function(){
         location.href = 'index';
     });
@@ -44,7 +44,6 @@ $().ready(function(){
             document.getElementById('err').style.visibility = 'hidden';
         });
 
-        var checker = false;
         //console.log("email: "+email+ "password: "+pass+" name: "+name);
         //if all values are not empty then add the user to table
         if(email && pass && name && conPass){
@@ -56,29 +55,23 @@ $().ready(function(){
             }
 
             $.ajax({
-                method:'GET',
-                url:'/get_users',
+                method:'PUT',
+                url:'/get_user',
                 dataType:'json',
                 data:{'email':email},
 
                 success: function(data){
-                    //go through database check if email already exist
-                    for(i = 0; i<data.length; i++){
-                        if(data[i].email == email){
-                            checker = true;
-                            document.getElementById('err').innerHTML="Email already exist please use a different email";
-                            document.getElementById('err').style.visibility = 'visible';
-                            break;
-                        }
-                    }
-
-                    if(!checker){
+                    //if email doesnt exist in database then add user
+                    if(data[0] == 'undefined' || data[0] == null){
                         document.getElementById('err').style.visibility = 'hidden';
-                        console.log("user doesnt exist add user");
                         //if email doesnt exist add the user to the database
                         addUser();
-                        
                     }
+                    else if(data[0].email == email){
+                        document.getElementById('err').innerHTML="Email already exist please use a different email";
+                        document.getElementById('err').style.visibility = 'visible'; 
+                    }
+
                 },
                 error:function(){
                     console.log("Error: fail to get users");
@@ -105,16 +98,16 @@ $().ready(function(){
             function addCart(){
                 var userid=0;
                 $.ajax({
-                    method:'GET',
-                    url:'/get_users',
-                    success: function(data){
-                        //go through database check if email already exist
-                        for(i = 0; i<data.length; i++){
-                            if(data[i].email == email){
-                                userid = data[i].id;
-                            }
-                        }
+                    method:'PUT',
+                    url:'/get_user',
+                    dataType:'json',
+                    data:{'email':email},
 
+                    success: function(data){           
+                        if(data[0].email == email){
+                            userid = data[0].id;
+                        }
+                        
                         if(userid!=0){
                             //add cart
                             $.ajax({
@@ -158,32 +151,31 @@ $().ready(function(){
         if(email && passW){
             //console.log("email: "+email+ "password: "+passW);
             $.ajax({
-                method:'GET',
-                url:'/get_users',
+                method:'PUT',
+                url:'/get_user',
+                dataType:'json',
+                data:{'email':email},
 
                 success: function(data){
-                    //go through database check if email exist
-                    for(i = 0; i<data.length; i++){
-                        if(data[i].email == email){
-                            if(data[i].pass == passW){
-                                location.href = 'index';
-                                sessionStorage.setItem('useremail', data[i].email);
-                                sessionStorage.setItem('username',data[i].name);
-                                //console.log(sessionStorage.getItem('username'));
-                                changeLoginName();
-                                alert("Login Successful!");
+                    if(data[0].email == email){
+                        if(data[0].pass == passW){
+                            location.href = 'index';
+                            sessionStorage.setItem('useremail', data[0].email);
+                            sessionStorage.setItem('username',data[0].name);
+                            //console.log(sessionStorage.getItem('username'));
+                            changeLoginName();
+                            alert("Login Successful!");
 
-                                //reset form
-                                $('#loginForm').trigger('reset');
-                                return;
-                                //do something here
-                            }
-                            else{
-                                document.getElementById('err').innerHTML="Incorrect password";
-                                document.getElementById('err').style.visibility = 'visible';
-                                return;
-                                //console.log("Error: incorrect password");
-                            }
+                            //reset form
+                            $('#loginForm').trigger('reset');
+                            return;
+                            //do something here
+                        }
+                        else{
+                            document.getElementById('err').innerHTML="Incorrect password";
+                            document.getElementById('err').style.visibility = 'visible';
+                            return;
+                            //console.log("Error: incorrect password");
                         }
                     }
                     document.getElementById('err').innerHTML="Email doesn't exists";
@@ -196,9 +188,9 @@ $().ready(function(){
         }
     });
 
-    $('#fbLogin').on('click','.done',function(){
+   /* $('#fbLogin').on('click','.done',function(){
         changeLoginName();
-    });
+    });*/
 
 });
 
