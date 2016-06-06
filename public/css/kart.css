@@ -31,11 +31,8 @@ table.itemTable td span.chout{
 	float:right;
 }
 
-table.itemTable tr td.money{
+table.itemTable tr td.cost,td.subtotal{
 	text-align:center;
-}
-
-table.itemTable tr td.money span{
 	font-weight: bold;
 }
 

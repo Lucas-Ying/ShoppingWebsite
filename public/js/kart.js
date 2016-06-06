@@ -25,24 +25,19 @@ $().ready(function(){
                 }
             });
         }
+
+        $('.itemTable').on('click','.removebtn',function(){
+
+            console.log($(this).parent().parent().find('.product').text());
+
+            //remove the row that click
+            $(this).closest('tr').remove();
+            //reload the itemtable
+            //displayItem(kartID);
+        });
+        
     }
 });
-
-function removeItem(){
-    //var $temp = $(this).parent('tr');
-    //console.log($temp.find('.name').text());
-    //console.log(document.getElementById("name").innerText);
-    //console.log($(this).parent('tr').find(".name").textContent);
-    //console.log($(this).parent().closest('tr').children('td:first').text());
-
-    /*$('td:first-child').each(function() {
-        if($(this).parent('tr').selected){
-            console.log($(this).text());
-        }
-    });*/
-    //find the element from td when click on the remove button
-    console.log($('#itemTable tr td.name').text());
-}
 
 //display items purchases by user
 function displayItem(kartId){
@@ -64,11 +59,11 @@ function displayItem(kartId){
 
                     //display item
                     var row ="<tr>"
-                    +"<td class='name' id='name'><span>"+product+"</span></td>"
+                    +"<td class='name' id='name'><span class='product'>"+product+"</span></td>"
                     +"<td class='quantity'><input class = 'count' type ='input' value="+count+"></input></td>" 
-                    +"<td class='money'><span> $"+cost+"</span></td>"
-                    +"<td class='money'><span> $"+subtotal+"</span></td>"
-                    +"<td> <input onclick=removeItem() class = 'removebtn' id ='removebtn' type ='submit' value='Remove'></input></td>" 
+                    +"<td class='cost'><span> $"+cost+"</span></td>"
+                    +"<td class='subtotal'><span> $"+subtotal+"</span></td>"
+                    +"<td> <input class = 'removebtn' id ='removebtn' type ='submit' value='Remove'></input></td>" 
                     +"</tr>"
 
                     $('#itemTable').append(row);
