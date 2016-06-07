@@ -843,6 +843,32 @@ app.delete('/delete_purchase', function(req, res){
 });
 
 
+//delete purchase from cart
+app.delete('/checkout', function(req, res){
+  var purchases_cartId = req.body.cartid;
+
+  var q = "delete from purchases where cartid=$1";
+  var query = client.query(q, [purchases_cartId]);
+  var results =[];
+
+  //error handler for /delete_cart
+  query.on('error',function(){
+    res.status(500).send('Error, fail to delete purchases cartId:'+purchases_cartId);
+  });
+
+  //stream results back one row at a time
+  query.on('row',function(row){
+    results.push(row);
+  });
+
+  //after all the data is returned close connection and return result
+  query.on('end',function(){
+    res.json(results);
+    console.log("result: "+results);
+  });
+});
+
+
 //===================================================================//
 
 //======================== Products =====================//

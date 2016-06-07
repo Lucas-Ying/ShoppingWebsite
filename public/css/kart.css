@@ -2,57 +2,111 @@ table.itemTable{
 	border-collapse: collapse;
 }
 
+table.itemTable tr.tableHeader{
+	border-top: 2px solid  #D4D4D4;
+	border-bottom: 2px solid  #D4D4D4;
+}
+
 table.itemTable td{
 	border-left: none;
 	border-right: none;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid  #D4D4D4;
+	vertical-align: middle;
 }
 
 table.itemTable tr.tableHeader{
 	font-weight: bold;
+	height: 25px;
+	vertical-align: middle;
+}
+
+table.itemTable tr.tableHeader td.dollar{
+	width: 110px;
+	text-align: center;
 }
 
 table.itemTable tr.tableHeader td.product{
-	width:150px;
+	margin-left: 5px;
+	width:50px;
+}
+
+table.itemTable tr.tableHeader td.des{
+	width:190px;
 }
 
 table.itemTable tr.tableHeader td.count{
 	width:60px;
 }
 
-table.itemTable tr td.dollar{
-	width: 110px;
+table.itemTable tr.items td div.image{
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-bottom: 3px;
+}
+
+table.itemTable tr.items td.name span.product{
+	font-weight: bold;
+	font-size: 11pt;
+	vertical-align: top;
+	margin-left: 5px;
+}
+
+table.itemTable tr.items td.name p.texts{
+	margin-top:5px;
+	margin-left: 5px;
+}
+
+table.itemTable tr.items:hover{
+	background-color: #DCDCDC;
+}
+
+table.itemTable tr.items td.rmbtn{
+	width: 100px;
 	text-align: center;
 }
 
-table.itemTable td span.chout{
-	font-weight: bold;
-	float:right;
+table.itemTable tr.items td.rmbtn img{
+	cursor: pointer;
 }
 
-table.itemTable tr td.cost,td.subtotal{
+table.itemTable tr.items td.cost,td.subtotal{
 	text-align:center;
-	font-weight: bold;
 }
 
-table.itemTable tr td.quantity input.count{
+table.itemTable tr.items td.quantity input.count{
 	width:50px;
 }
 
-p.btn{ 
-	width: 200px;
-	display: inline;
+
+table.itemTable td span.chout, span.costLabel{
+	height:25px;
+	font-weight: bold;
+	font-size: 11.5pt;
+	margin-top: 6.5px;
 }
 
-p.btn input.Continue{
+table.itemTable td span.chout{
+	float:right;
+	margin-right: 25px;
+}
+
+table.itemTable td span.costLabel{
 	float:left;
 }
 
-p.btn input.Checkout{
-	margin-right: 28%;
-	float:right;
+table.itemTable tr td input.Continue, input.Checkout{
+	margin-top: 10px;
 }
 
+table.itemTable tr td input.Continue{
+	float:left;
+}
 
+table.itemTable tr td input.Checkout{
+	float:right;
+	margin-right: 25px;
+}
 
+table.itemTable tr td.btn{
+	border-bottom: none;
+}
