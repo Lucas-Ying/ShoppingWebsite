@@ -24,11 +24,16 @@ $().ready(function(){
                     console.log("Error: fail to get userCart");
                 }
             });
+        }else{
+            //default
+            var defaultValue = 0;
+            calculateTotal(defaultValue.toFixed(2));
         }
 
+        //remove button onclick remove the row from database
         $('.itemTable').on('click','.removebtn',function(){
-            var productName = $(this).parent().parent().find('.product').text();
             var currentItem = $(this).closest('tr');
+            var productName = currentItem.find('.product').text();
 
             $.ajax({
                 method:'delete',
@@ -68,8 +73,33 @@ $().ready(function(){
                     console.log("Error, fail to checkout.");
                 }
             });
-
         });
+
+        $('.itemTable').on('click','.count',function(){   
+            //get current values from table
+            var price = $(this).closest('tr').find('.price').text().replace('$','');
+            var subtotal =  $(this).closest('tr').find('.sub').text().replace('$','');
+            var finalSubtotal = $('.itemTable').find('#finalSubtotal').text().replace('$','');
+            var shipping = $('.itemTable').find('#shipping').text().replace('$','');
+            var total = $('.itemTable').find('#total').text().replace('$','');
+
+            finalSubtotal=finalSubtotal-subtotal;
+            
+            $(this).keyup(function(){
+                var quantity = this.value; 
+                //recalculate total cost and shippings
+                var newSubTotal = roundToTwo(price*quantity).toFixed(2);
+                var newFinalSubTotal = roundToTwo(parseFloat(finalSubtotal)+parseFloat(newSubTotal)).toFixed(2);
+                var newShipping = roundToTwo(calculateShipping(newFinalSubTotal)).toFixed(2);
+                var newTotal = roundToTwo(parseFloat(newFinalSubTotal)+parseFloat(newShipping)).toFixed(2);
+                //rewrite total costs and shippings
+                $(this).closest('tr').find('.sub').text('$'+newSubTotal);
+                $('.itemTable').find('#finalSubtotal').text('$'+newFinalSubTotal);
+                $('.itemTable').find('#shipping').text('$'+newShipping);
+                $('.itemTable').find('#total').text('$'+newTotal);        
+            });
+        });
+
     }
 });
 
@@ -88,7 +118,7 @@ function displayItem(kartId){
                     var product = data[i].name;
                     var cost = data[i].price;
                     var count = data[i].quantity;
-                    subtotal = roundToTwo(parseFloat(count)*parseFloat(cost)).toFixed(2);
+                    subtotal = roundToTwo(count*cost).toFixed(2);
                     finalSubtotal = roundToTwo(parseFloat(finalSubtotal)+parseFloat(subtotal)).toFixed(2);
 
                     //display item
@@ -97,44 +127,54 @@ function displayItem(kartId){
                     +"<td class='name' id='name'>"
                     +"<span class='product'>"+product+"</span><p class='texts'>description</p>"
                     +"</td>"
-                    +"<td class='quantity'><input class = 'count' type ='input' value="+count+"></input></td>" 
-                    +"<td class='cost'><span> $"+cost+"</span></td>"
-                    +"<td class='subtotal'><span> $"+subtotal+"</span></td>"
+                    +"<td class='quantity'><input class='count' type ='input' value="+count+"></input></td>" 
+                    +"<td class='cost'><span class='price'> $"+cost+"</span></td>"
+                    +"<td class='subtotal'><span class='sub'> $"+subtotal+"</span></td>"
                     +"<td class='rmbtn'><img src='/buttonImages/remove.png' width='20' height='20' class = 'removebtn' id ='removebtn' type ='submit'></td>" 
                     +"</tr>"
 
                     $('#itemTable').append(row);
                 }
-            }
-            shipping = roundToTwo(calculateShipping(finalSubtotal)).toFixed(2);
-            total = roundToTwo(parseFloat(finalSubtotal)+parseFloat(shipping)).toFixed(2);
-            var endRow = "<tr>"
+            } 
+
+            calculateTotal(finalSubtotal);
+        },
+        error: function(){
+            console.log("Error, fail to get purchases.");
+        }
+    });
+}
+
+function calculateTotal(finalSubtotal){
+
+    shipping = roundToTwo(calculateShipping(finalSubtotal)).toFixed(2);
+    total = roundToTwo(parseFloat(finalSubtotal)+parseFloat(shipping)).toFixed(2);
+
+    var endRow = "<tr>"
                     +"<td></td>"
                     +"<td></td>"
                     +"<td></td>"                   
                     +"<td colspan ='2'><span class ='costLabel'>Subtotal</span></td>"
-                    +"<td><span class='chout'> $"+finalSubtotal+"</span></td>" 
+                    +"<td><span class='chout' id='finalSubtotal'> $"+finalSubtotal+"</span></td>" 
                     +"</tr><tr>"
                     +"<td></td>"
                     +"<td></td>"
                     +"<td></td>"                     
                     +"<td colspan ='2'><span class ='costLabel'>Estimated shipping</span></td>"
-                    +"<td><span class='chout'> $"+shipping+"</span></td>" 
+                    +"<td><span class='chout' id='shipping'> $"+shipping+"</span></td>" 
                     +"</tr><tr>"
                     +"<td></td>"
                     +"<td></td>"
                     +"<td></td>"
                     +"<td colspan ='2'><span class ='costLabel'>Total</span></td>"
-                    +"<td><span class='chout'> $"+total+"</span></td>" 
+                    +"<td><span class='chout' id='total'> $"+total+"</span></td>" 
                     +"</tr><tr>"
                     +"<td class='btn' colspan ='6'>"
                     +"<a href='/index'><input class='Continue' id='Continue' type='submit' value='Continue Shopping'></input></a>"
                     +"<a href=''><input class='Checkout' id='Checkout' type='submit' value='Check Out'></input></a></td>"
                     +"</tr>"
-             $('#itemTable').append(endRow);
-        }
-    });
 
+    $('#itemTable').append(endRow);
 }
 
 //round prices to 2 decimal place

@@ -52,7 +52,7 @@ table.itemTable tr.items td.name span.product{
 }
 
 table.itemTable tr.items td.name p.texts{
-	margin-top:5px;
+	margin-top: 5px;
 	margin-left: 5px;
 }
 
@@ -74,7 +74,12 @@ table.itemTable tr.items td.cost,td.subtotal{
 }
 
 table.itemTable tr.items td.quantity input.count{
-	width:50px;
+	width: 45px;
+	border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border: 1px solid #CACACA;
+    padding-left: 4px;
 }
 
 
