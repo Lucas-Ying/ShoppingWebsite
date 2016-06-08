@@ -75,7 +75,9 @@ $().ready(function(){
             });
         });
 
-        $('.itemTable').on('focus','.count',function(){   
+        $('.itemTable').on('focus','.count',function(){  
+            //kartID 
+            var itemName = $(this).closest('tr').find('.product').text();
             //get current values from table
             var price = $(this).closest('tr').find('.price').text().replace('$','');
             var subtotal =  $(this).closest('tr').find('.sub').text().replace('$','');
@@ -96,7 +98,23 @@ $().ready(function(){
                 $(this).closest('tr').find('.sub').text('$'+newSubTotal);
                 $('.itemTable').find('#finalSubtotal').text('$'+newFinalSubTotal);
                 $('.itemTable').find('#shipping').text('$'+newShipping);
-                $('.itemTable').find('#total').text('$'+newTotal);        
+                $('.itemTable').find('#total').text('$'+newTotal);
+
+                //update database
+                $.ajax({
+                    method:'POST',
+                    url:'/update_purchase',
+                    dataType:'json',
+                    data:{'quantity': quantity, 'cartid':kartID,'name':itemName},
+
+                    success: function(data){
+                        //console.log('updaste success');
+                    },
+                    error: function(){
+                        console.log("Error, fail to update database.");
+                    }
+                });
+
             });
         });
 
