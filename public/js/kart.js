@@ -75,7 +75,7 @@ $().ready(function(){
             });
         });
 
-        $('.itemTable').on('click','.count',function(){   
+        $('.itemTable').on('focus','.count',function(){   
             //get current values from table
             var price = $(this).closest('tr').find('.price').text().replace('$','');
             var subtotal =  $(this).closest('tr').find('.sub').text().replace('$','');
