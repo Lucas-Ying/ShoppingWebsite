@@ -169,26 +169,26 @@ $().ready(function(){
     }
 
     if (window.location.pathname == '/' ) {
-       
         $.ajax({
             method:'GET',
             url:'/get_OAuth',
             dataType:'json',
 
             success: function(data){                   
-                console.log(data.name+" : "+data.email);
-
+               // console.log(data.name+" : "+data.email);
                 var username = data.name;
                 var useremail = data.email;
+                
+                if(!sessionStorage.getItem('useremail')){
+                    if(username && useremail){
+                        sessionStorage.setItem('useremail', useremail);
+                        sessionStorage.setItem('username', username);
 
-                if(username && useremail){
-                    sessionStorage.setItem('useremail', useremail);
-                    sessionStorage.setItem('username', username);
-
-                    //add user cart if user dont have it
-                    checkUserCart(useremail);
-                    //display username on page
-                    changeLoginName();
+                        //add user cart if user dont have it
+                        checkUserCart(useremail);
+                        //display username on page
+                        changeLoginName();
+                    }
                 }
             },
             error:function(){
@@ -256,7 +256,6 @@ function checkUserCart(useremail){
 
 //addCart
 function addCart(userEmail){
-    console.log("asdfads");
     var userid=0;
     $.ajax({
         method:'PUT',
