@@ -76,7 +76,6 @@ $().ready(function(){
         });
 
         $('.itemTable').on('focus','.count',function(){  
-            //kartID 
             var itemName = $(this).closest('tr').find('.product').text();
             //get current values from table
             var price = $(this).closest('tr').find('.price').text().replace('$','');
@@ -88,18 +87,9 @@ $().ready(function(){
             finalSubtotal=finalSubtotal-subtotal;
             
             $(this).keyup(function(){
-                var quantity = this.value; 
-                //recalculate total cost and shippings
+                var quantity = this.value;
                 var newSubTotal = roundToTwo(price*quantity).toFixed(2);
-                var newFinalSubTotal = roundToTwo(parseFloat(finalSubtotal)+parseFloat(newSubTotal)).toFixed(2);
-                var newShipping = roundToTwo(calculateShipping(newFinalSubTotal)).toFixed(2);
-                var newTotal = roundToTwo(parseFloat(newFinalSubTotal)+parseFloat(newShipping)).toFixed(2);
-                //rewrite total costs and shippings
                 $(this).closest('tr').find('.sub').text('$'+newSubTotal);
-                $('.itemTable').find('#finalSubtotal').text('$'+newFinalSubTotal);
-                $('.itemTable').find('#shipping').text('$'+newShipping);
-                $('.itemTable').find('#total').text('$'+newTotal);
-
                 //update database
                 $.ajax({
                     method:'POST',
@@ -108,7 +98,15 @@ $().ready(function(){
                     data:{'quantity': quantity, 'cartid':kartID,'name':itemName},
 
                     success: function(data){
-                        //console.log('updaste success');
+                        //recalculate total cost and shippings
+                        var newFinalSubTotal = roundToTwo(parseFloat(finalSubtotal)+parseFloat(newSubTotal)).toFixed(2);
+                        var newShipping = roundToTwo(calculateShipping(newFinalSubTotal)).toFixed(2);
+                        var newTotal = roundToTwo(parseFloat(newFinalSubTotal)+parseFloat(newShipping)).toFixed(2);
+                        //rewrite total costs and shippings
+                        $('.itemTable').find('#finalSubtotal').text('$'+newFinalSubTotal);
+                        $('.itemTable').find('#shipping').text('$'+newShipping);
+                        $('.itemTable').find('#total').text('$'+newTotal);
+
                     },
                     error: function(){
                         console.log("Error, fail to update database.");
@@ -136,14 +134,16 @@ function displayItem(kartId){
                     var product = data[i].name;
                     var cost = data[i].price;
                     var count = data[i].quantity;
+                    var des = data[i].description;
+                    var img = data[i].image;
                     subtotal = roundToTwo(count*cost).toFixed(2);
                     finalSubtotal = roundToTwo(parseFloat(finalSubtotal)+parseFloat(subtotal)).toFixed(2);
 
                     //display item
                     var row ="<tr class='items'>"
-                    +"<td><div class='image'><img src='' height='50' width ='50'/></div></td>"
+                    +"<td><div class='image'><img src='"+img+"' height='50' width ='50'/></div></td>"
                     +"<td class='name' id='name'>"
-                    +"<span class='product'>"+product+"</span><p class='texts'>description</p>"
+                    +"<span class='product'>"+product+"</span><p class='texts'>"+des+"</p>"
                     +"</td>"
                     +"<td class='quantity'><input class='count' type ='input' value="+count+"></input></td>" 
                     +"<td class='cost'><span class='price'> $"+cost+"</span></td>"

@@ -764,9 +764,12 @@ app.put('/add_purchases', function(req, res){
 	var purchasesName = req.body.name;
 	var purchaseQuantity = req.body.quantity;
 	var pruchasePrice = req.body.price;
+  var description = req.body.description;
+  var img = req.body.image;
 
-	var q = "insert into purchases (cartid,name,quantity,price) values ($1,$2,$3,$4) RETURNING cartid,name,quantity,price";
-	var query = client.query(q, [purchases_cartId,purchasesName,purchaseQuantity,pruchasePrice]);
+	var q = "insert into purchases (cartid,name,quantity,price,description,image) "
+          +"values ($1,$2,$3,$4,$5,$6) RETURNING cartid,name,quantity,price";
+	var query = client.query(q, [purchases_cartId,purchasesName,purchaseQuantity,pruchasePrice,description,img]);
 	var results =[];
 
   //error handler for /add_purchases
