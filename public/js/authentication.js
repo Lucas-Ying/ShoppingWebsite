@@ -168,7 +168,8 @@ $().ready(function(){
         }
     }
 
-    if (window.location.pathname == '/' ) {
+    //facebook and google user display 
+    if(window.location.pathname == '/' ) {
         $.ajax({
             method:'GET',
             url:'/get_OAuth',
@@ -195,7 +196,6 @@ $().ready(function(){
                 console.log("Error: fail to get users");
             }
         });
-
     }
 
 });
@@ -244,7 +244,6 @@ function checkUserCart(useremail){
 
         success: function(data){
             //call add cart function if user dont have cart
-            console.log(data.id)
             if(data.id=='undefined'){
                 addCart(useremail);
             }
