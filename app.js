@@ -155,6 +155,9 @@ function ensureAuthenticated(req, res, next) {
 		res.redirect('/login')
 	}
 
+var username = "";
+var email ="";
+
 function addUserIfNeeded (profile) {
 		var profileID = profile.id;
 		var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
@@ -162,8 +165,8 @@ function addUserIfNeeded (profile) {
 
   //check if they exist in the db
 	if(usersEmail != null || usersEmail != 'undefined'){
-    /*sessionStorage.setItem('username', usersName);
-    sessionStorage.setItem('useremail', usersEmail);*/
+    username = usersName;
+    email = usersEmail;
 
   	var q = "SELECT * FROM users where email = $1";
     var query = client.query(q, [usersEmail]);
@@ -186,13 +189,6 @@ function addUserIfNeeded (profile) {
 }
 
 function addUser(name, email){
-  console.log("in add user");
-
-  /*sessionStorage.setItem('username', name);
-  sessionStorage.setItem('useremail', email);
-  console.log("name: "+sessionStorage.getItem('userName')+" email: " +sessionStorage.getItem('useremail'));*/
- //console.log("name: "+name+" email:"+email);
-
   //user isnt in the db so we want to add them
   var q = "insert into users (name, email) values ($1, $2)";
   var query = client.query(q, [name, email]);
@@ -217,6 +213,15 @@ function addUser(name, email){
     //res.json(results);
   });
 }
+
+app.get('/get_OAuth',function(req,res){
+
+  var user ={'name': username,'email': email};
+  if(user){
+    res.json(user);
+  }
+
+});
 
 //=============================END OAUTH===========================
 

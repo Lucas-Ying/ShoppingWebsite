@@ -155,14 +155,11 @@ $().ready(function(){
 
                 success: function(data){
                     if(data[0].email == email){
-                        if(data[0].pass == passW){
-                            location.href = 'index';
+                        if(data[0].pass == passW){      
                             sessionStorage.setItem('useremail', data[0].email);
                             sessionStorage.setItem('username',data[0].name);
                             //console.log(sessionStorage.getItem('username'));
-                            changeLoginName();
-                            alert("Login Successful!");
-
+                            login();
                             //reset form
                             $('#loginForm').trigger('reset');
                             return;
@@ -205,10 +202,43 @@ $().ready(function(){
             }
         }
     }
+    
+    $('#fbLogin').on('click',function(){
+        OauthLogin();
+    });
 
-   /* $('#fbLogin').on('click','.done',function(){
-        changeLoginName();
-    });*/
+    $('#googleLogin').on('click',function(){
+        OauthLogin();
+    });
+
+    //Oauth logoin 
+    function OauthLogin(){
+        $(window).bind("load",function(){
+            console.log('to ajax call');
+            $.ajax({
+                method:'GET',
+                url:'/get_OAuth',
+                dataType:'json',
+
+                success: function(data){
+                    console.log(data);
+                    console.log(data.name+" : "+data.email);
+
+                    var username = data.name;
+                    var useremail = data.email;
+
+                    if(username && useremail){
+                        sessionStorage.setItem('useremail', useremail);
+                        sessionStorage.setItem('username', username);
+                        login();
+                    }
+                },
+                error:function(){
+                    console.log("Error: fail to get users");
+                }
+            });
+        });
+    };
 
 });
 
@@ -233,4 +263,10 @@ function logout(){
     location.href = 'login';
 }
 
+//login function
+function login(){
+    changeLoginName();
+    alert("Login Successful!");
+    location.href = 'index';
+}
 
