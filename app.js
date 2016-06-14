@@ -17,7 +17,6 @@ var csrf = require('csurf');
 
 //use to set http headers
 var helmet = require('helmet');
-var sessionStorage = require('sessionstorage');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

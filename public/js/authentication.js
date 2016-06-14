@@ -122,7 +122,8 @@ $().ready(function(){
                             sessionStorage.setItem('useremail', data[0].email);
                             sessionStorage.setItem('username',data[0].name);
                             //console.log(sessionStorage.getItem('username'));
-                            login();
+                            changeLoginName();
+                            alert("Login Successful!");
                             location.href = 'index';
                             //reset form
                             $('#loginForm').trigger('reset');
@@ -167,33 +168,34 @@ $().ready(function(){
         }
     }
 
-    if (window.location.pathname == '/#_=_' || window.location.pathname == '/#' ) {
-        //call this function after window is load 
-        $(window).bind("load",function(){
-            $.ajax({
-                method:'GET',
-                url:'/get_OAuth',
-                dataType:'json',
+    if (window.location.pathname == '/' ) {
+       
+        $.ajax({
+            method:'GET',
+            url:'/get_OAuth',
+            dataType:'json',
 
-                success: function(data){                   
-                    console.log(data.name+" : "+data.email);
+            success: function(data){                   
+                console.log(data.name+" : "+data.email);
 
-                    var username = data.name;
-                    var useremail = data.email;
+                var username = data.name;
+                var useremail = data.email;
 
-                    if(username && useremail){
-                        sessionStorage.setItem('useremail', useremail);
-                        sessionStorage.setItem('username', username);
+                if(username && useremail){
+                    sessionStorage.setItem('useremail', useremail);
+                    sessionStorage.setItem('username', username);
 
-                        checkUserCart(useremail);
-                        login();
-                    }
-                },
-                error:function(){
-                    console.log("Error: fail to get users");
+                    //add user cart if user dont have it
+                    checkUserCart(useremail);
+                    //display username on page
+                    changeLoginName();
                 }
-            });
+            },
+            error:function(){
+                console.log("Error: fail to get users");
+            }
         });
+
     }
 
 });
@@ -230,12 +232,6 @@ function logout(){
     });
     
     location.href = 'login';
-}
-
-//login function
-function login(){
-    changeLoginName();
-    alert("Login Successful!");
 }
 
 //check and see if user cart exist before adding
