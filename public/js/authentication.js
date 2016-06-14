@@ -178,7 +178,7 @@ $().ready(function(){
                // console.log(data.name+" : "+data.email);
                 var username = data.name;
                 var useremail = data.email;
-                
+
                 if(!sessionStorage.getItem('useremail')){
                     if(username && useremail){
                         sessionStorage.setItem('useremail', useremail);
@@ -244,7 +244,8 @@ function checkUserCart(useremail){
 
         success: function(data){
             //call add cart function if user dont have cart
-            if(!data.id){
+            console.log(data.id)
+            if(data.id=='undefined'){
                 addCart(useremail);
             }
         },
