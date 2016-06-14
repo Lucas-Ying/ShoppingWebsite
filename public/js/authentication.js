@@ -14,10 +14,7 @@ $().ready(function(){
             location.href = 'login';
         }
         else if(loginName =='LOG OUT'){
-            sessionStorage.setItem('useremail', "");
-            sessionStorage.setItem('username', "");
-            changeLoginName();
-            location.href = 'login';
+            logout();
         }
     });
 
@@ -169,7 +166,6 @@ $().ready(function(){
                             //reset form
                             $('#loginForm').trigger('reset');
                             return;
-                            //do something here
                         }
                         else{
                             document.getElementById('err').innerHTML="Incorrect password";
@@ -188,13 +184,35 @@ $().ready(function(){
         }
     });
 
+    //only check idle time when user is login
+    if(sessionStorage.getItem('useremail')){
+        var idletime = 0;
+        var idleInterval = setInterval(idleTimer,60000);//1 minute
+
+        $(this).mousemove(function(e){
+            idletime = 0;
+        });
+        $(this).keypress(function(e){
+            idletime = 0;
+        });
+
+        //timer for login
+        function idleTimer(){
+            idletime++;
+            //if user has been idle for 30 minutes auto logout
+            if(idletime > 29){
+                logout();
+            }
+        }
+    }
+
    /* $('#fbLogin').on('click','.done',function(){
         changeLoginName();
     });*/
 
 });
 
-
+//user name display
 function changeLoginName(){
     //if sessionstorage is not empty
     if(sessionStorage.getItem('useremail')){
@@ -206,5 +224,13 @@ function changeLoginName(){
     }
 }
 
+
+//logout function
+function logout(){
+    sessionStorage.setItem('useremail', "");
+    sessionStorage.setItem('username', "");
+    changeLoginName();
+    location.href = 'login';
+}
 
 
