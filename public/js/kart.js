@@ -1,7 +1,7 @@
 $().ready(function(){
     
     //only load when user is on /kart page
-    if (window.location.pathname == '/kart' || window.location.pathname == '/kart#_=_' ) {
+    if (window.location.pathname == '/kart') {
         //console.log('loading cart...');
         var kartID =0;
         var registerName = document.getElementById('registration').text;

@@ -220,7 +220,11 @@ app.get('/get_OAuth',function(req,res){
   if(user){
     res.json(user);
   }
+});
 
+app.put('/OAuth_Logout', function(req, res){
+  username = "";
+  email ="";
 });
 
 //=============================END OAUTH===========================

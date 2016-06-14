@@ -160,6 +160,7 @@ $().ready(function(){
                             sessionStorage.setItem('username',data[0].name);
                             //console.log(sessionStorage.getItem('username'));
                             login();
+                            location.href = 'index';
                             //reset form
                             $('#loginForm').trigger('reset');
                             return;
@@ -203,18 +204,16 @@ $().ready(function(){
         }
     }
     
-    $('#fbLogin').on('click',function(){
+    /*$('#fbLogin').on('click',function(){
         OauthLogin();
     });
 
     $('#googleLogin').on('click',function(){
         OauthLogin();
-    });
-
-    //Oauth logoin 
-    function OauthLogin(){
+    });*/
+    //if (window.location.pathname == '/#_=_' || window.location.pathname == '/#' ) {
+        //call this function after window is load 
         $(window).bind("load",function(){
-            console.log('to ajax call');
             $.ajax({
                 method:'GET',
                 url:'/get_OAuth',
@@ -238,7 +237,7 @@ $().ready(function(){
                 }
             });
         });
-    };
+    //}
 
 });
 
@@ -260,6 +259,19 @@ function logout(){
     sessionStorage.setItem('useremail', "");
     sessionStorage.setItem('username', "");
     changeLoginName();
+    $.ajax({
+        method:'PUT',
+        url:'/OAuth_Logout',
+        dataType:'json',
+
+        success: function(data){
+            console.log("user has logout");
+        },
+        error:function(){
+            console.log("Error: fail to get users");
+        }
+    });
+    
     location.href = 'login';
 }
 
@@ -267,6 +279,5 @@ function logout(){
 function login(){
     changeLoginName();
     alert("Login Successful!");
-    location.href = 'index';
 }
 
