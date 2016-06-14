@@ -129,31 +129,37 @@ function displayItem(kartId){
         method:'GET',
         url:'/get_purchases',
         success: function(data){
-            for(i = 0; i<data.length; i++){
-                if(data[i].cartid == kartId){
-                    var product = data[i].name;
-                    var cost = data[i].price;
-                    var count = data[i].quantity;
-                    var des = data[i].description;
-                    var img = data[i].image;
-                    subtotal = roundToTwo(count*cost).toFixed(2);
-                    finalSubtotal = roundToTwo(parseFloat(finalSubtotal)+parseFloat(subtotal)).toFixed(2);
+            if(data.length>=1){
+                for(i = 0; i<data.length; i++){
+                    if(data[i].cartid == kartId){
+                        var product = data[i].name;
+                        var cost = data[i].price;
+                        var count = data[i].quantity;
+                        var des = data[i].description;
+                        var img = data[i].image;
+                        subtotal = roundToTwo(count*cost).toFixed(2);
+                        finalSubtotal = roundToTwo(parseFloat(finalSubtotal)+parseFloat(subtotal)).toFixed(2);
 
-                    //display item
-                    var row ="<tr class='items'>"
-                    +"<td><div class='image'><img src='"+img+"' height='50' width ='50'/></div></td>"
-                    +"<td class='name' id='name'>"
-                    +"<span class='product'>"+product+"</span><p class='texts'>"+des+"</p>"
-                    +"</td>"
-                    +"<td class='quantity'><input class='count' type ='input' value="+count+"></input></td>" 
-                    +"<td class='cost'><span class='price'> $"+cost+"</span></td>"
-                    +"<td class='subtotal'><span class='sub'> $"+subtotal+"</span></td>"
-                    +"<td class='rmbtn'><img src='/buttonImages/remove.png' width='20' height='20' class = 'removebtn' id ='removebtn' type ='submit'></td>" 
-                    +"</tr>"
+                        //display item
+                        var row ="<tr class='items'>"
+                        +"<td><div class='image'><img src='"+img+"' height='50' width ='50'/></div></td>"
+                        +"<td class='name' id='name'>"
+                        +"<span class='product'>"+product+"</span><p class='texts'>"+des+"</p>"
+                        +"</td>"
+                        +"<td class='quantity'><input class='count' type ='input' value="+count+"></input></td>" 
+                        +"<td class='cost'><span class='price'> $"+cost+"</span></td>"
+                        +"<td class='subtotal'><span class='sub'> $"+subtotal+"</span></td>"
+                        +"<td class='rmbtn'><img src='/buttonImages/remove.png' width='20' height='20' class = 'removebtn' id ='removebtn' type ='submit'></td>" 
+                        +"</tr>"
 
-                    $('#itemTable').append(row);
-                }
-            } 
+                        $('#itemTable').append(row);
+                    }
+                } 
+            }else{
+                //default
+                var defaultValue = 0;
+                calculateTotal(defaultValue.toFixed(2));
+            }
 
             calculateTotal(finalSubtotal);
         },

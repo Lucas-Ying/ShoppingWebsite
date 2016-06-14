@@ -82,9 +82,11 @@ $().ready(function(){
                     dataType:'json',
                     data:{'email':email,"pass":pass,"name":name},
 
-                    success:function(){
+                    success:function(){ 
+                        addCart(email);
                         alert("SignUp Successful!");
-                        addCart();
+                        //redirect to login page
+                        location.href = 'login';
                     },
                     error:function(){
                         console.log("Error: fail to add user: "+name);
@@ -92,45 +94,6 @@ $().ready(function(){
                 });
             }
 
-            function addCart(){
-                var userid=0;
-                $.ajax({
-                    method:'PUT',
-                    url:'/get_user',
-                    dataType:'json',
-                    data:{'email':email},
-
-                    success: function(data){           
-                        if(data[0].email == email){
-                            userid = data[0].id;
-                        }
-                        
-                        if(userid!=0){
-                            //add cart
-                            $.ajax({
-                                method:'PUT',
-                                url:'/addCart',
-                                dataType:'json',
-                                data:{'userID':userid,"balance":0,"items":""},
-
-                                success:function(){
-                                    console.log('new cart added');
-                                    //redirect to homepage
-                                    location.href = 'login';
-                                    //reset form
-                                    $('#signupForm').trigger('reset');
-                                },
-                                error:function(){
-                                    console.log("Error: fail to add cart");
-                                }
-                            });
-                        }
-                    },
-                    error:function(){
-                        console.log("Error: fail to get users");
-                    }
-                });
-            }
         }//otherwise leave it to the form validation
     });
 
@@ -203,15 +166,8 @@ $().ready(function(){
             }
         }
     }
-    
-    /*$('#fbLogin').on('click',function(){
-        OauthLogin();
-    });
 
-    $('#googleLogin').on('click',function(){
-        OauthLogin();
-    });*/
-    //if (window.location.pathname == '/#_=_' || window.location.pathname == '/#' ) {
+    if (window.location.pathname == '/#_=_' || window.location.pathname == '/#' ) {
         //call this function after window is load 
         $(window).bind("load",function(){
             $.ajax({
@@ -219,8 +175,7 @@ $().ready(function(){
                 url:'/get_OAuth',
                 dataType:'json',
 
-                success: function(data){
-                    console.log(data);
+                success: function(data){                   
                     console.log(data.name+" : "+data.email);
 
                     var username = data.name;
@@ -229,6 +184,8 @@ $().ready(function(){
                     if(username && useremail){
                         sessionStorage.setItem('useremail', useremail);
                         sessionStorage.setItem('username', username);
+
+                        checkUserCart(useremail);
                         login();
                     }
                 },
@@ -237,7 +194,7 @@ $().ready(function(){
                 }
             });
         });
-    //}
+    }
 
 });
 
@@ -280,4 +237,62 @@ function login(){
     changeLoginName();
     alert("Login Successful!");
 }
+
+//check and see if user cart exist before adding
+function checkUserCart(useremail){
+    $.ajax({
+        method:'PUT',
+        url:'/get_userCart',
+        dataType:'json',
+        data:{'email':useremail},
+
+        success: function(data){
+            //call add cart function if user dont have cart
+            if(!data.id){
+                addCart(useremail);
+            }
+        },
+        error:function(){
+            console.log("Error: fail to get userCart");
+        }
+    });
+}
+
+//addCart
+function addCart(userEmail){
+    console.log("asdfads");
+    var userid=0;
+    $.ajax({
+        method:'PUT',
+        url:'/get_user',
+        dataType:'json',
+        data:{'email':userEmail},
+
+        success: function(data){           
+            if(data[0].email == userEmail){
+                userid = data[0].id;
+            }
+            if(userid!=0){
+                //add cart
+                $.ajax({
+                    method:'PUT',
+                    url:'/addCart',
+                    dataType:'json',
+                    data:{'userID':userid,"balance":0,"items":""},
+
+                    success:function(){
+                        console.log('new cart added');
+                    },
+                    error:function(){
+                        console.log("Error: fail to add cart");
+                    }
+                });
+            }
+        },
+        error:function(){
+            console.log("Error: fail to get users");
+        }
+    });
+}
+
 
