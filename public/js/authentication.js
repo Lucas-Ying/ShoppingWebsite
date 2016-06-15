@@ -176,9 +176,10 @@ $().ready(function(){
             dataType:'json',
 
             success: function(data){                   
-               // console.log(data.name+" : "+data.email);
+               console.log("--------------------" + data.name+" : "+data.email);
                 var username = data.name;
                 var useremail = data.email;
+                changeLoginName();
 
                 if(!sessionStorage.getItem('useremail')){
                     if(username && useremail){
