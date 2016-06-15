@@ -190,7 +190,7 @@
 	    	query.on('end', function() {
 	    		console.log("results length " + results.length);
 	    		if(results.length == 0){
-	    			addUser(username, email;
+	    			addUser(username, email);
 	    		}
 	    		console.log('Result: ' + results);
 	    	});

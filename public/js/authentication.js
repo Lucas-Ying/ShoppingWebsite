@@ -208,11 +208,11 @@ function changeLoginName(){
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
     }
-    else if(sessionStorage.getItem('OAUTHemail'))
-    {
-    	 document.getElementById('registration').innerHTML=sessionStorage.getItem('OAUTHuser');
-        document.getElementById('log-in').innerHTML='LOG OUT';	
-    }
+    // else if(sessionStorage.getItem('OAUTHemail'))
+    // {
+    // 	 document.getElementById('registration').innerHTML=sessionStorage.getItem('OAUTHuser');
+    //     document.getElementById('log-in').innerHTML='LOG OUT';	
+    // }
     else{
         document.getElementById('registration').innerHTML='REGISTRATION';
         document.getElementById('log-in').innerHTML='LOG IN';
@@ -224,8 +224,8 @@ function changeLoginName(){
 function logout(){
     sessionStorage.setItem('useremail', "");
     sessionStorage.setItem('username', "");
-    sessionStorage.setItem('OAUTHuser', "");
-    sessionstorage.setItem('OAUTHemail', "");
+    // sessionStorage.setItem('OAUTHuser', "");
+    // sessionstorage.setItem('OAUTHemail', "");
     changeLoginName();
     $.ajax({
         method:'PUT',
