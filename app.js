@@ -15,6 +15,9 @@
 	var sessionStorage = require('sessionstorage');
 	//use to prevent csrf attack
 	var csrf = require('csurf');
+	var crypto = require('crypto'),
+    algorithm = 'aes-256-ctr',
+    password = 'sup3rStr0nghfhahwnf@38493';
 
 	//use to set http headers
 	var helmet = require('helmet');
@@ -60,6 +63,21 @@
 	  else
 	    next() /* Continue to other routes if we're not redirecting */
 	});
+
+
+    function encrypt(text){
+ 		 var cipher = crypto.createCipher(algorithm,password)
+  		var crypted = cipher.update(text,'utf8','hex')
+  		crypted += cipher.final('hex');
+  		return crypted;
+	}
+ 
+function decrypt(text){
+  var decipher = crypto.createDecipher(algorithm,password)
+  var dec = decipher.update(text,'hex','utf8')
+  dec += decipher.final('utf8');
+  return dec;
+}
 
 	//====================OAUTH===================================
 	// Passport session setup.
@@ -336,21 +354,21 @@
 	  res.render('index',{csrftoken: req.csrftoken()});
 	});
 
-	app.get('/userPresent', function (req, res) {
-		var html = "<ul>\
-		<li><a href='/auth/github'>GitHub</a></li>\
-		<li><a href='/logout'>logout</a></li>\
-		</ul>";
+	// app.get('/userPresent', function (req, res) {
+	// 	var html = "<ul>\
+	// 	<li><a href='/auth/github'>GitHub</a></li>\
+	// 	<li><a href='/logout'>logout</a></li>\
+	// 	</ul>";
 
-	  // dump the user for debugging
-	  if (req.isAuthenticated()) {
-	  	html += "<p>authenticated as user:</p>"
-	  	html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
-	  	console.log("User email: " + req.user.email + "User email2: " + req.user.value + " users name: " + req.user+ " " + res.query)
-	  }
+	//   // dump the user for debugging
+	//   if (req.isAuthenticated()) {
+	//   	html += "<p>authenticated as user:</p>"
+	//   	html += "<pre>" + JSON.stringify(req.user, null, 4) + "</pre>";
+	//   	console.log("User email: " + req.user.email + "User email2: " + req.user.value + " users name: " + req.user+ " " + res.query)
+	//   }
 
-	  res.send(html);
-	});
+	//   res.send(html);
+	// });
 
 	//========================RESTful API for Product ====================//
 	//get products
@@ -507,6 +525,7 @@
 
 	  //stream results back one row at a time
 	  query.on('row',function(row){
+	  	console.log('Pass = ' + row.pass + ' email: ' row.email);
 	  	results.push(row);
 	  });
 
@@ -520,7 +539,7 @@
 	//adding users
 	app.put('/add_user', function(req, res){
 		var userEmail = req.body.email;
-		var userPass = req.body.pass;
+		var userPass = encrypt(req.body.pass);
 		var userName = req.body.name;
 		var userCart = req.body.cart;
 
@@ -549,7 +568,7 @@
 	app.post('/update_user', function(req, res){
 		var userId = req.body.id;
 		var userEmail = req.body.email;
-		var userPass = req.body.pass;
+		var userPass = encrypt(eq.body.pass);
 		var userName = req.body.name;
 		var userCart = req.body.cart;
 

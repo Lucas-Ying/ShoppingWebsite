@@ -6,6 +6,7 @@ $().ready(function(){
         location.href = 'index';
     });
 
+
     //login button
     $('#log-in').on('click',function(){
         //get the name/email of the login button
@@ -211,11 +212,6 @@ function changeLoginName(){
         document.getElementById('log-in').innerHTML='LOG OUT';
         document.getElementById('log-in').innerHTML='LOGOUT';
     }
-    // else if(sessionStorage.getItem('OAUTHemail'))
-    // {
-    // 	 document.getElementById('registration').innerHTML=sessionStorage.getItem('OAUTHuser');
-    //     document.getElementById('log-in').innerHTML='LOG OUT';	
-    // }
     else{
         document.getElementById('registration').innerHTML='REGISTRATION';
         document.getElementById('log-in').innerHTML='LOG IN';
