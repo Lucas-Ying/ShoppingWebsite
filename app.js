@@ -526,6 +526,9 @@ function decrypt(text){
 	  //stream results back one row at a time
 	  query.on('row',function(row){
 	  	console.log('Pass = ' + row.pass + ' email: ' + row.email);
+	  	row.pass = decrypt(row.pass);
+	    console.log('Pass = ' + row.pass + ' email: ' + row.email);
+
 	  	results.push(row);
 	  });
 
