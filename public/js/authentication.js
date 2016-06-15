@@ -96,8 +96,7 @@ $().ready(function(){
 
         }//otherwise leave it to the form validation
     });
-
-
+    
     //login
     $('#loginForm').submit(function(e){
         e.preventDefault();

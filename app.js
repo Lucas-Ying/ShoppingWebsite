@@ -772,8 +772,8 @@ app.put('/add_purchases', function(req, res){
 	var purchasesName = req.body.name;
 	var purchaseQuantity = req.body.quantity;
 	var pruchasePrice = req.body.price;
-  var description = req.body.description;
-  var img = req.body.image;
+  	var description = req.body.description;
+  	var img = req.body.image;
 
 	var q = "insert into purchases (cartid,name,quantity,price,description,image) "
           +"values ($1,$2,$3,$4,$5,$6) RETURNING cartid,name,quantity,price";
@@ -882,7 +882,7 @@ app.delete('/checkout', function(req, res){
 
 //===================================================================//
 
-//======================== Products =====================//
+//======================== Browse =====================//
 
 app.get('/collection/*', function(req, res) {
 	var collection = req.originalUrl.replace('/collection/', '');
@@ -898,7 +898,7 @@ app.get('/collection/*', function(req, res) {
   // After all data is returned, close connection and return results
   query.on('end', function() {
   	resultsInJson = JSON.stringify(results);
-  	res.render('products', { products: resultsInJson });
+  	res.render('browse', { products: resultsInJson });
     // res.json(resultsInJson);
     console.log('Result: ' + resultsInJson);
 });

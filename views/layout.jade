@@ -1,32 +1,39 @@
 doctype 1.1
 html(xmlns='http://www.w3.org/1999/xhtml', xml:lang='cz')
-  head
-    title Company name - Fashion
-    meta(http-equiv='Content-language', content='cs')
-    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    meta(name='description', content=' ')
-    meta(name='keywords', content=' ')
-    link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
-    link(rel='icon', href='/favicon.ico', type='image/x-icon')
-    meta(name='author', content='Klára Frolichová, Sunlight webdesign')
-    meta(name='Copyright', content='Klára Frolichová, Sunlight webdesign 2007')
-    meta(name='design', content='Sunlight webdesign - http://www.sunlight.cz, info@sunlight.cz')
-    link(rel='stylesheet', type='text/css', href='/css/default.css', title='default')
-    link(rel='stylesheet', href='/css/form.css')
-    link(rel='stylesheet', href='/css/kart.css')
-    script(src='/js/jquery-1.11.1.js')
-    script(src='/js/jquery.js')
-    script(src='/js/jquery.validate.js')
-    script(src='/js/form.js')
-    script(src='/js/authentication.js')
-    script(src='/js/kart.js')
-  body
-    block addscript
-    #WholePage
-      #Inner
-        #Container(style='border:groove;border-color:#00CCFF')
-          block header
-          block sidebar
-          block content
-          block footer
+    head
+
+        //import bootstrap
+        link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+        link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
+        script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+
+        title Company name - Fashion
+        meta(http-equiv='Content-language', content='cs')
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+        meta(name='description', content=' ')
+        meta(name='keywords', content=' ')
+        link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
+        link(rel='icon', href='/favicon.ico', type='image/x-icon')
+        meta(name='author', content='Klára Frolichová, Sunlight webdesign')
+        meta(name='Copyright', content='Klára Frolichová, Sunlight webdesign 2007')
+        meta(name='design', content='Sunlight webdesign - http://www.sunlight.cz, info@sunlight.cz')
+        link(rel='stylesheet', type='text/css', href='/css/default.css', title='default')
+        link(rel='stylesheet', href='/css/form.css')
+        link(rel='stylesheet', href='/css/kart.css')
+        script(src='/js/jquery-1.11.1.js')
+        script(src='/js/jquery.js')
+        script(src='/js/jquery.validate.js')
+        script(src='/js/form.js')
+        script(src='/js/authentication.js')
+        script(src='/js/kart.js')
+    body
+        block addscript
+        #WholePage
+            #Inner
+                #Container(style='border:groove;border-color:#00CCFF')
+                    block header
+                    block sidebar
+                    block content
+                    block footer
 

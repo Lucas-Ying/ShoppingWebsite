@@ -1,0 +1,112 @@
+extends layout
+
+block header
+    include header
+
+block sidebar
+    include sidebar
+
+block content
+    #RightPart.container-fluid
+        div
+            br
+            center
+                h2
+                    font(face='Lucida Handwriting', size='+1', color='#00CCFF') Girls Apparel
+        div(style='width:100%;float:left')
+            form(method='post')
+                table(border='0', align='center')
+                    tr
+                        // list products
+                        .row
+                            -var product_list = JSON.parse(products)
+                            for product in product_list
+                                .col-sm-6.col-md-4
+                                    .thumbnail
+                                        img(src='/images/b1.jpg', alt='', style='height: 200px; width: 100%; display: block;')
+                                        .caption
+                                            h3 Name: !{product.name}
+                                            b Item ID: !{product.id}
+                                            br
+                                            b Price: $!{product.cost}
+                                            br
+                                            b Description: !{product.description}
+                                            br
+                                            br
+                                            p
+                                                button.btn.btn-primary.btn-sm(type='button', onclick='addToCart("#{product.name}", "#{product.cost}", "#{product.description}", "#{product.image}")') Add to Cart
+                                                | &nbsp
+                                                button.btn.btn-primary.btn-sm(type='button') Buy
+                                                script.
+                                                    function addToCart(itemName, itemPrice, description, image) {
+                                                        var cartID = 0;
+                                                        var itemQuantity = 1;
+                                                        var registerName = document.getElementById('registration').text;
+                                                        var email = sessionStorage.getItem('useremail');
+                                                        console.log(email);
+                                                        console.log(registerName);
+                                                        //if email is not empty
+                                                        if (email) {
+                                                            if (registerName == 'REGISTRATION') {
+                                                                return;
+                                                            }
+                                                            $.ajax({
+                                                                method: 'PUT',
+                                                                url: '/get_userCart',
+                                                                dataType: 'json',
+                                                                data: {'email': email},
+
+                                                                success: function (data) {
+                                                                    cartID = data[0].id;
+                                                                    console.log(data[0].id);
+                                                                    $.ajax({
+                                                                        method: 'PUT',
+                                                                        url: '/add_purchases',
+                                                                        dataType: 'json',
+                                                                        data: {
+                                                                            'cartid': cartID,
+                                                                            "name": itemName,
+                                                                            "quantity": itemQuantity,
+                                                                            "price": itemPrice,
+                                                                            "description": description,
+                                                                            "image": image
+                                                                        },
+                                                                        success: function (data) {
+                                                                            alert('Item added!');
+                                                                        },
+                                                                        error: function () {
+                                                                            console.log("Error, fail to get purchases.");
+                                                                        }
+                                                                    });
+                                                                },
+                                                                error: function () {
+                                                                    console.log("Error: fail to get userCart");
+                                                                }
+                                                            });
+                                                        } else {
+                                                            //default
+                                                            var defaultValue = 0;
+                                                            calculateTotal(defaultValue.toFixed(2));
+                                                        }
+                                                    }
+            div
+                br
+                marquee(behavior='scroll', dir='ltr', align='absbottom')
+                    img(src='/usepics/logo5.jpg', width='100', height='70')
+                    img(src='/usepics/logo11.jpg', width='100', height='70')
+                    img(src='/usepics/logo12.jpg', width='100', height='70')
+                    img(src='/usepics/logo8.jpg', width='100', height='70')
+                    img(src='/usepics/logo6.jpg', width='100', height='70')
+                    img(src='/usepics/logo4.jpg', width='100', height='70')
+                    img(src='/usepics/logo3.jpg', width='100', height='70')
+                    img(src='/usepics/logo13.jpg', width='100', height='70')
+                    img(src='/usepics/logo15.jpg', width='100', height='70')
+                    img(src='/usepics/logo1.jpg', width='100', height='70')
+                    img(src='/usepics/logo2.jpg', width='100', height='70')
+                    img(src='/usepics/logo14.jpg', width='100', height='70')
+                    img(src='/usepics/logo9.jpg', width='100', height='70')
+    .cleaner
+
+
+block footer
+    include footer
