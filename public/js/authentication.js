@@ -203,8 +203,9 @@ $().ready(function(){
 //user name display
 function changeLoginName(){
     //if sessionstorage is not empty
-    console.log("email: " + sessionStorage.getItem('useremail') + " oauthemail: " + sessionStorage.getItem('OAUTHemail'))
+    // console.log("email: " + sessionStorage.getItem('useremail') + " oauthemail: " + sessionStorage.getItem('OAUTHemail'))
     if(sessionStorage.getItem('useremail')){
+    	console.log('changing text');
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
     }
