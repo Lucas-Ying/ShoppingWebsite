@@ -6,6 +6,7 @@ $().ready(function(){
         location.href = 'index';
     });
 
+
     //login button
     $('#log-in').on('click',function(){
         //get the name/email of the login button
@@ -13,7 +14,7 @@ $().ready(function(){
         if(loginName =='LOG IN'){
             location.href = 'login';
         }
-        else if(loginName =='LOG OUT'){
+        else if(loginName =='LOGOUT'){
             logout();
         }
     });
@@ -175,9 +176,10 @@ $().ready(function(){
             dataType:'json',
 
             success: function(data){                   
-               // console.log(data.name+" : "+data.email);
+               console.log("--------------------" + data.name+" : "+data.email);
                 var username = data.name;
                 var useremail = data.email;
+
 
                 if(!sessionStorage.getItem('useremail')){
                     if(username && useremail){
@@ -202,10 +204,14 @@ $().ready(function(){
 //user name display
 function changeLoginName(){
     //if sessionstorage is not empty
+    // console.log("email: " + sessionStorage.getItem('useremail') + " oauthemail: " + sessionStorage.getItem('OAUTHemail'))
     if(sessionStorage.getItem('useremail')){
+    	console.log('changing text');
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
-    }else{
+        document.getElementById('log-in').innerHTML='LOGOUT';
+    }
+    else{
         document.getElementById('registration').innerHTML='REGISTRATION';
         document.getElementById('log-in').innerHTML='LOG IN';
     }
@@ -216,6 +222,8 @@ function changeLoginName(){
 function logout(){
     sessionStorage.setItem('useremail', "");
     sessionStorage.setItem('username', "");
+    // sessionStorage.setItem('OAUTHuser', "");
+    // sessionstorage.setItem('OAUTHemail', "");
     changeLoginName();
     $.ajax({
         method:'PUT',
