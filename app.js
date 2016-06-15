@@ -169,8 +169,8 @@ function addUserIfNeeded (profile) {
 	if(usersEmail!= null || usersEmail != 'undefined'){
     // username = usersName;
     // email = usersEmail;
-    sessionStorage.setItem('OAUTHuser', userName);
-		sessionStorage.setItem('OAUTHemail', userEmail);
+    sessionStorage.setItem('OAUTHuser', usersName);
+		sessionStorage.setItem('OAUTHemail', usersEmail);
 
   	var q = "SELECT * FROM users where email = $1";
     var query = client.query(q, [sessionStorage.getItem('OAUTHemail')]);
