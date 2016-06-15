@@ -203,11 +203,12 @@ $().ready(function(){
 //user name display
 function changeLoginName(){
     //if sessionstorage is not empty
+    console.log("email: " + sessionStorage.getItem('useremail') + " oauthemail: " + sessionStorage.getItem('OAUTHemail'))
     if(sessionStorage.getItem('useremail')){
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
     }
-    else if(sessionStorage.getItem('OAUTHuser'))
+    else if(sessionStorage.getItem('OAUTHemail'))
     {
     	 document.getElementById('registration').innerHTML=sessionStorage.getItem('OAUTHuser');
         document.getElementById('log-in').innerHTML='LOG OUT';	
