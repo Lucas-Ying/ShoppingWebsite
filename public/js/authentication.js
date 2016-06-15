@@ -13,7 +13,7 @@ $().ready(function(){
         if(loginName =='LOG IN'){
             location.href = 'login';
         }
-        else if(loginName =='LOG OUT'){
+        else if(loginName =='LOGOUT'){
             logout();
         }
     });
@@ -209,7 +209,7 @@ function changeLoginName(){
     	console.log('changing text');
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
-        document.getElementById('log-in').innerHTML='LOG OUT';
+        document.getElementById('log-in').innerHTML='LOGOUT';
     }
     // else if(sessionStorage.getItem('OAUTHemail'))
     // {
