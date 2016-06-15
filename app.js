@@ -154,21 +154,24 @@ function ensureAuthenticated(req, res, next) {
 		res.redirect('/login')
 	}
 
-var username = "";
-var email ="";
+// var username = "";
+// var email ="";
+
 
 function addUserIfNeeded (profile) {
 		var profileID = profile.id;
-		var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
-		var usersEmail =  profile.emails[0].value;
+		sessionStorage.setItem('username', profile.name.givenName + ' ' + profile.name.familyName);
+		sessionStorage.setItem('email', profile.emails[0].value);
+		//var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
+		//var usersEmail =  profile.emails[0].value;
 
   //check if they exist in the db
-	if(usersEmail != null || usersEmail != 'undefined'){
-    username = usersName;
-    email = usersEmail;
+	if(sessionStorage.getItem('email') != null || sessionStorage.getItem('email') != 'undefined'){
+    // username = usersName;
+    // email = usersEmail;
 
   	var q = "SELECT * FROM users where email = $1";
-    var query = client.query(q, [usersEmail]);
+    var query = client.query(q, [sessionStorage.getItem('email')]);
     var results =[];
 
     // Stream results back one row at a time
@@ -180,7 +183,7 @@ function addUserIfNeeded (profile) {
     query.on('end', function() {
     	console.log("results length " + results.length);
     	if(results.length == 0){
-    		addUser(usersName, usersEmail);
+    		addUser(sessionStorage.getItem('username'), sessionStorage.getItem('email'));
     	}
     	console.log('Result: ' + results);
     });
@@ -215,15 +218,15 @@ function addUser(name, email){
 
 app.get('/get_OAuth',function(req,res){
 
-  var user ={'name': username,'email': email};
+  var user ={'name': sessionStorage.getItem('username'),'email': sessionStorage.getItem('email')};
   if(user){
     res.json(user);
   }
 });
 
 app.put('/OAuth_Logout', function(req, res){
-  username = "";
-  email ="";
+  sessionStorage.getItem("");
+  sessionStorage.getItem('email');
 });
 
 //=============================END OAUTH===========================
