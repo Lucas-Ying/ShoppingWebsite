@@ -155,8 +155,8 @@
 			res.redirect('/login')
 		}
 
-	// var username = "";
-	// var email ="";
+	var username = "";
+	var email ="";
 
 
 	function addUserIfNeeded (profile) {
@@ -168,17 +168,17 @@
 	  //check if they exist in the db
 		if(usersEmail!= null || usersEmail != 'undefined')
 		{
-	    // username = usersName;
-	    // email = usersEmail;
-	  	  sessionStorage.setItem('OAUTHuser', usersName);
-		  sessionStorage.setItem('OAUTHemail', usersEmail);
+	    username = usersName;
+	    email = usersEmail;
+	  	//   sessionStorage.setItem('OAUTHuser', usersName);
+		  // sessionStorage.setItem('OAUTHemail', usersEmail);
 
 	  		var q = "SELECT * FROM users where email = $1";
-	    	var query = client.query(q, [sessionStorage.getItem('OAUTHemail')]);
+	    	var query = client.query(q, [email]);
 	    	var results =[];
 	    	console.log("Results: " + results);
-	    	var semail = sessionStorage.getItem('OAUTHemail');
-	    	console.log("Session email: " + semail); 
+	    	// var semail = sessionStorage.getItem('OAUTHemail');
+	    	// console.log("Session email: " + semail); 
 	    	console.log("Email: " + usersEmail);
 
 	    // Stream results back one row at a time
@@ -190,7 +190,7 @@
 	    	query.on('end', function() {
 	    		console.log("results length " + results.length);
 	    		if(results.length == 0){
-	    			addUser(sessionStorage.getItem('OAUTHuser'), sessionStorage.getItem('OAUTHemail'));
+	    			addUser(username, email;
 	    		}
 	    		console.log('Result: ' + results);
 	    	});
@@ -225,15 +225,15 @@
 
 	app.get('/get_OAuth',function(req,res){
 
-	  var user ={'name': sessionStorage.getItem('OAUTHuser'),'email': sessionStorage.getItem('OAUTHemail')};
+	  var user ={'name': username,'email': email};
 	  if(user){
 	    res.json(user);
 	  }
 	});
 
 	app.put('/OAuth_Logout', function(req, res){
-	  sessionStorage.setItem("OAUTHuser", "");
-	  sessionStorage.setItem('OAUTHemail', "");
+	  username = "";
+	  email = "";
 	});
 
 	//=============================END OAUTH===========================
