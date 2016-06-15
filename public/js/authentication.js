@@ -206,7 +206,13 @@ function changeLoginName(){
     if(sessionStorage.getItem('useremail')){
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
-    }else{
+    }
+    else if(sessionStorage.getItem('OAUTHuser'))
+    {
+    	 document.getElementById('registration').innerHTML=sessionStorage.getItem('OAUTHuser');
+        document.getElementById('log-in').innerHTML='LOG OUT';	
+    }
+    else{
         document.getElementById('registration').innerHTML='REGISTRATION';
         document.getElementById('log-in').innerHTML='LOG IN';
     }
