@@ -171,13 +171,14 @@
 	    // username = usersName;
 	    // email = usersEmail;
 	  	  sessionStorage.setItem('OAUTHuser', usersName);
-			sessionStorage.setItem('OAUTHemail', usersEmail);
+		  sessionStorage.setItem('OAUTHemail', usersEmail);
 
 	  		var q = "SELECT * FROM users where email = $1";
 	    	var query = client.query(q, [sessionStorage.getItem('OAUTHemail')]);
 	    	var results =[];
 	    	console.log("Results: " + results);
-	    	console.log("Session email: " + sessionStorage.getItem('OAUTHemail'));
+	    	var semail = sessionStorage.getItem('OAUTHemail');
+	    	console.log("Session email: " + semail); 
 	    	console.log("Email: " + usersEmail);
 
 	    // Stream results back one row at a time
