@@ -12,6 +12,7 @@ var session = require('express-session');
 var Grant = require('grant-express');
 var passport = require('passport');
 var grant = new Grant(require('./config.json'));
+var sessionStorage = require('sessionstorage');
 //use to prevent csrf attack
 var csrf = require('csurf');
 
