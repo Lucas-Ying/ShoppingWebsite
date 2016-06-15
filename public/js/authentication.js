@@ -209,7 +209,7 @@ function changeLoginName(){
     	console.log('changing text');
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
-        document.getElementById('log-in').innerHTML='LOG OU';
+        document.getElementById('log-in').innerHTML='LOG OUT';
     }
     // else if(sessionStorage.getItem('OAUTHemail'))
     // {
