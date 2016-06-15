@@ -166,7 +166,7 @@ function addUserIfNeeded (profile) {
 		var usersEmail =  profile.emails[0].value;
 
   //check if they exist in the db
-	if(userEmail!= null || userEmail != 'undefined'){
+	if(usersEmail!= null || usersEmail != 'undefined'){
     // username = usersName;
     // email = usersEmail;
     sessionStorage.setItem('OAUTHuser', userName);
