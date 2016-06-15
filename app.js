@@ -160,18 +160,19 @@ function ensureAuthenticated(req, res, next) {
 
 function addUserIfNeeded (profile) {
 		var profileID = profile.id;
-		SessionStorage.setItem('OAUTHuser', profile.name.givenName + ' ' + profile.name.familyName);
-		SessionStorage.setItem('OAUTHemail', profile.emails[0].value);
-		//var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
-		//var usersEmail =  profile.emails[0].value;
+		
+		var usersName =  profile.name.givenName + ' ' + profile.name.familyName;
+		var usersEmail =  profile.emails[0].value;
 
   //check if they exist in the db
-	if(SessionStorage.getItem('OAUTHemail') != null || SessionStorage.getItem('OAUTHemail') != 'undefined'){
+	if(userEmail!= null || userEmail != 'undefined'){
     // username = usersName;
     // email = usersEmail;
+    sessionStorage.setItem('OAUTHuser', userName);
+		sessionStorage.setItem('OAUTHemail', userEmail);
 
   	var q = "SELECT * FROM users where email = $1";
-    var query = client.query(q, [SessionStorage.getItem('OAUTHemail')]);
+    var query = client.query(q, [sessionStorage.getItem('OAUTHemail')]);
     var results =[];
 
     // Stream results back one row at a time
@@ -183,7 +184,7 @@ function addUserIfNeeded (profile) {
     query.on('end', function() {
     	console.log("results length " + results.length);
     	if(results.length == 0){
-    		addUser(SessionStorage.getItem('OAUTHuser'), SessionStorage.getItem('OAUTHemail'));
+    		addUser(sessionStorage.getItem('OAUTHuser'), sessionStorage.getItem('OAUTHemail'));
     	}
     	console.log('Result: ' + results);
     });
@@ -218,15 +219,15 @@ function addUser(name, email){
 
 app.get('/get_OAuth',function(req,res){
 
-  var user ={'name': SessionStorage.getItem('OAUTHuser'),'email': SessionStorage.getItem('OAUTHemail')};
+  var user ={'name': sessionStorage.getItem('OAUTHuser'),'email': sessionStorage.getItem('OAUTHemail')};
   if(user){
     res.json(user);
   }
 });
 
 app.put('/OAuth_Logout', function(req, res){
-  SessionStorage.setItem("OAUTHuser", "");
-  SessionStorage.setItem('OAUTHemail', "");
+  sessionStorage.setItem("OAUTHuser", "");
+  sessionStorage.setItem('OAUTHemail', "");
 });
 
 //=============================END OAUTH===========================

@@ -217,6 +217,8 @@ function changeLoginName(){
 function logout(){
     sessionStorage.setItem('useremail', "");
     sessionStorage.setItem('username', "");
+    sessionStorage.setItem('OAUTHuser', "");
+    sessionstorage.setItem('OAUTHemail', "");
     changeLoginName();
     $.ajax({
         method:'PUT',
