@@ -179,7 +179,7 @@ $().ready(function(){
                console.log("--------------------" + data.name+" : "+data.email);
                 var username = data.name;
                 var useremail = data.email;
-                changeLoginName();
+
 
                 if(!sessionStorage.getItem('useremail')){
                     if(username && useremail){
@@ -209,6 +209,7 @@ function changeLoginName(){
     	console.log('changing text');
         document.getElementById('registration').innerHTML=sessionStorage.getItem('username');
         document.getElementById('log-in').innerHTML='LOG OUT';
+         document.getElementById('log-in').attribute='Log out';
     }
     // else if(sessionStorage.getItem('OAUTHemail'))
     // {
