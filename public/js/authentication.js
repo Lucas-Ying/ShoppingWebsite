@@ -117,6 +117,8 @@ $().ready(function(){
                 data:{'email':email},
 
                 success: function(data){
+                	if(data != undefined)
+                	{
                     if(data[0].email == email){
                         if(data[0].pass == passW){      
                             sessionStorage.setItem('useremail', data[0].email);
@@ -139,6 +141,8 @@ $().ready(function(){
                     alert("Please enter a valid email address");
                     document.getElementById('err').innerHTML="Email doesn't exists";
                     document.getElementById('err').style.visibility = 'visible';
+                }
+                alert("Please enter a valid email address");
                 },
                 error:function(){
                 	alert("Please enter a valid email address");
