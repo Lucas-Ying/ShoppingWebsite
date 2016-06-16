@@ -117,10 +117,10 @@ $().ready(function(){
                 data:{'email':email},
 
                 success: function(data){
-                	if(data != undefined)
+                	if(typeof data[0] != 'undefined')
                 	{
-                    if(data[0].email == email){
-                        if(data[0].pass == passW){      
+                    	if(data[0].email == email){
+                        	if(data[0].pass == passW){      
                             sessionStorage.setItem('useremail', data[0].email);
                             sessionStorage.setItem('username',data[0].name);
                             //console.log(sessionStorage.getItem('username'));
