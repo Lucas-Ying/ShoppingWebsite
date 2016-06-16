@@ -141,6 +141,7 @@ $().ready(function(){
                     document.getElementById('err').style.visibility = 'visible';
                 },
                 error:function(){
+                	alert("Please enter a valid email address");
                     console.log("Error: fail to get users");
                 }
             });
