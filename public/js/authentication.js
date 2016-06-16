@@ -136,6 +136,7 @@ $().ready(function(){
                             //console.log("Error: incorrect password");
                         }
                     }
+                    alert("Please enter a valid email address");
                     document.getElementById('err').innerHTML="Email doesn't exists";
                     document.getElementById('err').style.visibility = 'visible';
                 },
