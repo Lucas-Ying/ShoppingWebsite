@@ -217,9 +217,10 @@ function decrypt(text){
 
 	function addUser(name, email){
 	  //user isnt in the db so we want to add them
-	  var q = "insert into users (name, email) values ($1, $2)";
+	  var q = "insert into users (name, email) values ($1, $2) returning id";
 	  var query = client.query(q, [name, email]);
 	  var results =[];
+	  var userid = "";
 
 	  //error handler 
 	  query.on('error',function(){
@@ -235,8 +236,9 @@ function decrypt(text){
 
 	  //after all the data is returned close connection and return result
 	  query.on('end',function(){
+	  		  addCart(results[0]);
 	    console.log(results);
-	    console.log("logged in successfully!");
+	    console.log("Account created successfully");
 	    //res.json(results);
 	  });
 	}
@@ -253,6 +255,35 @@ function decrypt(text){
 	  username = "";
 	  email = "";
 	});
+
+	function addCart(userID){
+	  //user isnt in the db so we want to add them
+	  var q = "insert into cart (userid) values ($1)";
+	  var query = client.query(q, [userID]);
+	  var results =[];
+
+
+	  //error handler 
+	  query.on('error',function(){
+	   res.status(500).send('Error, failed to create cart');
+	  });
+
+	  //stream results back one row at a time
+	  query.on('row',function(row){
+	    results.push(row);
+	    console.log("Results of create cart: " + row)
+
+	  });
+
+	  //after all the data is returned close connection and return result
+	  query.on('end',function(){
+	    console.log(results);
+	    console.log("Cart created successfully");
+	    //res.json(results);
+	  });
+	}
+
+	
 
 	//=============================END OAUTH===========================
 
@@ -659,7 +690,7 @@ function decrypt(text){
 	  var cartUserId = req.body.userID;
 	  var userEmail = req.body.email;
 
-	  console.log("Cart user id: " + cartUserId + " usersEmail: " + userEmail);
+	  console.log("usersEmail: " + userEmail);
 	  var q = "select * from (select cart.id,users.email from cart inner join users "+
 	    "on cart.userID = users.id) userCart where userCart.email =$1";
 	  var query = client.query(q, [userEmail]);
