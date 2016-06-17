@@ -75,7 +75,7 @@ block content
                                                                             alert('Item added!');
                                                                         },
                                                                         error: function () {
-                                                                            console.log("Error, fail to get purchases.");
+                                                                            console.log("Error, fail to add products to shopping cart.");
                                                                         }
                                                                     });
                                                                 },
@@ -85,8 +85,7 @@ block content
                                                             });
                                                         } else {
                                                             //default
-                                                            var defaultValue = 0;
-                                                            calculateTotal(defaultValue.toFixed(2));
+                                                            alert('Login before using shopping cart!')
                                                         }
                                                     }
             div
