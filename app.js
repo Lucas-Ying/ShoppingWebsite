@@ -659,6 +659,7 @@ function decrypt(text){
 	  var cartUserId = req.body.userID;
 	  var userEmail = req.body.email;
 
+	  console.log("Cart user id: " + cartUserId + " usersEmail: " + userEmail);
 	  var q = "select * from (select cart.id,users.email from cart inner join users "+
 	    "on cart.userID = users.id) userCart where userCart.email =$1";
 	  var query = client.query(q, [userEmail]);
