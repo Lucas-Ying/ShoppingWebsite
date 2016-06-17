@@ -258,6 +258,7 @@ function decrypt(text){
 
 	function addCart(userID){
 	  //user isnt in the db so we want to add them
+	  console.log("user id: " + userID);
 	  var q = "insert into cart (userid) values ($1)";
 	  var query = client.query(q, [userID]);
 	  var results =[];
