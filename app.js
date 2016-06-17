@@ -19,6 +19,9 @@ var crypto = require('crypto'),
     algorithm = 'aes-256-ctr',
     password = 'sup3rStr0nghfhahwnf@38493';
 
+//use to get weather condition
+var yql = require('yql');
+
 //use to set http headers
 var helmet = require('helmet');
 
@@ -79,6 +82,7 @@ function decrypt(text) {
     var dec = decipher.update(text, 'hex', 'utf8')
     dec += decipher.final('utf8');
     return dec;
+}
 
 //======================== Get Client IP Address =====================//
 function getClientIp(req){
@@ -96,10 +100,30 @@ function getClientIp(req){
 //===================================================================//
 
 //======================== Weather condition =====================//
+var weatherQuery = new yql('select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="wellington")');
+var weatherResult = "Initial";
 
+getWeather();
+
+function getWeather(){
+    weatherQuery.exec(function (err, res) {
+        weatherResult = res;
+    });
+    setTimeout(function () {
+        printWeather(weatherResult);
+    }, 10000);
+}
+
+function printWeather(res) {
+    console.log(res);
+    console.log('--------------------------------------');
+    console.log(res.query.results.channel);
+    console.log('--------------------------------------');
+    console.log(res.query.results.channel.location.city);
+    console.log('--------------------------------------');
+}
 //===================================================================//
 
-}
 
 //====================OAUTH===================================
 // Passport session setup.
