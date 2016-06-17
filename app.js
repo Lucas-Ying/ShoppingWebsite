@@ -19,9 +19,6 @@ var crypto = require('crypto'),
     algorithm = 'aes-256-ctr',
     password = 'sup3rStr0nghfhahwnf@38493';
 
-//use to get weather condition
-var yql = require('yql');
-
 //use to set http headers
 var helmet = require('helmet');
 
@@ -84,45 +81,9 @@ function decrypt(text) {
     return dec;
 }
 
-//======================== Get Client IP Address =====================//
-function getClientIp(req){
-    var ipAddr;
-    ipAddr = req.header['x-forwarded-for'] ||
-            req.connection.remoteAddress ||
-            req.socket.remoteAddress ||
-            req.connection.socket.remoteAddress;
-    return ipAddr;
-}
-//===================================================================//
+// //======================== Weather condition =====================//
 
-//======================== Get location by IP address =====================//
-
-//===================================================================//
-
-//======================== Weather condition =====================//
-var weatherQuery = new yql('select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="wellington")');
-var weatherResult = "Initial";
-
-getWeather();
-
-function getWeather(){
-    weatherQuery.exec(function (err, res) {
-        weatherResult = res;
-    });
-    setTimeout(function () {
-        printWeather(weatherResult);
-    }, 10000);
-}
-
-function printWeather(res) {
-    console.log(res);
-    console.log('--------------------------------------');
-    console.log(res.query.results.channel);
-    console.log('--------------------------------------');
-    console.log(res.query.results.channel.location.city);
-    console.log('--------------------------------------');
-}
-//===================================================================//
+// //===================================================================//
 
 
 //====================OAUTH===================================
