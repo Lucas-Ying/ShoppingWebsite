@@ -236,7 +236,7 @@ function decrypt(text){
 
 	  //after all the data is returned close connection and return result
 	  query.on('end',function(){
-	  		  addCart(results[0]);
+	  		  addCart(results[0].id);
 	    console.log(results);
 	    console.log("Account created successfully");
 	    //res.json(results);
@@ -262,12 +262,6 @@ function decrypt(text){
 	  var q = "insert into cart (userid) values ($1)";
 	  var query = client.query(q, [userID]);
 	  var results =[];
-
-
-	  //error handler 
-	  query.on('error',function(){
-	   res.status(500).send('Error, failed to create cart');
-	  });
 
 	  //stream results back one row at a time
 	  query.on('row',function(row){
