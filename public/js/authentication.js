@@ -12,7 +12,7 @@ $().ready(function(){
         //get the name/email of the login button
         var loginName = document.getElementById('log-in').text;
         if(loginName =='LOG IN'){
-            location.href = 'login';
+            location.href = '/login';
         }
         else if(loginName =='LOGOUT'){
             logout();
@@ -26,7 +26,7 @@ $().ready(function(){
             location.href = 'kart';    
         }
         else{
-            location.href = 'register';
+            location.href = '/register';
         }
     });
     

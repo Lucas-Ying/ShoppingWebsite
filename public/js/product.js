@@ -1,5 +1,12 @@
 $().ready(function(){
+    $('#addToCart').on('click',function(){
+        var itemName = document.getElementById('addToCart').getAttribute('itemName');
+        var itemPrice = document.getElementById('addToCart').getAttribute('itemPrice');
+        var description = document.getElementById('addToCart').getAttribute('itemDescription');
+        var image = document.getElementById('addToCart').getAttribute('itemImage');
+        addToCart(itemName, itemPrice, description, image);
 
+    });
 });
 
 function addToCart(itemName, itemPrice, description, image) {
@@ -7,8 +14,8 @@ function addToCart(itemName, itemPrice, description, image) {
     var itemQuantity = 1;
     var registerName = document.getElementById('registration').text;
     var email = sessionStorage.getItem('useremail');
-    console.log("Adding to cart, Email: " + email);
-    console.log("Adding to cart, name: " + registerName);
+    console.log(email);
+    console.log(registerName);
     //if email is not empty
     if (email) {
         if (registerName == 'REGISTRATION') {
@@ -39,7 +46,7 @@ function addToCart(itemName, itemPrice, description, image) {
                         alert('Item added!');
                     },
                     error: function () {
-                        console.log("Error, fail to get purchases.");
+                        console.log("Error, fail to add products to shopping cart.");
                     }
                 });
             },
@@ -49,7 +56,6 @@ function addToCart(itemName, itemPrice, description, image) {
         });
     } else {
         //default
-        var defaultValue = 0;
-        calculateTotal(defaultValue.toFixed(2));
+        alert('Login before using shopping cart!')
     }
 }
