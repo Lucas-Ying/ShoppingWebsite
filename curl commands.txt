@@ -1,7 +1,4 @@
-Not working, update_user, get user
-
 curl https://tranquil-journey-51576.herokuapp.com
-
 	
 curl -H "Accept:application/json" https://tranquil-journey-51576.herokuapp.com/get_users | python -m json.tool
 
@@ -32,4 +29,25 @@ curl -H "Accept:application/json" https://tranquil-journey-51576.herokuapp.com/g
 
 curl -v -H "Content-Type:application/json" -X PUT https://tranquil-journey-51576.herokuapp.com/add_purchases -d '{"cartid":"52","name":"scarf", "quantity":"40", "price":"100", "description":"make your neck warm"}'
 
-curl -v -H "Content-Type:application/json" -X POST https://tranquil-journey-51576.herokuapp.com/update_purchase -d '{"cartid":"52","name":"scarf", "quantity":"90", "price":"190"}'
+curl -v -X DELETE https://tranquil-journey-51576.herokuapp.com/delete_purchase -d '{"cartid":"52","name":"scarf", "quantity":"90", "price":"190"}'
+
+curl -v -X DELETE https://tranquil-journey-51576.herokuapp.com/checkout -d '{"cartid":"52"}'
+
+curl -H "Accept:application/json" https://tranquil-journey-51576.herokuapp.com/collection | python -m json.tool
+
+curl https://tranquil-journey-51576.herokuapp.com/help
+curl https://tranquil-journey-51576.herokuapp.com/index
+curl https://tranquil-journey-51576.herokuapp.com/kart
+curl https://tranquil-journey-51576.herokuapp.com/kids1
+curl https://tranquil-journey-51576.herokuapp.com/login
+curl https://tranquil-journey-51576.herokuapp.com/men
+curl https://tranquil-journey-51576.herokuapp.com/register
+curl https://tranquil-journey-51576.herokuapp.com/women1
+
+
+
+
+
+
+
+
