@@ -546,7 +546,7 @@ app.put('/get_user', function (req, res) {
     var userEmail = req.body.email;
     var userPass = req.body.pass;
     //console.log(userEmail);
-    var q = "SELECT * FROM users WHERE email=$1 RETURNING id, email, pass, name";
+    var q = "SELECT * FROM users WHERE email=$1";
     var query = client.query(q, [userEmail]);
 
     var results = [];
