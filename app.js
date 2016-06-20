@@ -498,7 +498,7 @@ app.delete('/delete_product', function (req, res) {
 
     //error handler for /delete_product
     query.on('error', function () {
-        res.status(500).send('Error, fail to delete product id:' + productId + ' product: ' + productName);
+        res.status(500).send('Error, fail to delete product id:' + productId);
     });
 
     //stream results back one row at a time
@@ -542,11 +542,11 @@ app.get('/get_users', function (req, res) {
     });
 });
 
-app.put('/get_user', function (req, res) {
+app.get('/get_user', function (req, res) {
     var userEmail = req.body.email;
     var userPass = req.body.pass;
     //console.log(userEmail);
-    var q = "SELECT * FROM users WHERE email=$1";
+    var q = "SELECT * FROM users WHERE email=$1 RETURNING id, email, pass, name";
     var query = client.query(q, [userEmail]);
 
     var results = [];
@@ -601,7 +601,7 @@ app.put('/add_user', function (req, res) {
 });
 
 //update users
-app.post('/update_user', function (req, res) {
+app.put('/update_user', function (req, res) {
     var userId = req.body.id;
     var userEmail = req.body.email;
     var userPass = encrypt(eq.body.pass);
