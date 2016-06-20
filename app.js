@@ -600,36 +600,6 @@ app.put('/add_user', function (req, res) {
     });
 });
 
-//update users
-app.put('/update_user', function (req, res) {
-    var userId = req.body.id;
-    var userEmail = req.body.email;
-    var userPass = encrypt(eq.body.pass);
-    var userName = req.body.name;
-    var userCart = req.body.cart;
-
-    var q = "update users set email = $1, pass = $2, name = $3 where id = $4 RETURNING id,email,pass,name";
-    var query = client.query(q, [userEmail, userPass, userName, userId]);
-    var results = [];
-
-    //error handler for /update_user
-    query.on('error', function () {
-        res.status(500).send('Error, fail to update user Id:' + userId + ' Name: ' + userName);
-    });
-
-    //stream results back one row at a time
-    query.on('row', function (row) {
-        results.push(row);
-    });
-
-    //after all the data is returned close connection and return result
-    query.on('end', function () {
-        res.json(results);
-        console.log("result: " + results);
-    });
-});
-
-
 //delete users
 app.delete('/delete_user', function (req, res) {
     var userId = req.body.id;
