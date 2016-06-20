@@ -2,6 +2,8 @@ curl https://tranquil-journey-51576.herokuapp.com
 	
 curl -H "Accept:application/json" https://tranquil-journey-51576.herokuapp.com/get_users | python -m json.tool
 
+curl -H "Accept:application/json" https://tranquil-journey-51576.herokuapp.com/get_product | python -m json.tool
+
 curl -i -X PUT -H "Content-Type:application/json" https://tranquil-journey-51576.herokuapp.com/add_user -d '{"email":"test@testing3.com","pass":"simplePass", "name":"curl test", "cart":"1"}'
 
 curl -X GET -H "Content-type: application/json" -H "Accept: application/json"  " https://tranquil-journey-51576.herokuapp.com/get_users{"email":"test@test1"}"

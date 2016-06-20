@@ -542,7 +542,7 @@ app.get('/get_users', function (req, res) {
     });
 });
 
-app.get('/get_user', function (req, res) {
+app.put('/get_user', function (req, res) {
     var userEmail = req.body.email;
     var userPass = req.body.pass;
     //console.log(userEmail);
