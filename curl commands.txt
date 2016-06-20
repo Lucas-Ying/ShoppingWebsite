@@ -6,6 +6,13 @@ curl -H "Accept:application/json" https://tranquil-journey-51576.herokuapp.com/g
 
 curl -i -X PUT -H "Content-Type:application/json" https://tranquil-journey-51576.herokuapp.com/add_user -d '{"email":"test@testing3.com","pass":"simplePass", "name":"curl test", "cart":"1"}'
 
+curl -i -X PUT -H "Content-Type:application/json" https://tranquil-journey-51576.herokuapp.com/add_product -d '{"name":"scarf","cost":"1000", "description":"scarf keeps your neck warm"}'
+
+curl -i -X POST -H "Content-Type:application/json" https://tranquil-journey-51576.herokuapp.com/update_product -d '{"id":"241","name":"scarf", "cost":"2000", "id":"100", "description":"much warm, so scarf"}'
+
+curl -v -X DELETE https://tranquil-journey-51576.herokuapp.com/delete_product -d '{"id":"241"}'
+
+
 curl -i -X PUT -H "Content-Type:application/json" https://tranquil-journey-51576.herokuapp.com/get_user -d '{"email":"test@testing3.com"}'
 
 curl -X GET -H "Content-type: application/json" -H "Accept: application/json"  " https://tranquil-journey-51576.herokuapp.com/get_users{"email":"test@test1"}"
@@ -16,8 +23,6 @@ curl -i -X POST -H "Content-Type:application/json" https://tranquil-journey-5157
 curl -v -H "Content-Type:application/json" -X PUT https://tranquil-journey-51576.herokuapp.com/update_user -d '{"email":"test@testing3.com","pass":"simplePass2", "name":"curl test updated", "id":"100", "cart":"45"}'
 
 curl -v -X DELETE https://tranquil-journey-51576.herokuapp.com/delete_user -d '{"email":"test@testing3.com","pass":"simplePass2", "name":"curl test updated", "id":"100", "cart":"45"}'
-
-curl -H "Content-Type: application/json" -X POST -d '{"email":"test@testing3.com","pass":"simplePass2", "name":"curl test updated", "id":"100", "cart":"45"}' https://tranquil-journey-51576.herokuapp.com/get_user
 
 curl -H "Accept:application/json" https://tranquil-journey-51576.herokuapp.com/get_cart?id=100 | python -m json.tool
 
