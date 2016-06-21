@@ -20,6 +20,7 @@ block content
                         // list products
                         .row
                             -var product_list = JSON.parse(products)
+                            -var buttonIndex = 0;
                             for product in product_list
                                 .col-sm-6.col-md-4
                                     .thumbnail
@@ -34,7 +35,8 @@ block content
                                             br
                                             br
                                             p
-                                                button#addToCart.btn.btn-primary.btn-sm(type='button', itemName=product.name, itemPrice=product.cost, itemDescription=product.description, itemImage=product.image) Add to Cart
+                                                button.addToCart.btn.btn-primary.btn-sm(id='addToCart'+buttonIndex, type='button', itemName=product.name, itemPrice=product.cost, itemDescription=product.description, itemImage=product.image) Add to Cart
+                                -buttonIndex++;
             div
                 br
                 marquee(behavior='scroll', dir='ltr', align='absbottom')

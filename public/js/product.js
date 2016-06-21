@@ -1,9 +1,9 @@
 $().ready(function(){
-    $('#addToCart').on('click',function(){
-        var itemName = document.getElementById('addToCart').getAttribute('itemName');
-        var itemPrice = document.getElementById('addToCart').getAttribute('itemPrice');
-        var description = document.getElementById('addToCart').getAttribute('itemDescription');
-        var image = document.getElementById('addToCart').getAttribute('itemImage');
+    $('.addToCart').on('click',function(e){
+        var itemName = document.getElementById(e.target.id).getAttribute('itemName');
+        var itemPrice = document.getElementById(e.target.id).getAttribute('itemPrice');
+        var description = document.getElementById(e.target.id).getAttribute('itemDescription');
+        var image = document.getElementById(e.target.id).getAttribute('itemImage');
         addToCart(itemName, itemPrice, description, image);
 
     });

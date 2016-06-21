@@ -215,3 +215,8 @@ function calculateShipping(price){
         return price*10/100;
     }
 }
+
+//add to transection history
+function addToHistory(){
+
+}
