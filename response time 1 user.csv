@@ -1,0 +1,25 @@
+"Method","Name","# requests","# failures","Median response time","Average response time","Min response time","Max response time","Average Content Size","Requests/s"
+"GET","/",1,0,360,355,355,355,6281,0.01
+"PUT","/addCart",1,1,220,224,224,224,50,0.01
+"PUT","/add_user",1,1,7000,6984,6984,6984,82,0.01
+"DELETE","/checkout?cartid=53",2,0,220,232,224,241,2,0.02
+"GET","/collection/*",3,1,240,547,230,1174,6506,0.03
+"DELETE","/delete_cart?id=54",1,1,240,239,239,239,2,0.01
+"DELETE","/delete_cart?name=manygloves&cartid=53",1,0,230,234,234,234,2,0.01
+"DELETE","/delete_user?id=106&pass=aaaaaa&name=james",1,1,230,230,230,230,2,0.01
+"GET","/get_cart",1,1,230,230,230,230,798,0.01
+"GET","/get_purchases",1,0,240,236,236,236,2,0.01
+"PUT","/get_purchases",0,1,0,0,0,0,0,0.00
+"PUT","/get_user",0,2,0,0,0,0,0,0.00
+"PUT","/get_userCart",1,1,240,236,236,236,41,0.01
+"GET","/get_users",2,0,230,231,229,234,1462,0.02
+"GET","/help",1,0,630,625,625,625,5463,0.01
+"GET","/kart",1,0,310,312,312,312,5703,0.01
+"GET","/kids1",1,0,260,258,258,258,2396,0.01
+"GET","/login",1,0,310,305,305,305,6183,0.01
+"GET","/men",1,0,250,251,251,251,2379,0.01
+"GET","/register",1,0,300,299,299,299,6420,0.01
+"POST","/update_cart",1,1,220,223,223,223,2,0.01
+"POST","/update_purchase",1,0,230,227,227,227,2,0.01
+"GET","/women1",1,0,250,247,247,247,2377,0.01
+"None","Total",25,11,240,571,224,6984,2425,0.27
