@@ -921,17 +921,19 @@ app.delete('/checkout', function (req, res) {
 //======================== Transaction History =====================//
 
 //get purchases
-app.get('/get_purchases_by_cartid', function (req, res) {
-    var purchases_cartId = req.body.cartid;
+app.put('/get_purchases_by_cartid', function (req, res) {
+    var cartid = req.body.cartid;
+    console.log("cartid: "+ req.body.cartid);
 
     var query = client.query("select cartid, name, quantity, price, itemid, userid from "
                 + "(select * from purchases join (select id, name as productname, collection from products) pd "
-                + "on purchases.itemid = pd.id) new join cart on new.cartid = cart.id;");
+                + "on purchases.itemid = pd.id) new join cart on new.cartid = cart.id "
+                + "where cartid=$1", [cartid]);
     var results = [];
 
     //error handler for /get_purchases
     query.on('error', function (row, result) {
-        res.status(500).send('Error, fail to get purchases from cart, cartID: ' + purchases_cartId);
+        res.status(500).send('Error, fail to get purchases from cart, cartID: ' + cartid);
     });
 
     //stream results back one row at a time
@@ -970,6 +972,32 @@ app.put('/add_transactions', function (req, res) {
     });
 
     //after all the data is returned close connection and return result
+    query.on('end', function () {
+        res.json(results);
+        console.log("result: " + results);
+    });
+});
+
+//get purchase history
+app.get('/get_transactions', function (req, res) {
+    var purchases_cartId = req.body.cartid;
+
+    var query = client.query("select cartid, name, quantity, price, itemid, userid from "
+        + "(select * from purchases join (select id, name as productname, collection from products) pd "
+        + "on purchases.itemid = pd.id) new join cart on new.cartid = cart.id;");
+    var results = [];
+
+    //error handler for /get_purchases
+    query.on('error', function (row, result) {
+        res.status(500).send('Error, fail to get purchases from cart, cartID: ' + purchases_cartId);
+    });
+
+    //stream results back one row at a time
+    query.on('row', function (row) {
+        results.push(row);
+    });
+
+    //After all data is returned, close connection and return results
     query.on('end', function () {
         res.json(results);
         console.log("result: " + results);

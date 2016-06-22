@@ -60,23 +60,6 @@ $().ready(function () {
         //checkout button onclick remove all items of the user
         $('.itemTable').on('click', '.Checkout', function () {
             checkout(kartID);
-            // $.ajax({
-            //     method: 'delete',
-            //     url: '/checkout',
-            //     dataType: 'json',
-            //     data: {'cartid': kartID},
-            //
-            //     success: function (data) {
-            //         console.log("Checkout Successful!");
-            //         //reload table
-            //         $('#itemTable').find('tr:not(:first)').remove();
-            //         displayItem(kartID);
-            //         alert("Checkout Successful!");
-            //     },
-            //     error: function () {
-            //         console.log("Error, fail to checkout.");
-            //     }
-            // });
         });
 
         $('.itemTable').on('focus', '.count', function () {
@@ -222,13 +205,13 @@ function calculateShipping(price) {
 
 //add to transection history
 function checkout(kartID) {
+    console.log("get purchase successful. " + kartID);
     $.ajax({
-        method: 'GET',
+        method: 'PUT',
         url: '/get_purchases_by_cartid',
         dataType: 'json',
-        data: {'cartid': kartID},
+        data: { "cartid": kartID },
         success: function (data) {
-            console.log("get purchase successful. ");
             addToHistory(data, kartID);
         },
         error: function () {
