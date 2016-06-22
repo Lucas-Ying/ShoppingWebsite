@@ -952,18 +952,18 @@ app.put('/get_purchases_by_cartid', function (req, res) {
 app.put('/add_transactions', function (req, res) {
     var name = req.body.itemname;
     var quantity = req.body.quantity;
-    var price = req.body.price;
+    var totalcost = req.body.price * quantity;
     var itemid = req.body.itemid;
     var userid = req.body.userid;
 
-    var q = "insert into purchase_history (itemname, quantity, price, itemid, userid) "
+    var q = "insert into purchase_history (itemname, quantity, totalcost, itemid, userid) "
         + "values ($1,$2,$3,$4,$5)";
-    var query = client.query(q, [name, quantity, price, itemid, userid]);
+    var query = client.query(q, [name, quantity, totalcost, itemid, userid]);
     var results = [];
 
     //error handler for /add_purchases
     query.on('error', function () {
-        res.status(500).send('Error, fail to add to purchases Id:' + purchases_cartId + ' items: ' + purchasesName);
+        res.status(500).send('Error, fail to add to purchase history Id:' + cartid);
     });
 
     //stream results back one row at a time
@@ -979,17 +979,17 @@ app.put('/add_transactions', function (req, res) {
 });
 
 //get purchase history
-app.get('/get_transactions', function (req, res) {
-    var purchases_cartId = req.body.cartid;
+app.put('/get_transactions', function (req, res) {
+    var email = req.body.email;
 
-    var query = client.query("select cartid, name, quantity, price, itemid, userid from "
-        + "(select * from purchases join (select id, name as productname, collection from products) pd "
-        + "on purchases.itemid = pd.id) new join cart on new.cartid = cart.id;");
+    var query = client.query("select sum(quantity) as quantity, sum(totalcost) as totalcost, collection "
+                + "from (select * from purchase_history join users on purchase_history.userid = users.id) new "
+                + "join products on new.itemid=products.id where email=$1 group by collection;", [email]);
     var results = [];
 
     //error handler for /get_purchases
     query.on('error', function (row, result) {
-        res.status(500).send('Error, fail to get purchases from cart, cartID: ' + purchases_cartId);
+        res.status(500).send('Error, fail to get purchase history, userID: ' + userid);
     });
 
     //stream results back one row at a time
