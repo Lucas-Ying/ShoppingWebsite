@@ -1,15 +1,16 @@
 $().ready(function(){
-    $('#addToCart').on('click',function(){
-        var itemName = document.getElementById('addToCart').getAttribute('itemName');
-        var itemPrice = document.getElementById('addToCart').getAttribute('itemPrice');
-        var description = document.getElementById('addToCart').getAttribute('itemDescription');
-        var image = document.getElementById('addToCart').getAttribute('itemImage');
-        addToCart(itemName, itemPrice, description, image);
+    $('.addToCart').on('click',function(e){
+        var itemName = document.getElementById(e.target.id).getAttribute('itemName');
+        var itemPrice = document.getElementById(e.target.id).getAttribute('itemPrice');
+        var description = document.getElementById(e.target.id).getAttribute('itemDescription');
+        var image = document.getElementById(e.target.id).getAttribute('itemImage');
+        var itemID = document.getElementById(e.target.id).getAttribute('itemID');
+        addToCart(itemName, itemPrice, description, image, itemID);
 
     });
 });
 
-function addToCart(itemName, itemPrice, description, image) {
+function addToCart(itemName, itemPrice, description, image, itemID) {
     var cartID = 0;
     var itemQuantity = 1;
     var registerName = document.getElementById('registration').text;
@@ -40,7 +41,8 @@ function addToCart(itemName, itemPrice, description, image) {
                         "quantity": itemQuantity,
                         "price": itemPrice,
                         "description": description,
-                        "image": image
+                        "image": image,
+                        "itemID": itemID
                     },
                     success: function (data) {
                         alert('Item added!');

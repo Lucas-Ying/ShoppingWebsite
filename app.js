@@ -810,10 +810,11 @@ app.put('/add_purchases', function (req, res) {
     var pruchasePrice = req.body.price;
     var description = req.body.description;
     var img = req.body.image;
+    var itemid = req.body.itemID;
 
-    var q = "insert into purchases (cartid,name,quantity,price,description,image) "
-        + "values ($1,$2,$3,$4,$5,$6) RETURNING cartid,name,quantity,price";
-    var query = client.query(q, [purchases_cartId, purchasesName, purchaseQuantity, pruchasePrice, description, img]);
+    var q = "insert into purchases (cartid,name,quantity,price,description,image,itemid) "
+        + "values ($1,$2,$3,$4,$5,$6,$7) RETURNING cartid,name,quantity,price";
+    var query = client.query(q, [purchases_cartId, purchasesName, purchaseQuantity, pruchasePrice, description, img, itemid]);
     var results = [];
 
     //error handler for /add_purchases
@@ -915,6 +916,65 @@ app.delete('/checkout', function (req, res) {
     });
 });
 
+//===================================================================//
+
+//======================== Transaction History =====================//
+
+//get purchases
+app.get('/get_purchases_by_cartid', function (req, res) {
+    var purchases_cartId = req.body.cartid;
+
+    var query = client.query("select cartid, name, quantity, price, itemid, userid from "
+                + "(select * from purchases join (select id, name as productname, collection from products) pd "
+                + "on purchases.itemid = pd.id) new join cart on new.cartid = cart.id;");
+    var results = [];
+
+    //error handler for /get_purchases
+    query.on('error', function (row, result) {
+        res.status(500).send('Error, fail to get purchases from cart, cartID: ' + purchases_cartId);
+    });
+
+    //stream results back one row at a time
+    query.on('row', function (row) {
+        results.push(row);
+    });
+
+    //After all data is returned, close connection and return results
+    query.on('end', function () {
+        res.json(results);
+        console.log("result: " + results);
+    });
+});
+
+//adding purchases
+app.put('/add_transactions', function (req, res) {
+    var name = req.body.itemname;
+    var quantity = req.body.quantity;
+    var price = req.body.price;
+    var itemid = req.body.itemid;
+    var userid = req.body.userid;
+
+    var q = "insert into purchase_history (itemname, quantity, price, itemid, userid) "
+        + "values ($1,$2,$3,$4,$5)";
+    var query = client.query(q, [name, quantity, price, itemid, userid]);
+    var results = [];
+
+    //error handler for /add_purchases
+    query.on('error', function () {
+        res.status(500).send('Error, fail to add to purchases Id:' + purchases_cartId + ' items: ' + purchasesName);
+    });
+
+    //stream results back one row at a time
+    query.on('row', function (row) {
+        results.push(row);
+    });
+
+    //after all the data is returned close connection and return result
+    query.on('end', function () {
+        res.json(results);
+        console.log("result: " + results);
+    });
+});
 
 //===================================================================//
 
@@ -922,7 +982,7 @@ app.delete('/checkout', function (req, res) {
 
 app.get('/collection/*', function (req, res) {
     var collection = req.originalUrl.replace('/collection/', '');
-    query = client.query("SELECT * FROM products " +
+    var query = client.query("SELECT * FROM products " +
         "where collection = '" + collection + "';");
     var results = [];
     // Stream results back one row at a time
