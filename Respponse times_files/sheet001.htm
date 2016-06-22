@@ -1,0 +1,3904 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 15">
+<link id=Main-File rel=Main-File href="../Respponse%20times.htm">
+<link rel=File-List href=filelist.xml>
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+x\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:.75in .7in .75in .7in;
+	mso-header-margin:.3in;
+	mso-footer-margin:.3in;}
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(0);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../Respponse%20times.htm");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+</head>
+
+<body link="#0563C1" vlink="#954F72">
+
+<table border=0 cellpadding=0 cellspacing=0 width=2184 style='border-collapse:
+ collapse;table-layout:fixed;width:1638pt'>
+ <col width=104 span=21 style='width:78pt'>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 width=104 style='height:15.75pt;width:78pt'>Method</td>
+  <td class=xl65 width=104 style='width:78pt'>Name</td>
+  <td class=xl65 width=104 style='width:78pt'># requests</td>
+  <td class=xl65 width=104 style='width:78pt'># failures</td>
+  <td class=xl65 width=104 style='width:78pt'>Median response<span
+  style='display:none'> time</span></td>
+  <td class=xl65 width=104 style='width:78pt'>Average respons<span
+  style='display:none'>e time</span></td>
+  <td class=xl65 width=104 style='width:78pt'>Min response tim<span
+  style='display:none'>e</span></td>
+  <td class=xl65 width=104 style='width:78pt'>Max response tim<span
+  style='display:none'>e</span></td>
+  <td class=xl65 width=104 style='width:78pt'>Average Content <span
+  style='display:none'>Size</span></td>
+  <td class=xl65 width=104 style='width:78pt'>Requests/s</td>
+  <td width=104 style='width:78pt' align=left valign=top><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="Chart_x0020_2" o:spid="_x0000_s1032" type="#_x0000_t75"
+   style='position:absolute;margin-left:27pt;margin-top:1.2pt;width:774pt;
+   height:423pt;z-index:1;visibility:visible' o:gfxdata="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
+">
+   <v:imagedata src="image001.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+   <x:ClientData ObjectType="Pict">
+    <x:SizeWithCells/>
+    <x:CF>Bitmap</x:CF>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout;
+  position:absolute;z-index:1;margin-left:36px;margin-top:2px;width:1032px;
+  height:564px'><img width=1032 height=564 src=image002.png v:shapes="Chart_x0020_2"></span><![endif]><span
+  style='mso-ignore:vglayout2'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td height=21 width=104 style='height:15.75pt;width:78pt'></td>
+   </tr>
+  </table>
+  </span></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/</td>
+  <td class=xl66>1</td>
+  <td class=xl66>0</td>
+  <td class=xl66>360</td>
+  <td class=xl66>357</td>
+  <td class=xl66>357</td>
+  <td class=xl66>357</td>
+  <td class=xl66>6371</td>
+  <td class=xl66>0.01</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>PUT</td>
+  <td class=xl65>/addCart</td>
+  <td class=xl66>7</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>320</td>
+  <td class=xl66>223</td>
+  <td class=xl66>787</td>
+  <td class=xl66>51</td>
+  <td class=xl66>0.05</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>PUT</td>
+  <td class=xl65>/add_product</td>
+  <td class=xl66>1</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>227</td>
+  <td class=xl66>227</td>
+  <td class=xl66>66</td>
+  <td class=xl66>0.01</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>PUT</td>
+  <td class=xl65>/add_purchases</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>274</td>
+  <td class=xl66>222</td>
+  <td class=xl66>418</td>
+  <td class=xl66>55</td>
+  <td class=xl66>0.06</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>DELETE</td>
+  <td class=xl65>/checkout?cartid<span style='display:none'>=53</span></td>
+  <td class=xl66>3</td>
+  <td class=xl66>0</td>
+  <td class=xl66>310</td>
+  <td class=xl66>298</td>
+  <td class=xl66>227</td>
+  <td class=xl66>359</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.02</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/collection/*</td>
+  <td class=xl66>6</td>
+  <td class=xl66>0</td>
+  <td class=xl66>270</td>
+  <td class=xl66>417</td>
+  <td class=xl66>228</td>
+  <td class=xl66>1041</td>
+  <td class=xl66>6589</td>
+  <td class=xl66>0.04</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>DELETE</td>
+  <td class=xl65>/delete_cart?id=5<span style='display:none'>4</span></td>
+  <td class=xl66>7</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>253</td>
+  <td class=xl66>221</td>
+  <td class=xl66>331</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.05</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>DELETE</td>
+  <td class=xl65>/delete_cart?nam<span style='display:none'>e=manygloves&amp;cartid=53</span></td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>270</td>
+  <td class=xl66>303</td>
+  <td class=xl66>223</td>
+  <td class=xl66>410</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.06</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>DELETE</td>
+  <td class=xl65>/delete_product?i<span style='display:none'>d=243</span></td>
+  <td class=xl66>1</td>
+  <td class=xl66>0</td>
+  <td class=xl66>370</td>
+  <td class=xl66>366</td>
+  <td class=xl66>366</td>
+  <td class=xl66>366</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.01</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/get_cart</td>
+  <td class=xl66>7</td>
+  <td class=xl66>0</td>
+  <td class=xl66>500</td>
+  <td class=xl66>627</td>
+  <td class=xl66>446</td>
+  <td class=xl66>1238</td>
+  <td class=xl66>16454</td>
+  <td class=xl66>0.05</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/get_product</td>
+  <td class=xl66>1</td>
+  <td class=xl66>0</td>
+  <td class=xl66>590</td>
+  <td class=xl66>592</td>
+  <td class=xl66>592</td>
+  <td class=xl66>592</td>
+  <td class=xl66>19131</td>
+  <td class=xl66>0.01</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/get_purchases</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>820</td>
+  <td class=xl66>1065</td>
+  <td class=xl66>655</td>
+  <td class=xl66>2625</td>
+  <td class=xl66>36395</td>
+  <td class=xl66>0.06</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>PUT</td>
+  <td class=xl65>/get_userCart</td>
+  <td class=xl66>7</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>260</td>
+  <td class=xl66>224</td>
+  <td class=xl66>352</td>
+  <td class=xl66>41</td>
+  <td class=xl66>0.05</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/get_users</td>
+  <td class=xl66>3</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>225</td>
+  <td class=xl66>230</td>
+  <td class=xl66>1912</td>
+  <td class=xl66>0.02</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/help</td>
+  <td class=xl66>6</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>340</td>
+  <td class=xl66>220</td>
+  <td class=xl66>512</td>
+  <td class=xl66>5559</td>
+  <td class=xl66>0.04</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/kart</td>
+  <td class=xl66>6</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>303</td>
+  <td class=xl66>220</td>
+  <td class=xl66>451</td>
+  <td class=xl66>5799</td>
+  <td class=xl66>0.04</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/kids1</td>
+  <td class=xl66>6</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>273</td>
+  <td class=xl66>221</td>
+  <td class=xl66>431</td>
+  <td class=xl66>2490</td>
+  <td class=xl66>0.04</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/login</td>
+  <td class=xl66>6</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>362</td>
+  <td class=xl66>223</td>
+  <td class=xl66>810</td>
+  <td class=xl66>6279</td>
+  <td class=xl66>0.04</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/men</td>
+  <td class=xl66>6</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>224</td>
+  <td class=xl66>220</td>
+  <td class=xl66>229</td>
+  <td class=xl66>2473</td>
+  <td class=xl66>0.04</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/register</td>
+  <td class=xl66>6</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>299</td>
+  <td class=xl66>221</td>
+  <td class=xl66>602</td>
+  <td class=xl66>6516</td>
+  <td class=xl66>0.04</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>POST</td>
+  <td class=xl65>/update_cart</td>
+  <td class=xl66>7</td>
+  <td class=xl66>0</td>
+  <td class=xl66>330</td>
+  <td class=xl66>293</td>
+  <td class=xl66>221</td>
+  <td class=xl66>358</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.05</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>POST</td>
+  <td class=xl65>/update_product</td>
+  <td class=xl66>1</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>226</td>
+  <td class=xl66>226</td>
+  <td class=xl66>226</td>
+  <td class=xl66>69</td>
+  <td class=xl66>0.01</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>POST</td>
+  <td class=xl65>/update_purchas<span style='display:none'>e</span></td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>231</td>
+  <td class=xl66>225</td>
+  <td class=xl66>243</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.06</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>GET</td>
+  <td class=xl65>/women1</td>
+  <td class=xl66>6</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>289</td>
+  <td class=xl66>221</td>
+  <td class=xl66>405</td>
+  <td class=xl66>2471</td>
+  <td class=xl66>0.04</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'>None</td>
+  <td class=xl65>Total</td>
+  <td class=xl66>130</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>365</td>
+  <td class=xl66>220</td>
+  <td class=xl66>2625</td>
+  <td class=xl66>5418</td>
+  <td class=xl66>0.89</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'></td>
+  <td class=xl65></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl65 style='height:15.75pt'></td>
+  <td class=xl65></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'></td>
+  <td class=xl65></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=126 style='height:94.5pt;mso-xlrowspan:6'>
+  <td height=126 colspan=21 style='height:94.5pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl67 style='height:13.8pt'>1 users</td>
+  <td colspan=20 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=29 style='height:21.6pt'>
+  <td height=29 class=xl68 width=104 style='height:21.6pt;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Method&quot;}">Method</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Name&quot;}">Name</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;# requests&quot;}">#
+  requests</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;# failures&quot;}">#
+  failures</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Median response time&quot;}">Median
+  response time</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Average response time&quot;}">Average
+  response time</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Min response time&quot;}">Min
+  response time</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Max response time&quot;}">Max
+  response time</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Average Content Size&quot;}">Average
+  Content Size</td>
+  <td class=xl68 width=104 style='border-left:none;width:78pt;padding-bottom:
+  2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Requests/s&quot;}">Requests/s</td>
+  <td colspan=11 rowspan=27 height=535 width=1144 style='mso-ignore:colspan-rowspan;
+  height:408.15pt;width:858pt'><!--[if gte vml 1]><v:shape id="Chart_x0020_3"
+   o:spid="_x0000_s1033" type="#_x0000_t75" style='position:absolute;
+   margin-left:25.2pt;margin-top:13.8pt;width:756.6pt;height:391.2pt;z-index:2;
+   visibility:visible' o:gfxdata="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
+MS54bWxQSwUGAAAAAAkACQBSAgAApBgAAAAA
+">
+   <v:imagedata src="image003.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+   <x:ClientData ObjectType="Pict">
+    <x:SizeWithCells/>
+    <x:CF>Bitmap</x:CF>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=34 height=18></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=1009 height=522 src=image004.png v:shapes="Chart_x0020_3"></td>
+    <td width=101></td>
+   </tr>
+   <tr>
+    <td height=-5></td>
+   </tr>
+  </table>
+  </span><![endif]><!--[if !mso & vml]><span style='width:858.0pt;height:408.0pt'></span><![endif]--></td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/&quot;}">/</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:410}">410</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:509}">509</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:406}">406</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:613}">613</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6371}">6371</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;PUT&quot;}">PUT</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/addCart&quot;}">/addCart</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}">240</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:250}">250</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:223}">223</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:361}">361</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:51}">51</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;PUT&quot;}">PUT</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/add_product&quot;}">/add_product</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}">10</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:330}">330</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:395}">395</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:223}">223</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1153}">1153</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:66}">66</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.01}">0.01</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;PUT&quot;}">PUT</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/add_purchases&quot;}">/add_purchases</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}">240</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:308}">308</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:223}">223</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:432}">432</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:55}">55</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;DELETE&quot;}">DELETE</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/checkout?cartid=53&quot;}">/checkout?cartid=53</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}">240</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:290}">290</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:222}">222</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:425}">425</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/collection/*&quot;}">/collection/*</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:12}">12</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:360}">360</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:379}">379</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:224}">224</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:613}">613</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6589}">6589</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;DELETE&quot;}">DELETE</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/delete_cart?id=54&quot;}">/delete_cart?id=54</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:230}">230</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:264}">264</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:224}">224</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:419}">419</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=42 style='height:31.8pt'>
+  <td height=42 class=xl68 width=104 style='height:31.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;DELETE&quot;}">DELETE</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/delete_cart?name=manygloves&amp;cartid=53&quot;}">/delete_cart?name=manygloves&amp;cartid=53</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:350}">350</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:309}">309</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:221}">221</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:414}">414</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=29 style='height:21.6pt'>
+  <td height=29 class=xl68 width=104 style='height:21.6pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;DELETE&quot;}">DELETE</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/delete_product?id=243&quot;}">/delete_product?id=243</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}">10</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}">240</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:291}">291</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:223}">223</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:401}">401</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.01}">0.01</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/get_cart&quot;}">/get_cart</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:580}">580</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:551}">551</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:438}">438</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:636}">636</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17012}">17012</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/get_product&quot;}">/get_product</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}">10</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:610}">610</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:689}">689</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:439}">439</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1514}">1514</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:19659}">19659</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.01}">0.01</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/get_purchases&quot;}">/get_purchases</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:850}">850</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:912}">912</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:670}">670</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1821}">1821</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:38277}">38277</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;PUT&quot;}">PUT</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/get_userCart&quot;}">/get_userCart</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:340}">340</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:407}">407</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:226}">226</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1195}">1195</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:41}">41</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/get_users&quot;}">/get_users</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:9}">9</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:380}">380</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:343}">343</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:221}">221</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:411}">411</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1912}">1912</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.01}">0.01</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/help&quot;}">/help</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17}">17</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:260}">260</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:291}">291</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:223}">223</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:424}">424</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5559}">5559</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/kart&quot;}">/kart</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17}">17</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:230}">230</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:289}">289</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:221}">221</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1078}">1078</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5799}">5799</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/kids1&quot;}">/kids1</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17}">17</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}">240</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:312}">312</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:221}">221</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:827}">827</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2490}">2490</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/login&quot;}">/login</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17}">17</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}">240</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:310}">310</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:223}">223</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:436}">436</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6279}">6279</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/men&quot;}">/men</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17}">17</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:230}">230</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:244}">244</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:219}">219</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:384}">384</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2473}">2473</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/register&quot;}">/register</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17}">17</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:270}">270</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:304}">304</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:221}">221</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:445}">445</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6516}">6516</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;POST&quot;}">POST</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/update_cart&quot;}">/update_cart</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:370}">370</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:315}">315</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:222}">222</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:403}">403</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;POST&quot;}">POST</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/update_product&quot;}">/update_product</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}">10</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:230}">230</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:249}">249</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:225}">225</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:376}">376</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:69}">69</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.01}">0.01</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;POST&quot;}">POST</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/update_purchase&quot;}">/update_purchase</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:11}">11</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:230}">230</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:258}">258</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:223}">223</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:386}">386</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GET&quot;}">GET</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;/women1&quot;}">/women1</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17}">17</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:230}">230</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:256}">256</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:220}">220</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:390}">390</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2471}">2471</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.02}">0.02</td>
+ </tr>
+ <tr height=18 style='height:13.8pt'>
+  <td height=18 class=xl68 width=104 style='height:13.8pt;border-top:none;
+  width:78pt;padding-bottom:2px;padding-top:2px'
+  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+  <td class=xl68 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Total&quot;}">Total</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:292}">292</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}">240</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:347}">347</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:219}">219</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1821}">1821</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:4978}">4978</td>
+  <td class=xl69 width=104 style='border-top:none;border-left:none;width:78pt;
+  padding-bottom:2px;padding-top:2px' data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0.43}">0.43</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 colspan=10 style='height:15.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=252 style='height:189.0pt;mso-xlrowspan:12'>
+  <td height=252 colspan=21 style='height:189.0pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl67 style='height:13.2pt'>4 users</td>
+  <td colspan=20 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>Method</td>
+  <td class=xl65>Name</td>
+  <td class=xl65># requests</td>
+  <td class=xl65># failures</td>
+  <td class=xl65>Median response<span style='display:none'> time</span></td>
+  <td class=xl65>Average respons<span style='display:none'>e time</span></td>
+  <td class=xl65>Min response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Max response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Average Content <span style='display:none'>Size</span></td>
+  <td class=xl65>Requests/s</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/</td>
+  <td class=xl66>1</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>221</td>
+  <td class=xl66>221</td>
+  <td class=xl66>221</td>
+  <td class=xl66>6371</td>
+  <td class=xl66>0.01</td>
+  <td colspan=10 rowspan=27 height=492 width=1040 style='mso-ignore:colspan-rowspan;
+  height:361.5pt;width:780pt'><!--[if gte vml 1]><v:shape id="Chart_x0020_8"
+   o:spid="_x0000_s1038" type="#_x0000_t75" style='position:absolute;
+   margin-left:1.8pt;margin-top:12pt;width:775.2pt;height:341.4pt;z-index:7;
+   visibility:visible' o:gfxdata="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
+">
+   <v:imagedata src="image005.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+   <x:ClientData ObjectType="Pict">
+    <x:SizeWithCells/>
+    <x:CF>Bitmap</x:CF>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=2 height=17></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=1034 height=455 src=image006.png v:shapes="Chart_x0020_8"></td>
+    <td width=4></td>
+   </tr>
+   <tr>
+    <td height=20></td>
+   </tr>
+  </table>
+  </span><![endif]><!--[if !mso & vml]><span style='width:780.0pt;height:361.2pt'></span><![endif]--></td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/addCart</td>
+  <td class=xl66>15</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>250</td>
+  <td class=xl66>221</td>
+  <td class=xl66>562</td>
+  <td class=xl66>50</td>
+  <td class=xl66>0.08</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_product</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>223</td>
+  <td class=xl66>249</td>
+  <td class=xl66>66</td>
+  <td class=xl66>0.05</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_purchases</td>
+  <td class=xl66>14</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>229</td>
+  <td class=xl66>223</td>
+  <td class=xl66>254</td>
+  <td class=xl66>55</td>
+  <td class=xl66>0.07</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/checkout?cartid<span style='display:none'>=53</span></td>
+  <td class=xl66>13</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>222</td>
+  <td class=xl66>235</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.07</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/collection/*</td>
+  <td class=xl66>24</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>465</td>
+  <td class=xl66>221</td>
+  <td class=xl66>5883</td>
+  <td class=xl66>6589</td>
+  <td class=xl66>0.12</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?id=5<span style='display:none'>4</span></td>
+  <td class=xl66>15</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>224</td>
+  <td class=xl66>220</td>
+  <td class=xl66>235</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.08</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?nam<span style='display:none'>e=manygloves&amp;cartid=53</span></td>
+  <td class=xl66>14</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>223</td>
+  <td class=xl66>237</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.07</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_product?i<span style='display:none'>d=243</span></td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>222</td>
+  <td class=xl66>240</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.05</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_cart</td>
+  <td class=xl66>15</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>222</td>
+  <td class=xl66>248</td>
+  <td class=xl66>2762</td>
+  <td class=xl66>0.08</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_product</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>280</td>
+  <td class=xl66>225</td>
+  <td class=xl66>455</td>
+  <td class=xl66>6459</td>
+  <td class=xl66>0.05</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_purchases</td>
+  <td class=xl66>14</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>233</td>
+  <td class=xl66>222</td>
+  <td class=xl66>306</td>
+  <td class=xl66>867</td>
+  <td class=xl66>0.07</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/get_userCart</td>
+  <td class=xl66>15</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>224</td>
+  <td class=xl66>220</td>
+  <td class=xl66>229</td>
+  <td class=xl66>41</td>
+  <td class=xl66>0.08</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_users</td>
+  <td class=xl66>7</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>226</td>
+  <td class=xl66>236</td>
+  <td class=xl66>1912</td>
+  <td class=xl66>0.04</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/help</td>
+  <td class=xl66>19</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>291</td>
+  <td class=xl66>221</td>
+  <td class=xl66>788</td>
+  <td class=xl66>5559</td>
+  <td class=xl66>0.1</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kart</td>
+  <td class=xl66>19</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>293</td>
+  <td class=xl66>220</td>
+  <td class=xl66>661</td>
+  <td class=xl66>5799</td>
+  <td class=xl66>0.1</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kids1</td>
+  <td class=xl66>19</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>260</td>
+  <td class=xl66>219</td>
+  <td class=xl66>884</td>
+  <td class=xl66>2490</td>
+  <td class=xl66>0.1</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/login</td>
+  <td class=xl66>19</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>264</td>
+  <td class=xl66>220</td>
+  <td class=xl66>485</td>
+  <td class=xl66>6279</td>
+  <td class=xl66>0.1</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/men</td>
+  <td class=xl66>19</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>229</td>
+  <td class=xl66>219</td>
+  <td class=xl66>238</td>
+  <td class=xl66>2473</td>
+  <td class=xl66>0.1</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/register</td>
+  <td class=xl66>20</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>248</td>
+  <td class=xl66>221</td>
+  <td class=xl66>437</td>
+  <td class=xl66>6516</td>
+  <td class=xl66>0.1</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_cart</td>
+  <td class=xl66>15</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>271</td>
+  <td class=xl66>221</td>
+  <td class=xl66>913</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.08</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_product</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>231</td>
+  <td class=xl66>224</td>
+  <td class=xl66>253</td>
+  <td class=xl66>69</td>
+  <td class=xl66>0.05</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_purchas<span style='display:none'>e</span></td>
+  <td class=xl66>14</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>234</td>
+  <td class=xl66>221</td>
+  <td class=xl66>310</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.07</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/women1</td>
+  <td class=xl66>20</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>257</td>
+  <td class=xl66>219</td>
+  <td class=xl66>860</td>
+  <td class=xl66>2471</td>
+  <td class=xl66>0.1</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>None</td>
+  <td class=xl65>Total</td>
+  <td class=xl66>347</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>262</td>
+  <td class=xl66>219</td>
+  <td class=xl66>5883</td>
+  <td class=xl66>2600</td>
+  <td class=xl66>1.74</td>
+  <td></td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 colspan=10 style='height:15.75pt;mso-ignore:colspan'></td>
+  <td></td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 colspan=10 style='height:15.75pt;mso-ignore:colspan'></td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl67 style='height:13.2pt'>8 users</td>
+  <td colspan=20 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>Method</td>
+  <td class=xl65>Name</td>
+  <td class=xl65># requests</td>
+  <td class=xl65># failures</td>
+  <td class=xl65>Median response<span style='display:none'> time</span></td>
+  <td class=xl65>Average respons<span style='display:none'>e time</span></td>
+  <td class=xl65>Min response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Max response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Average Content <span style='display:none'>Size</span></td>
+  <td class=xl65>Requests/s</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/</td>
+  <td class=xl66>3</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>224</td>
+  <td class=xl66>224</td>
+  <td class=xl66>225</td>
+  <td class=xl66>6371</td>
+  <td class=xl66>0.03</td>
+  <td colspan=10 rowspan=26 height=471 width=1040 style='mso-ignore:colspan-rowspan;
+  height:345.75pt;width:780pt'><!--[if gte vml 1]><v:shape id="Chart_x0020_4"
+   o:spid="_x0000_s1034" type="#_x0000_t75" style='position:absolute;
+   margin-left:9pt;margin-top:4.8pt;width:769.8pt;height:339.6pt;z-index:3;
+   visibility:visible' o:gfxdata="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
+CQBSAgAAlRgAAAAA
+">
+   <v:imagedata src="image007.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+   <x:ClientData ObjectType="Pict">
+    <x:SizeWithCells/>
+    <x:CF>Bitmap</x:CF>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=13 height=6></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=1026 height=453 src=image008.png v:shapes="Chart_x0020_4"></td>
+    <td width=1></td>
+   </tr>
+   <tr>
+    <td height=12></td>
+   </tr>
+  </table>
+  </span><![endif]><!--[if !mso & vml]><span style='width:780.0pt;height:345.6pt'></span><![endif]--></td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/addCart</td>
+  <td class=xl66>16</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>222</td>
+  <td class=xl66>240</td>
+  <td class=xl66>51</td>
+  <td class=xl66>0.16</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_product</td>
+  <td class=xl66>3</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>231</td>
+  <td class=xl66>227</td>
+  <td class=xl66>236</td>
+  <td class=xl66>66</td>
+  <td class=xl66>0.03</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_purchases</td>
+  <td class=xl66>14</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>232</td>
+  <td class=xl66>221</td>
+  <td class=xl66>265</td>
+  <td class=xl66>55</td>
+  <td class=xl66>0.14</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/checkout?cartid<span style='display:none'>=53</span></td>
+  <td class=xl66>18</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>221</td>
+  <td class=xl66>244</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.18</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/collection/*</td>
+  <td class=xl66>22</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>264</td>
+  <td class=xl66>223</td>
+  <td class=xl66>768</td>
+  <td class=xl66>6589</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?id=5<span style='display:none'>4</span></td>
+  <td class=xl66>16</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>225</td>
+  <td class=xl66>222</td>
+  <td class=xl66>233</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.16</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?nam<span style='display:none'>e=manygloves&amp;cartid=53</span></td>
+  <td class=xl66>14</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>223</td>
+  <td class=xl66>270</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.14</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_product?i<span style='display:none'>d=243</span></td>
+  <td class=xl66>4</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>225</td>
+  <td class=xl66>222</td>
+  <td class=xl66>232</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.04</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_cart</td>
+  <td class=xl66>15</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>264</td>
+  <td class=xl66>226</td>
+  <td class=xl66>759</td>
+  <td class=xl66>3558</td>
+  <td class=xl66>0.15</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_product</td>
+  <td class=xl66>3</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>233</td>
+  <td class=xl66>231</td>
+  <td class=xl66>237</td>
+  <td class=xl66>7227</td>
+  <td class=xl66>0.03</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_purchases</td>
+  <td class=xl66>14</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>224</td>
+  <td class=xl66>239</td>
+  <td class=xl66>2607</td>
+  <td class=xl66>0.14</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/get_userCart</td>
+  <td class=xl66>16</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>220</td>
+  <td class=xl66>239</td>
+  <td class=xl66>41</td>
+  <td class=xl66>0.16</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_users</td>
+  <td class=xl66>7</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>326</td>
+  <td class=xl66>224</td>
+  <td class=xl66>904</td>
+  <td class=xl66>1912</td>
+  <td class=xl66>0.07</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/help</td>
+  <td class=xl66>22</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>218</td>
+  <td class=xl66>244</td>
+  <td class=xl66>5559</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kart</td>
+  <td class=xl66>22</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>226</td>
+  <td class=xl66>219</td>
+  <td class=xl66>239</td>
+  <td class=xl66>5799</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kids1</td>
+  <td class=xl66>22</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>225</td>
+  <td class=xl66>219</td>
+  <td class=xl66>244</td>
+  <td class=xl66>2490</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/login</td>
+  <td class=xl66>22</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>220</td>
+  <td class=xl66>241</td>
+  <td class=xl66>6279</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/men</td>
+  <td class=xl66>22</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>225</td>
+  <td class=xl66>219</td>
+  <td class=xl66>233</td>
+  <td class=xl66>2473</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/register</td>
+  <td class=xl66>22</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>229</td>
+  <td class=xl66>219</td>
+  <td class=xl66>266</td>
+  <td class=xl66>6516</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_cart</td>
+  <td class=xl66>16</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>226</td>
+  <td class=xl66>222</td>
+  <td class=xl66>239</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.16</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_product</td>
+  <td class=xl66>3</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>225</td>
+  <td class=xl66>232</td>
+  <td class=xl66>69</td>
+  <td class=xl66>0.03</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_purchas<span style='display:none'>e</span></td>
+  <td class=xl66>14</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>221</td>
+  <td class=xl66>274</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.14</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/women1</td>
+  <td class=xl66>22</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>228</td>
+  <td class=xl66>220</td>
+  <td class=xl66>277</td>
+  <td class=xl66>2471</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>None</td>
+  <td class=xl65>Total</td>
+  <td class=xl66>352</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>233</td>
+  <td class=xl66>218</td>
+  <td class=xl66>904</td>
+  <td class=xl66>2803</td>
+  <td class=xl66>3.58</td>
+  <td></td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 colspan=10 style='height:15.75pt;mso-ignore:colspan'></td>
+  <td></td>
+ </tr>
+ <tr height=84 style='height:63.0pt;mso-xlrowspan:4'>
+  <td height=84 colspan=21 style='height:63.0pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl67 style='height:13.2pt'>16 users</td>
+  <td colspan=20 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>Method</td>
+  <td class=xl65>Name</td>
+  <td class=xl65># requests</td>
+  <td class=xl65># failures</td>
+  <td class=xl65>Median response<span style='display:none'> time</span></td>
+  <td class=xl65>Average respons<span style='display:none'>e time</span></td>
+  <td class=xl65>Min response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Max response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Average Content <span style='display:none'>Size</span></td>
+  <td class=xl65>Requests/s</td>
+  <td colspan=11 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/</td>
+  <td class=xl66>4</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>231</td>
+  <td class=xl66>224</td>
+  <td class=xl66>242</td>
+  <td class=xl66>6371</td>
+  <td class=xl66>0.05</td>
+  <td colspan=10 rowspan=26 height=471 width=1040 style='mso-ignore:colspan-rowspan;
+  height:345.75pt;width:780pt'><!--[if gte vml 1]><v:shape id="Chart_x0020_5"
+   o:spid="_x0000_s1035" type="#_x0000_t75" style='position:absolute;
+   margin-left:7.2pt;margin-top:4.2pt;width:771.6pt;height:339pt;z-index:4;
+   visibility:visible' o:gfxdata="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
+">
+   <v:imagedata src="image009.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+   <x:ClientData ObjectType="Pict">
+    <x:SizeWithCells/>
+    <x:CF>Bitmap</x:CF>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=10 height=6></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=1029 height=452 src=image010.png v:shapes="Chart_x0020_5"></td>
+    <td width=1></td>
+   </tr>
+   <tr>
+    <td height=13></td>
+   </tr>
+  </table>
+  </span><![endif]><!--[if !mso & vml]><span style='width:780.0pt;height:345.6pt'></span><![endif]--></td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/addCart</td>
+  <td class=xl66>18</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>221</td>
+  <td class=xl66>247</td>
+  <td class=xl66>51</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_product</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>226</td>
+  <td class=xl66>224</td>
+  <td class=xl66>230</td>
+  <td class=xl66>66</td>
+  <td class=xl66>0.11</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_purchases</td>
+  <td class=xl66>24</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>223</td>
+  <td class=xl66>251</td>
+  <td class=xl66>55</td>
+  <td class=xl66>0.3</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/checkout?cartid<span style='display:none'>=53</span></td>
+  <td class=xl66>19</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>260</td>
+  <td class=xl66>220</td>
+  <td class=xl66>885</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.24</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/collection/*</td>
+  <td class=xl66>36</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>279</td>
+  <td class=xl66>223</td>
+  <td class=xl66>882</td>
+  <td class=xl66>6589</td>
+  <td class=xl66>0.45</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?id=5<span style='display:none'>4</span></td>
+  <td class=xl66>18</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>225</td>
+  <td class=xl66>221</td>
+  <td class=xl66>232</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?nam<span style='display:none'>e=manygloves&amp;cartid=53</span></td>
+  <td class=xl66>24</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>226</td>
+  <td class=xl66>222</td>
+  <td class=xl66>233</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.3</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_product?i<span style='display:none'>d=243</span></td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>222</td>
+  <td class=xl66>248</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.11</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_cart</td>
+  <td class=xl66>18</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>233</td>
+  <td class=xl66>222</td>
+  <td class=xl66>248</td>
+  <td class=xl66>4387</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_product</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>252</td>
+  <td class=xl66>222</td>
+  <td class=xl66>435</td>
+  <td class=xl66>7803</td>
+  <td class=xl66>0.11</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_purchases</td>
+  <td class=xl66>24</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>238</td>
+  <td class=xl66>223</td>
+  <td class=xl66>435</td>
+  <td class=xl66>4917</td>
+  <td class=xl66>0.3</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/get_userCart</td>
+  <td class=xl66>18</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>229</td>
+  <td class=xl66>222</td>
+  <td class=xl66>254</td>
+  <td class=xl66>41</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_users</td>
+  <td class=xl66>11</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>225</td>
+  <td class=xl66>221</td>
+  <td class=xl66>230</td>
+  <td class=xl66>1912</td>
+  <td class=xl66>0.14</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/help</td>
+  <td class=xl66>37</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>251</td>
+  <td class=xl66>220</td>
+  <td class=xl66>897</td>
+  <td class=xl66>5559</td>
+  <td class=xl66>0.46</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kart</td>
+  <td class=xl66>38</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>237</td>
+  <td class=xl66>218</td>
+  <td class=xl66>440</td>
+  <td class=xl66>5799</td>
+  <td class=xl66>0.47</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kids1</td>
+  <td class=xl66>38</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>226</td>
+  <td class=xl66>220</td>
+  <td class=xl66>240</td>
+  <td class=xl66>2490</td>
+  <td class=xl66>0.47</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/login</td>
+  <td class=xl66>40</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>237</td>
+  <td class=xl66>219</td>
+  <td class=xl66>439</td>
+  <td class=xl66>6279</td>
+  <td class=xl66>0.5</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/men</td>
+  <td class=xl66>40</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>226</td>
+  <td class=xl66>220</td>
+  <td class=xl66>245</td>
+  <td class=xl66>2473</td>
+  <td class=xl66>0.5</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/register</td>
+  <td class=xl66>39</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>237</td>
+  <td class=xl66>220</td>
+  <td class=xl66>438</td>
+  <td class=xl66>6516</td>
+  <td class=xl66>0.49</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_cart</td>
+  <td class=xl66>18</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>225</td>
+  <td class=xl66>221</td>
+  <td class=xl66>234</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_product</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>222</td>
+  <td class=xl66>237</td>
+  <td class=xl66>69</td>
+  <td class=xl66>0.11</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_purchas<span style='display:none'>e</span></td>
+  <td class=xl66>24</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>229</td>
+  <td class=xl66>220</td>
+  <td class=xl66>247</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.3</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/women1</td>
+  <td class=xl66>39</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>227</td>
+  <td class=xl66>219</td>
+  <td class=xl66>252</td>
+  <td class=xl66>2471</td>
+  <td class=xl66>0.49</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>None</td>
+  <td class=xl65>Total</td>
+  <td class=xl66>563</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>236</td>
+  <td class=xl66>218</td>
+  <td class=xl66>897</td>
+  <td class=xl66>3155</td>
+  <td class=xl66>7.02</td>
+  <td></td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 colspan=10 style='height:15.75pt;mso-ignore:colspan'></td>
+  <td></td>
+ </tr>
+ <tr height=42 style='height:31.5pt;mso-xlrowspan:2'>
+  <td height=42 colspan=21 style='height:31.5pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl67 style='height:13.2pt'>32 users</td>
+  <td colspan=20 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>Method</td>
+  <td class=xl65>Name</td>
+  <td class=xl65># requests</td>
+  <td class=xl65># failures</td>
+  <td class=xl65>Median response<span style='display:none'> time</span></td>
+  <td class=xl65>Average respons<span style='display:none'>e time</span></td>
+  <td class=xl65>Min response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Max response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Average Content <span style='display:none'>Size</span></td>
+  <td class=xl65>Requests/s</td>
+  <td colspan=10 rowspan=27 height=489 width=1040 style='mso-ignore:colspan-rowspan;
+  height:358.95pt;width:780pt'><!--[if gte vml 1]><v:shape id="Chart_x0020_6"
+   o:spid="_x0000_s1036" type="#_x0000_t75" style='position:absolute;
+   margin-left:12pt;margin-top:7.8pt;width:766.8pt;height:341.4pt;z-index:5;
+   visibility:visible' o:gfxdata="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
+eG1sUEsBAi0AFAAGAAgAAAAhADj9If/WAAAAlAEAAAsAAAAAAAAAAAAAAAAAawEAAF9yZWxzLy5y
+ZWxzUEsBAi0AFAAGAAgAAAAhAPJlaZqzAQAAfgQAAA4AAAAAAAAAAAAAAAAAagIAAGRycy9lMm9E
+b2MueG1sUEsBAi0AFAAGAAgAAAAhAIAb3IHSAAAAjwEAACAAAAAAAAAAAAAAAAAASQQAAGRycy9j
+aGFydHMvX3JlbHMvY2hhcnQxLnhtbC5yZWxzUEsBAi0AFAAGAAgAAAAhAKsWzUa5AAAAIgEAABkA
+AAAAAAAAAAAAAAAAWQUAAGRycy9fcmVscy9lMm9Eb2MueG1sLnJlbHNQSwECLQAUAAYACAAAACEA
+HpUHjxYBAACNAQAADwAAAAAAAAAAAAAAAABJBgAAZHJzL2Rvd25yZXYueG1sUEsBAi0AFAAGAAgA
+AAAhAP41COypBQAAtSQAABUAAAAAAAAAAAAAAAAAjAcAAGRycy9jaGFydHMvc3R5bGUxLnhtbFBL
+AQItABQABgAIAAAAIQBllwUZ4QkAAGUjAAAVAAAAAAAAAAAAAAAAAGgNAABkcnMvY2hhcnRzL2No
+YXJ0MS54bWxQSwECLQAUAAYACAAAACEAHBSnqAIBAABuAwAAFgAAAAAAAAAAAAAAAAB8FwAAZHJz
+L2NoYXJ0cy9jb2xvcnMxLnhtbFBLBQYAAAAACQAJAFICAACyGAAAAAA=
+">
+   <v:imagedata src="image011.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+   <x:ClientData ObjectType="Pict">
+    <x:SizeWithCells/>
+    <x:CF>Bitmap</x:CF>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=17 height=10></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=1022 height=455 src=image012.png v:shapes="Chart_x0020_6"></td>
+    <td width=1></td>
+   </tr>
+   <tr>
+    <td height=24></td>
+   </tr>
+  </table>
+  </span><![endif]><!--[if !mso & vml]><span style='width:780.0pt;height:358.8pt'></span><![endif]--></td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/</td>
+  <td class=xl66>9</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>228</td>
+  <td class=xl66>222</td>
+  <td class=xl66>239</td>
+  <td class=xl66>6371</td>
+  <td class=xl66>0.14</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/addCart</td>
+  <td class=xl66>35</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>237</td>
+  <td class=xl66>220</td>
+  <td class=xl66>295</td>
+  <td class=xl66>51</td>
+  <td class=xl66>0.55</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_product</td>
+  <td class=xl66>17</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>221</td>
+  <td class=xl66>267</td>
+  <td class=xl66>66</td>
+  <td class=xl66>0.27</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_purchases</td>
+  <td class=xl66>36</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>220</td>
+  <td class=xl66>254</td>
+  <td class=xl66>55</td>
+  <td class=xl66>0.57</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/checkout?cartid<span style='display:none'>=53</span></td>
+  <td class=xl66>47</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>259</td>
+  <td class=xl66>222</td>
+  <td class=xl66>934</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.74</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/collection/*</td>
+  <td class=xl66>37</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>244</td>
+  <td class=xl66>222</td>
+  <td class=xl66>452</td>
+  <td class=xl66>6589</td>
+  <td class=xl66>0.58</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?id=5<span style='display:none'>4</span></td>
+  <td class=xl66>33</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>221</td>
+  <td class=xl66>300</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.52</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?nam<span style='display:none'>e=manygloves&amp;cartid=53</span></td>
+  <td class=xl66>37</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>231</td>
+  <td class=xl66>222</td>
+  <td class=xl66>258</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.58</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_product?i<span style='display:none'>d=243</span></td>
+  <td class=xl66>17</td>
+  <td class=xl66>0</td>
+  <td class=xl66>220</td>
+  <td class=xl66>227</td>
+  <td class=xl66>220</td>
+  <td class=xl66>247</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.27</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_cart</td>
+  <td class=xl66>35</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>279</td>
+  <td class=xl66>225</td>
+  <td class=xl66>900</td>
+  <td class=xl66>5749</td>
+  <td class=xl66>0.55</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_product</td>
+  <td class=xl66>17</td>
+  <td class=xl66>0</td>
+  <td class=xl66>240</td>
+  <td class=xl66>259</td>
+  <td class=xl66>225</td>
+  <td class=xl66>443</td>
+  <td class=xl66>9141</td>
+  <td class=xl66>0.27</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_purchases</td>
+  <td class=xl66>36</td>
+  <td class=xl66>0</td>
+  <td class=xl66>240</td>
+  <td class=xl66>348</td>
+  <td class=xl66>224</td>
+  <td class=xl66>924</td>
+  <td class=xl66>8845</td>
+  <td class=xl66>0.57</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/get_userCart</td>
+  <td class=xl66>35</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>232</td>
+  <td class=xl66>222</td>
+  <td class=xl66>266</td>
+  <td class=xl66>41</td>
+  <td class=xl66>0.55</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_users</td>
+  <td class=xl66>20</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>233</td>
+  <td class=xl66>224</td>
+  <td class=xl66>251</td>
+  <td class=xl66>1912</td>
+  <td class=xl66>0.31</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/help</td>
+  <td class=xl66>56</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>243</td>
+  <td class=xl66>218</td>
+  <td class=xl66>794</td>
+  <td class=xl66>5559</td>
+  <td class=xl66>0.88</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kart</td>
+  <td class=xl66>56</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>272</td>
+  <td class=xl66>221</td>
+  <td class=xl66>917</td>
+  <td class=xl66>5799</td>
+  <td class=xl66>0.88</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kids1</td>
+  <td class=xl66>58</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>239</td>
+  <td class=xl66>219</td>
+  <td class=xl66>822</td>
+  <td class=xl66>2490</td>
+  <td class=xl66>0.91</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/login</td>
+  <td class=xl66>58</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>267</td>
+  <td class=xl66>219</td>
+  <td class=xl66>794</td>
+  <td class=xl66>6279</td>
+  <td class=xl66>0.91</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/men</td>
+  <td class=xl66>59</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>236</td>
+  <td class=xl66>219</td>
+  <td class=xl66>437</td>
+  <td class=xl66>2473</td>
+  <td class=xl66>0.93</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/register</td>
+  <td class=xl66>60</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>273</td>
+  <td class=xl66>219</td>
+  <td class=xl66>806</td>
+  <td class=xl66>6516</td>
+  <td class=xl66>0.94</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_cart</td>
+  <td class=xl66>34</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>233</td>
+  <td class=xl66>221</td>
+  <td class=xl66>361</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.53</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_product</td>
+  <td class=xl66>17</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>222</td>
+  <td class=xl66>256</td>
+  <td class=xl66>69</td>
+  <td class=xl66>0.27</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_purchas<span style='display:none'>e</span></td>
+  <td class=xl66>36</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>229</td>
+  <td class=xl66>221</td>
+  <td class=xl66>264</td>
+  <td class=xl66>2</td>
+  <td class=xl66>0.57</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/women1</td>
+  <td class=xl66>60</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>230</td>
+  <td class=xl66>218</td>
+  <td class=xl66>270</td>
+  <td class=xl66>2471</td>
+  <td class=xl66>0.94</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>None</td>
+  <td class=xl65>Total</td>
+  <td class=xl66>905</td>
+  <td class=xl66>0</td>
+  <td class=xl66>230</td>
+  <td class=xl66>249</td>
+  <td class=xl66>218</td>
+  <td class=xl66>934</td>
+  <td class=xl66>3151</td>
+  <td class=xl66>14.22</td>
+  <td></td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 colspan=10 style='height:15.75pt;mso-ignore:colspan'></td>
+  <td></td>
+ </tr>
+ <tr height=84 style='height:63.0pt;mso-xlrowspan:4'>
+  <td height=84 colspan=21 style='height:63.0pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl67 style='height:13.2pt'>200 users</td>
+  <td colspan=9 style='mso-ignore:colspan'></td>
+  <td colspan=10 rowspan=28 height=507 width=1040 style='mso-ignore:colspan-rowspan;
+  height:372.15pt;width:780pt'><!--[if gte vml 1]><v:shape id="Chart_x0020_7"
+   o:spid="_x0000_s1037" type="#_x0000_t75" style='position:absolute;
+   margin-left:8.4pt;margin-top:11.4pt;width:770.4pt;height:349.8pt;z-index:6;
+   visibility:visible' o:gfxdata="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
+">
+   <v:imagedata src="image013.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+   <x:ClientData ObjectType="Pict">
+    <x:SizeWithCells/>
+    <x:CF>Bitmap</x:CF>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=12 height=16></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=1027 height=466 src=image014.png v:shapes="Chart_x0020_7"></td>
+    <td width=1></td>
+   </tr>
+   <tr>
+    <td height=25></td>
+   </tr>
+  </table>
+  </span><![endif]><!--[if !mso & vml]><span style='width:780.0pt;height:372.0pt'></span><![endif]--></td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>Method</td>
+  <td class=xl65>Name</td>
+  <td class=xl65># requests</td>
+  <td class=xl65># failures</td>
+  <td class=xl65>Median response<span style='display:none'> time</span></td>
+  <td class=xl65>Average respons<span style='display:none'>e time</span></td>
+  <td class=xl65>Min response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Max response tim<span style='display:none'>e</span></td>
+  <td class=xl65>Average Content <span style='display:none'>Size</span></td>
+  <td class=xl65>Requests/s</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/</td>
+  <td class=xl66>26</td>
+  <td class=xl66>0</td>
+  <td class=xl66>240</td>
+  <td class=xl66>322</td>
+  <td class=xl66>221</td>
+  <td class=xl66>920</td>
+  <td class=xl66>6371</td>
+  <td class=xl66>0.53</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/addCart</td>
+  <td class=xl66>145</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>263</td>
+  <td class=xl66>222</td>
+  <td class=xl66>461</td>
+  <td class=xl66>51</td>
+  <td class=xl66>2.96</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_product</td>
+  <td class=xl66>72</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>267</td>
+  <td class=xl66>225</td>
+  <td class=xl66>558</td>
+  <td class=xl66>66</td>
+  <td class=xl66>1.47</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/add_purchases</td>
+  <td class=xl66>159</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>264</td>
+  <td class=xl66>224</td>
+  <td class=xl66>562</td>
+  <td class=xl66>55</td>
+  <td class=xl66>3.24</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/checkout?cartid<span style='display:none'>=53</span></td>
+  <td class=xl66>200</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>269</td>
+  <td class=xl66>221</td>
+  <td class=xl66>1022</td>
+  <td class=xl66>2</td>
+  <td class=xl66>4.08</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/collection/*</td>
+  <td class=xl66>234</td>
+  <td class=xl66>0</td>
+  <td class=xl66>260</td>
+  <td class=xl66>305</td>
+  <td class=xl66>225</td>
+  <td class=xl66>1249</td>
+  <td class=xl66>6589</td>
+  <td class=xl66>4.77</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?id=5<span style='display:none'>4</span></td>
+  <td class=xl66>148</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>266</td>
+  <td class=xl66>223</td>
+  <td class=xl66>599</td>
+  <td class=xl66>2</td>
+  <td class=xl66>3.02</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_cart?nam<span style='display:none'>e=manygloves&amp;cartid=53</span></td>
+  <td class=xl66>160</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>269</td>
+  <td class=xl66>221</td>
+  <td class=xl66>514</td>
+  <td class=xl66>2</td>
+  <td class=xl66>3.26</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>DELETE</td>
+  <td class=xl65>/delete_product?i<span style='display:none'>d=243</span></td>
+  <td class=xl66>73</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>267</td>
+  <td class=xl66>224</td>
+  <td class=xl66>463</td>
+  <td class=xl66>2</td>
+  <td class=xl66>1.49</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_cart</td>
+  <td class=xl66>149</td>
+  <td class=xl66>0</td>
+  <td class=xl66>440</td>
+  <td class=xl66>410</td>
+  <td class=xl66>227</td>
+  <td class=xl66>1121</td>
+  <td class=xl66>12664</td>
+  <td class=xl66>3.04</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_product</td>
+  <td class=xl66>72</td>
+  <td class=xl66>0</td>
+  <td class=xl66>470</td>
+  <td class=xl66>468</td>
+  <td class=xl66>237</td>
+  <td class=xl66>687</td>
+  <td class=xl66>15471</td>
+  <td class=xl66>1.47</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_purchases</td>
+  <td class=xl66>158</td>
+  <td class=xl66>0</td>
+  <td class=xl66>560</td>
+  <td class=xl66>625</td>
+  <td class=xl66>442</td>
+  <td class=xl66>1569</td>
+  <td class=xl66>26525</td>
+  <td class=xl66>3.22</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>PUT</td>
+  <td class=xl65>/get_userCart</td>
+  <td class=xl66>145</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>261</td>
+  <td class=xl66>222</td>
+  <td class=xl66>585</td>
+  <td class=xl66>41</td>
+  <td class=xl66>2.96</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/get_users</td>
+  <td class=xl66>89</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>270</td>
+  <td class=xl66>224</td>
+  <td class=xl66>553</td>
+  <td class=xl66>1912</td>
+  <td class=xl66>1.81</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/help</td>
+  <td class=xl66>297</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>277</td>
+  <td class=xl66>222</td>
+  <td class=xl66>865</td>
+  <td class=xl66>5559</td>
+  <td class=xl66>6.05</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kart</td>
+  <td class=xl66>297</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>282</td>
+  <td class=xl66>221</td>
+  <td class=xl66>835</td>
+  <td class=xl66>5799</td>
+  <td class=xl66>6.05</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/kids1</td>
+  <td class=xl66>298</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>273</td>
+  <td class=xl66>221</td>
+  <td class=xl66>951</td>
+  <td class=xl66>2490</td>
+  <td class=xl66>6.07</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/login</td>
+  <td class=xl66>299</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>287</td>
+  <td class=xl66>221</td>
+  <td class=xl66>846</td>
+  <td class=xl66>6279</td>
+  <td class=xl66>6.09</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/men</td>
+  <td class=xl66>299</td>
+  <td class=xl66>0</td>
+  <td class=xl66>240</td>
+  <td class=xl66>262</td>
+  <td class=xl66>219</td>
+  <td class=xl66>841</td>
+  <td class=xl66>2473</td>
+  <td class=xl66>6.09</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/register</td>
+  <td class=xl66>301</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>285</td>
+  <td class=xl66>223</td>
+  <td class=xl66>866</td>
+  <td class=xl66>6516</td>
+  <td class=xl66>6.13</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_cart</td>
+  <td class=xl66>146</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>262</td>
+  <td class=xl66>222</td>
+  <td class=xl66>439</td>
+  <td class=xl66>2</td>
+  <td class=xl66>2.98</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_product</td>
+  <td class=xl66>72</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>269</td>
+  <td class=xl66>225</td>
+  <td class=xl66>437</td>
+  <td class=xl66>69</td>
+  <td class=xl66>1.47</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>POST</td>
+  <td class=xl65>/update_purchas<span style='display:none'>e</span></td>
+  <td class=xl66>159</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>268</td>
+  <td class=xl66>222</td>
+  <td class=xl66>538</td>
+  <td class=xl66>2</td>
+  <td class=xl66>3.24</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>GET</td>
+  <td class=xl65>/women1</td>
+  <td class=xl66>303</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>268</td>
+  <td class=xl66>221</td>
+  <td class=xl66>915</td>
+  <td class=xl66>2471</td>
+  <td class=xl66>6.18</td>
+  <td></td>
+ </tr>
+ <tr height=18 style='height:13.2pt'>
+  <td height=18 class=xl65 style='height:13.2pt'>None</td>
+  <td class=xl65>Total</td>
+  <td class=xl66>4301</td>
+  <td class=xl66>0</td>
+  <td class=xl66>250</td>
+  <td class=xl66>295</td>
+  <td class=xl66>219</td>
+  <td class=xl66>1569</td>
+  <td class=xl66>4311</td>
+  <td class=xl66>87.65</td>
+  <td></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 colspan=10 style='height:15.75pt;mso-ignore:colspan'></td>
+  <td></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+  <td width=104 style='width:78pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>

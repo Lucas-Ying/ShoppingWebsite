@@ -16,7 +16,7 @@ class MyTaskSet(TaskSet):
     @task(3)
     def users(self):
         self.client.get("/get_users")
-        self.client.put("/get_user", {"email":"jimmy2174@gmail.com", "pass":"89"})
+        self.client.get("/get_user", {"email":"jimmy2174@gmail.com", "pass":"89"})
         self.client.put("/add_user", {"email":"responseTime@resp", "pass":"8999999", "name":"new test", "cart":"1"})
         self.client.delete("/delete_user?id=106&pass=aaaaaa&name=james")
 
@@ -33,7 +33,7 @@ class MyTaskSet(TaskSet):
     @task(5)
     def purchases(self):
         self.client.get("/get_purchases")
-        self.client.put("/get_purchases", {"cartid":"53", "name":"scarf", "quantity":"2", "price":"9", "description":"much warm"})
+        self.client.put("/add_purchases", {"cartid":"53", "name":"scarf", "quantity":"2", "price":"9", "description":"much warm"})
         self.client.post("/update_purchase", {"cartid":"53", "name":"many gloves", "quantity":"99","price":"50"})
         self.client.delete("/delete_cart?name=manygloves&cartid=53")
 
@@ -77,4 +77,3 @@ class WebsiteUser(HttpLocust):
     # @task(1)
     # def about(self):
     #     self.client.get("/about/")
-
