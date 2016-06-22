@@ -265,6 +265,7 @@ function addToHistory(data, kartID){
     }
 }
 
+
 function cleanCart(kartID){
     $.ajax({
         method: 'delete',
