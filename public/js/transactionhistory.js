@@ -13,6 +13,8 @@ $().ready(function() {
             data: {'email': email},
 
             success: function (data) {
+                console.log(data[0].collection);
+                sessionStorage.setItem('preference', data[0].collection);
                 sessionStorage.setItem('history', JSON.stringify(data));
             },
             error: function () {
@@ -20,8 +22,6 @@ $().ready(function() {
             }
         });
     } else {
-        //default
-        var defaultValue = 0;
-        calculateTotal(defaultValue.toFixed(2));
+        console.log("Need to login to get recommendation");
     }
 });

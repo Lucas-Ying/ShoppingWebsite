@@ -955,10 +955,11 @@ app.put('/add_transactions', function (req, res) {
     var totalcost = req.body.price * quantity;
     var itemid = req.body.itemid;
     var userid = req.body.userid;
+    var weather = req.body.weather;
 
-    var q = "insert into purchase_history (itemname, quantity, totalcost, itemid, userid) "
-        + "values ($1,$2,$3,$4,$5)";
-    var query = client.query(q, [name, quantity, totalcost, itemid, userid]);
+    var q = "insert into purchase_history (itemname, quantity, totalcost, itemid, userid, weather) "
+        + "values ($1,$2,$3,$4,$5,$6)";
+    var query = client.query(q, [name, quantity, totalcost, itemid, userid, weather]);
     var results = [];
 
     //error handler for /add_purchases
@@ -984,7 +985,7 @@ app.put('/get_transactions', function (req, res) {
 
     var query = client.query("select sum(quantity) as quantity, sum(totalcost) as totalcost, collection "
                 + "from (select * from purchase_history join users on purchase_history.userid = users.id) new "
-                + "join products on new.itemid=products.id where email=$1 group by collection;", [email]);
+                + "join products on new.itemid=products.id where email=$1 group by collection order by quantity DESC;", [email]);
     var results = [];
 
     //error handler for /get_purchases
@@ -999,8 +1000,52 @@ app.put('/get_transactions', function (req, res) {
 
     //After all data is returned, close connection and return results
     query.on('end', function () {
+        res.setHeader('Cache-Control', 'public, max-age=0');
         res.json(results);
         console.log("result: " + results);
+    });
+});
+
+//===================================================================//
+
+//======================== Recommendation =====================//
+
+//get recommended products
+app.put('/get_recommendation', function (req, res) {
+    var collection = req.body.collection;
+    var weather = req.body.weather;
+
+    console.log("enter recommendation." + collection + " " + weather);
+
+    var q = "select productid, sum(quantity) as quantity, name, cost, description, collection, image " +
+            "from (select * " +
+                "from (select id as productid, * " +
+                    "from products " +
+                    "where collection=$1) collectionbased " +
+                "left join purchase_history " +
+                "on collectionbased.productid=purchase_history.itemid) weatherbased " +
+            "where weather=$2 " +
+            "group by productid, name, cost, description, collection, image " +
+            "order by quantity DESC;";
+
+    var query = client.query(q, [collection, weather]);
+    var results = [];
+
+    //error handler for /get_purchases
+    query.on('error', function (row, result) {
+        res.status(500).send('Error, fail to get recommendation.');
+    });
+
+    //stream results back one row at a time
+    query.on('row', function (row) {
+        results.push(row);
+    });
+
+    //After all data is returned, close connection and return results
+    query.on('end', function () {
+        res.setHeader('Cache-Control', 'public, max-age=0');
+        res.json(results);
+        console.log("recommendation: " + results);
     });
 });
 

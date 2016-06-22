@@ -228,6 +228,7 @@ function addToHistory(data, kartID){
         var itemPrice = data[i].price;
         var itemid = data[i].itemid;
         var userid = data[i].userid;
+        console.log(sessionStorage.getItem("weather"));
         $.ajax({
             method: 'PUT',
             url: '/add_transactions',
@@ -237,7 +238,8 @@ function addToHistory(data, kartID){
                 "quantity": itemQuantity,
                 "price": itemPrice,
                 "itemid": itemid,
-                "userid": userid
+                "userid": userid,
+                "weather": sessionStorage.getItem("weather")
             },
             success: function () {
                 count++;
