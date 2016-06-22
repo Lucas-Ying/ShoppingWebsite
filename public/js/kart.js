@@ -221,6 +221,7 @@ function checkout(kartID) {
 }
 
 function addToHistory(data, kartID){
+    var count = 0;
     for (i in data){
         var itemName = data[i].name;
         var itemQuantity = data[i].quantity;
@@ -239,7 +240,10 @@ function addToHistory(data, kartID){
                 "userid": userid
             },
             success: function () {
-                cleanCart(kartID);
+                count++;
+                if (count > data.length-1){
+                    cleanCart(kartID);
+                }
             },
             error: function () {
                 console.log("Error, fail to add products to shopping cart.");
