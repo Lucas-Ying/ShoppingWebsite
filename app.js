@@ -923,12 +923,12 @@ app.delete('/checkout', function (req, res) {
 //get purchases
 app.put('/get_purchases_by_cartid', function (req, res) {
     var cartid = req.body.cartid;
-    console.log("cartid: "+ req.body.cartid);
+    console.log("cartid: " + req.body.cartid);
 
     var query = client.query("select cartid, name, quantity, price, itemid, userid from "
-                + "(select * from purchases join (select id, name as productname, collection from products) pd "
-                + "on purchases.itemid = pd.id) new join cart on new.cartid = cart.id "
-                + "where cartid=$1", [cartid]);
+        + "(select * from purchases join (select id, name as productname, collection from products) pd "
+        + "on purchases.itemid = pd.id) new join cart on new.cartid = cart.id "
+        + "where cartid=$1", [cartid]);
     var results = [];
 
     //error handler for /get_purchases
@@ -984,8 +984,8 @@ app.put('/get_transactions', function (req, res) {
     var email = req.body.email;
 
     var query = client.query("select sum(quantity) as quantity, sum(totalcost) as totalcost, collection "
-                + "from (select * from purchase_history join users on purchase_history.userid = users.id) new "
-                + "join products on new.itemid=products.id where email=$1 group by collection order by quantity DESC;", [email]);
+        + "from (select * from purchase_history join users on purchase_history.userid = users.id) new "
+        + "join products on new.itemid=products.id where email=$1 group by collection order by quantity DESC;", [email]);
     var results = [];
 
     //error handler for /get_purchases
@@ -1010,7 +1010,80 @@ app.put('/get_transactions', function (req, res) {
 
 //======================== Recommendation =====================//
 
-//get recommended products
+//get recommended products by all transaction history
+app.get('/get_recommendation_all', function (req, res) {
+
+    var q = "select productid, sum(quantity) as quantity, name, cost, description, collection, image " +
+        "from (select * " +
+        "from (select id as productid, * " +
+        "from products ) new " +
+        "left join purchase_history " +
+        "on new.productid=purchase_history.itemid) new2 " +
+        "where quantity is not null " +
+        "group by productid, name, cost, description, collection, image " +
+        "order by quantity DESC " +
+        "limit 12;";
+
+    var query = client.query(q);
+    var results = [];
+
+    //error handler for /get_purchases
+    query.on('error', function (row, result) {
+        res.status(500).send('Error, fail to get recommendation.');
+    });
+
+    //stream results back one row at a time
+    query.on('row', function (row) {
+        results.push(row);
+    });
+
+    //After all data is returned, close connection and return results
+    query.on('end', function () {
+        res.setHeader('Cache-Control', 'public, max-age=0');
+        res.json(results);
+        console.log("recommendation: " + results);
+    });
+});
+
+//get recommended products by weather
+app.put('/get_recommendation_weather', function (req, res) {
+    var weather = req.body.weather;
+
+    console.log("enter recommendation." + weather);
+
+    var q = "select productid, sum(quantity) as quantity, name, cost, description, collection, image " +
+        "from (select * " +
+        "from (select id as productid, * " +
+        "from products ) new " +
+        "left join purchase_history " +
+        "on new.productid=purchase_history.itemid) weatherbased " +
+        "where weather=$1 " +
+        "group by productid, name, cost, description, collection, image " +
+        "order by quantity DESC " +
+        "limit 12;";
+
+    var query = client.query(q, [weather]);
+    var results = [];
+
+    //error handler for /get_purchases
+    query.on('error', function (row, result) {
+        res.status(500).send('Error, fail to get recommendation.');
+    });
+
+    //stream results back one row at a time
+    query.on('row', function (row) {
+        results.push(row);
+    });
+
+    //After all data is returned, close connection and return results
+    query.on('end', function () {
+        res.setHeader('Cache-Control', 'public, max-age=0');
+        res.json(results);
+        console.log("recommendation: " + results);
+    });
+});
+
+//get recommended products by weather and transaction history
 app.put('/get_recommendation', function (req, res) {
     var collection = req.body.collection;
     var weather = req.body.weather;
@@ -1018,15 +1091,16 @@ app.put('/get_recommendation', function (req, res) {
     console.log("enter recommendation." + collection + " " + weather);
 
     var q = "select productid, sum(quantity) as quantity, name, cost, description, collection, image " +
-            "from (select * " +
-                "from (select id as productid, * " +
-                    "from products " +
-                    "where collection=$1) collectionbased " +
-                "left join purchase_history " +
-                "on collectionbased.productid=purchase_history.itemid) weatherbased " +
-            "where weather=$2 " +
-            "group by productid, name, cost, description, collection, image " +
-            "order by quantity DESC;";
+        "from (select * " +
+        "from (select id as productid, * " +
+        "from products " +
+        "where collection=$1) collectionbased " +
+        "left join purchase_history " +
+        "on collectionbased.productid=purchase_history.itemid) weatherbased " +
+        "where weather=$2 " +
+        "group by productid, name, cost, description, collection, image " +
+        "order by quantity DESC" +
+        "limit 12;";
 
     var query = client.query(q, [collection, weather]);
     var results = [];
@@ -1065,8 +1139,8 @@ app.get('/collection/*', function (req, res) {
 
     // After all data is returned, close connection and return results
     query.on('end', function () {
-        resultsInJson = JSON.stringify(results);
-        res.render('browse', {products: resultsInJson});
+        var resultsInJson = JSON.stringify(results);
+        res.render('browse', {products: resultsInJson, collection: collection});
         // res.json(resultsInJson);
         console.log('Result: ' + resultsInJson);
     });

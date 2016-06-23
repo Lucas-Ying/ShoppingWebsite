@@ -80,4 +80,35 @@
             a.menu_item(href='/collection/kidstoys')
                 span Kids Toys
             br
-    img(src='/usepics/4.jpg', width='215', height='183')
+        .menu_header_left
+            span.menu_text
+                a(href='') Recommendations
+        .menu_header_right
+        #Recommendation
+            #Rec1.thumbnail(style='visibility: hidden;')
+                img#img1(src='', alt='', style='height: 200px; width: 100%; display: block;')
+                .caption
+                    h3#name1
+                    b#itemID1
+                    br
+                    b#price1
+                    br
+                    b#description1
+                    br
+                    br
+                    p
+                        button.btn.btn-primary.btn-sm(id='addToCartRec1', type='button') Add to Cart
+            #Rec2.thumbnail(style='visibility: hidden;')
+                img#img2(src='', alt='', style='height: 200px; width: 100%; display: block;')
+                .caption
+                    h3#name2
+                    b#itemID2
+                    br
+                    b#price2
+                    br
+                    b#description2
+                    br
+                    br
+                    p
+                        button.btn.btn-primary.btn-sm(id='addToCartRec2', type='button') Add to Cart
+        //img(src='/usepics/4.jpg', width='215', height='183')

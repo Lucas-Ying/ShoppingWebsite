@@ -8,6 +8,7 @@ $().ready(function(){
         addToCart(itemName, itemPrice, description, image, itemID);
 
     });
+    
 });
 
 function addToCart(itemName, itemPrice, description, image, itemID) {

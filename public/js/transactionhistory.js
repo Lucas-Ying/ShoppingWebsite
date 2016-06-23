@@ -22,6 +22,6 @@ $().ready(function() {
             }
         });
     } else {
-        console.log("Need to login to get recommendation");
+        console.log("Need to login to get transaction history");
     }
 });
