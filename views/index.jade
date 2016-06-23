@@ -3,7 +3,7 @@ extends layout
 block addscript
     script.
         function abc() {
-            var arr = new Array("/images/neck.jpg", "/images/ban7.jpg", "/images/ban5.jpg", "/images/ban1.jpg", "/images/akkriti-banner.jpg");
+            var arr = new Array("/usepics/neck.jpg", "/usepics/ban7.jpg", "/usepics/ban5.jpg", "/usepics/ban1.jpg", "/usepics/akkriti-banner.jpg");
             var ind = eval(document.f1.h1.value);
             document.img.src = arr[ind];
             document.f1.h1.value = ind + 1;
@@ -22,7 +22,7 @@ block sidebar
 block content
     #RightPart
         #Page
-            img(src='/images/akkriti-banner.jpg', alt='', width='669', height='210', name='img')
+            img(src='/usepics/akkriti-banner.jpg', alt='', width='669', height='210', name='img')
             form(name='f1')
                 input(type='hidden', name='h1', value='0')
             #Page_top
