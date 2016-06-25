@@ -182,7 +182,7 @@ $().ready(function(){
             dataType:'json',
 
             success: function(data){                   
-               console.log("--------------------" + data.name+" : "+data.email);
+              //console.log("--------------------" + data.name+" : "+data.email);
                 var username = data.name;
                 var useremail = data.email;
 
@@ -257,7 +257,8 @@ function checkUserCart(useremail){
 
         success: function(data){
             //call add cart function if user dont have cart
-            if(data.id=='undefined'){
+            console.log(data[0].id);
+            if(data[0].id=='undefined'){
                 addCart(useremail);
             }
         },
@@ -302,5 +303,6 @@ function addCart(userEmail){
         }
     });
 }
+
 
 

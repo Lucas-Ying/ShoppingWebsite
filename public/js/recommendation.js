@@ -105,8 +105,8 @@ function addToCart(itemName, itemPrice, description, image, itemID) {
     var itemQuantity = 1;
     var registerName = document.getElementById('registration').text;
     var email = sessionStorage.getItem('useremail');
-    console.log(email);
-    console.log(registerName);
+    //console.log(email);
+    //console.log(registerName);
     //if email is not empty
     if (email) {
         if (registerName == 'REGISTRATION') {
