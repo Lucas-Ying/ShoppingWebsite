@@ -258,7 +258,6 @@ function checkUserCart(useremail){
         success: function(data){
             //call add cart function if user dont have cart
             if(!data.id){
-                console.log("testing");
                 addCart(useremail);
             }
         },
@@ -270,6 +269,7 @@ function checkUserCart(useremail){
 
 //addCart
 function addCart(userEmail){
+    console.log(userEmail);
     var userid=0;
     $.ajax({
         method:'PUT',
@@ -303,6 +303,5 @@ function addCart(userEmail){
         }
     });
 }
-
 
 
