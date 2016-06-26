@@ -269,7 +269,6 @@ function checkUserCart(useremail){
 
 //addCart
 function addCart(userEmail){
-    console.log(userEmail);
     var userid=0;
     $.ajax({
         method:'PUT',
