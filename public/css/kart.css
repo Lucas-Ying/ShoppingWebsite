@@ -100,6 +100,8 @@ table.itemTable td span.costLabel{
 }
 
 table.itemTable tr td input.Continue, input.Checkout{
+	font-weight: bold;
+	font-size: 10pt;
 	margin-top: 10px;
 }
 
@@ -110,8 +112,8 @@ table.itemTable tr td input.Continue{
 table.itemTable tr td input.Checkout{
 	float:right;
 	margin-right: 25px;
+	margin-bottom: 5px;
 }
 
-table.itemTable tr td.btn{
-	border-bottom: none;
-}
+
+

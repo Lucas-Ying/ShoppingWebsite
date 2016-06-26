@@ -74,7 +74,13 @@ $().ready(function () {
             finalSubtotal = finalSubtotal - subtotal;
 
             $(this).keyup(function () {
-                var quantity = this.value;
+                var quantity;
+                if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
+                    this.value = this.value.replace(/[^0-9\.]/g, '');
+                    quantity = this.value;
+                }else{
+                    quantity = this.value;
+                }
                 var newSubTotal = roundToTwo(price * quantity).toFixed(2);
                 $(this).closest('tr').find('.sub').text('$' + newSubTotal);
                 //update database
@@ -180,9 +186,15 @@ function calculateTotal(finalSubtotal) {
         + "<td colspan ='2'><span class ='costLabel'>Total</span></td>"
         + "<td><span class='chout' id='total'> $" + total + "</span></td>"
         + "</tr><tr>"
-        + "<td class='btn' colspan ='6'>"
+        + "<td colspan ='2'>"
         + "<a href='/index'><input class='Continue' id='Continue' type='submit' value='Continue Shopping'></input></a>"
-        + "<input class='Checkout' id='Checkout' type='submit' value='Check Out'></input></td>"
+        + "</td>"
+        + "<td></td>"
+        + "<td></td>"
+        + "<td></td>"
+        + "<td>"
+        + "<input class='Checkout' id='Checkout' type='submit' value='Check Out'></input>"
+        + "</td>"
         + "</tr>"
 
     $('#itemTable').append(endRow);
