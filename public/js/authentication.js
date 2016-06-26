@@ -186,7 +186,6 @@ $().ready(function(){
                 var username = data.name;
                 var useremail = data.email;
 
-
                 if(!sessionStorage.getItem('useremail')){
                     if(username && useremail){
                         sessionStorage.setItem('useremail', useremail);
@@ -256,10 +255,11 @@ function checkUserCart(useremail){
         data:{'email':useremail},
 
         success: function(data){
+            console.log(data);
             //call add cart function if user dont have cart
-            if(!data.id){
+           /* if(!data.id){
                 addCart(useremail);
-            }
+            }*/
         },
         error:function(){
             console.log("Error: fail to get userCart");
