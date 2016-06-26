@@ -572,6 +572,31 @@ app.put('/get_user', function (req, res) {
     });
 });
 
+app.put('/get_OAuth_user', function(req,res){
+    var userEmail = req.body.email;
+
+    var q = "SELECT * FROM users WHERE email=$1";
+    var query = client.query(q, [userEmail]);
+
+    var results = [];
+
+    //error handler for /get_users
+    query.on('error', function () {
+        res.status(500).send('Error, fail to get users: ' + userEmail);
+    });
+
+    //stream results back one row at a time
+    query.on('row', function (row) {
+        results.push(row);
+    });
+
+    //After all data is returned, close connection and return results
+    query.on('end', function () {
+        res.json(results);
+        console.log("result: " + results);
+    });
+});
+
 //adding users
 app.put('/add_user', function (req, res) {
     var userEmail = req.body.email;
@@ -1238,5 +1263,6 @@ module.exports = app;
 app.listen(port, function () {
     console.log("ShoppingWebsite app listening on port: " + port + "!");
 });
+
 
 

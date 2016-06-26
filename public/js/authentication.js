@@ -255,11 +255,11 @@ function checkUserCart(useremail){
         data:{'email':useremail},
 
         success: function(data){
-            console.log(data);
+            //console.log(data);
             //call add cart function if user dont have cart
-           /* if(!data.id){
+            if(!data.id){
                 addCart(useremail);
-            }*/
+            }
         },
         error:function(){
             console.log("Error: fail to get userCart");
@@ -272,7 +272,7 @@ function addCart(userEmail){
     var userid=0;
     $.ajax({
         method:'PUT',
-        url:'/get_user',
+        url:'/get_OAuth_user',
         dataType:'json',
         data:{'email':userEmail},
 
