@@ -23,13 +23,13 @@ $().ready(function(){
     $('#registration').on('click',function(){
         var loginName = document.getElementById('registration').text;
         if(loginName!= 'REGISTRATION'){
-            location.href = 'kart';    
+            location.href = '/kart';    
         }
         else{
             location.href = '/register';
         }
     });
-    
+
     //signup
     $('#signupForm').submit(function(e){
         e.preventDefault();
@@ -67,7 +67,7 @@ $().ready(function(){
                     }
                     else if(data[0].email == email){
                         document.getElementById('err').innerHTML="Email already exist please use a different email";
-                        document.getElementById('err').style.visibility = 'visible'; 
+                        document.getElementById('err').style.visibility = 'visible';
                     }
 
                 },
@@ -83,7 +83,7 @@ $().ready(function(){
                     dataType:'json',
                     data:{'email':email,"pass":pass,"name":name},
 
-                    success:function(){ 
+                    success:function(){
                         addCart(email);
                         alert("SignUp Successful!");
                         //redirect to login page
@@ -97,7 +97,7 @@ $().ready(function(){
 
         }//otherwise leave it to the form validation
     });
-    
+
     //login
     $('#loginForm').submit(function(e){
         e.preventDefault();
@@ -120,7 +120,7 @@ $().ready(function(){
                 	if(typeof data[0] != 'undefined')
                 	{
                     	if(data[0].email == email){
-                        	if(data[0].pass == passW){      
+                        	if(data[0].pass == passW){
                             sessionStorage.setItem('useremail', data[0].email);
                             sessionStorage.setItem('username',data[0].name);
                             //console.log(sessionStorage.getItem('username'));
@@ -174,14 +174,14 @@ $().ready(function(){
         }
     }
 
-    //facebook and google user display 
+    //facebook and google user display
     if(window.location.pathname == '/' ) {
         $.ajax({
             method:'GET',
             url:'/get_OAuth',
             dataType:'json',
 
-            success: function(data){                   
+            success: function(data){
               //console.log("--------------------" + data.name+" : "+data.email);
                 var username = data.name;
                 var useremail = data.email;
@@ -242,7 +242,7 @@ function logout(){
             console.log("Error: fail to get users");
         }
     });
-    
+
     location.href = 'login';
 }
 
@@ -276,7 +276,7 @@ function addCart(userEmail){
         dataType:'json',
         data:{'email':userEmail},
 
-        success: function(data){           
+        success: function(data){
             if(data[0].email == userEmail){
                 userid = data[0].id;
             }
@@ -302,5 +302,3 @@ function addCart(userEmail){
         }
     });
 }
-
-
