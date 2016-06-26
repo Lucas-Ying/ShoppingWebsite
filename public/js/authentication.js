@@ -257,7 +257,7 @@ function checkUserCart(useremail){
         success: function(data){
             //console.log(data);
             //call add cart function if user dont have cart
-            if(!data.id){
+            if(data.id=='undefined'){
                 addCart(useremail);
             }
         },
