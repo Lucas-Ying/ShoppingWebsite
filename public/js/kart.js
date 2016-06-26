@@ -74,7 +74,13 @@ $().ready(function () {
             finalSubtotal = finalSubtotal - subtotal;
 
             $(this).keyup(function () {
-                var quantity = this.value;
+                var quantity;
+                if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
+                    this.value = this.value.replace(/[^0-9\.]/g, '');
+                    quantity = this.value;
+                }else{
+                    quantity = this.value;
+                }
                 var newSubTotal = roundToTwo(price * quantity).toFixed(2);
                 $(this).closest('tr').find('.sub').text('$' + newSubTotal);
                 //update database
